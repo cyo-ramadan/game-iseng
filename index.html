@@ -15,36 +15,47 @@ html,body{margin:0;height:100%;background:#0e1a13;color:#fff;font-family:system-
   const status=document.getElementById('status');
   const names=['part-1.b64','part-2.b64','part-3.b64','part-4.b64','part-5.b64','part-6.b64'];
   const bases=[
-    'https://raw.githubusercontent.com/cyo-ramadan/game-iseng/main/chunks/',
-    new URL('chunks/',location.href).href
+    new URL('chunks/',location.href).href,
+    'https://raw.githubusercontent.com/cyo-ramadan/game-iseng/main/chunks/'
   ];
   async function getPart(name,index){
     let lastErr='';
     for(const base of bases){
       try{
         status.textContent=`Loading data ${index+1}/${names.length}…`;
-        const r=await fetch(base+name+'?v='+Date.now(),{cache:'no-store'});
+        const r=await fetch(base+name+'?v=fix2',{cache:'no-store'});
         if(!r.ok)throw new Error('HTTP '+r.status);
-        const t=(await r.text()).trim();
+        const t=(await r.text()).replace(/\s+/g,'');
         if(!t)throw new Error('empty chunk');
         return t;
       }catch(e){lastErr=String(e)}
     }
     throw new Error(name+': '+lastErr);
   }
-  try{
-    const parts=[];
-    for(let i=0;i<names.length;i++)parts.push(await getPart(names[i],i));
-    status.textContent='Menyalakan engine game…';
-    const raw=parts.join('').replace(/\s+/g,'');
-    const bin=atob(raw);
+  function decodePart(text){
+    const bin=atob(text);
     const bytes=new Uint8Array(bin.length);
     for(let i=0;i<bin.length;i++)bytes[i]=bin.charCodeAt(i);
-    const html=new TextDecoder('utf-8').decode(bytes);
+    return bytes;
+  }
+  try{
+    const decoded=[];
+    let total=0;
+    for(let i=0;i<names.length;i++){
+      const text=await getPart(names[i],i);
+      const bytes=decodePart(text);
+      decoded.push(bytes);
+      total+=bytes.length;
+    }
+    status.textContent='Menyalakan engine game…';
+    const all=new Uint8Array(total);
+    let offset=0;
+    for(const bytes of decoded){all.set(bytes,offset);offset+=bytes.length;}
+    const html=new TextDecoder('utf-8').decode(all);
     if(!html.includes('Kebun vs Pejabat'))throw new Error('game payload invalid');
     document.open();document.write(html);document.close();
   }catch(err){
-    document.body.innerHTML='<div class="loading"><div style="font-size:42px">⚠️</div>Game belum berhasil dimuat.<small>'+String(err).replace(/[<>]/g,'')+'<br><br>Coba refresh sekali. Kalau tetap gagal, repo sedang menunggu cache GitHub Pages.</small></div>';
+    document.body.innerHTML='<div class="loading"><div style="font-size:42px">⚠️</div>Game belum berhasil dimuat.<small>'+String(err).replace(/[<>]/g,'')+'<br><br>Loader sudah pakai decode per-chunk. Coba refresh sekali.</small></div>';
   }
 })();
 </script>
