@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<title>Kebun vs Pejabat</title>
+<style>html,body{margin:0;height:100%;background:#0e1a13;color:#fff;font-family:system-ui,-apple-system,Segoe UI,sans-serif;display:grid;place-items:center}.loading{text-align:center;font-weight:900;padding:24px}.loading small{display:block;margin-top:8px;opacity:.68;font-weight:600;line-height:1.5}.spin{font-size:42px;animation:b 1s infinite alternate}@keyframes b{to{transform:translateY(-7px)}}</style>
+</head>
+<body>
+<div class="loading"><div class="spin">🌱</div>Loading Kebun vs Pejabat…<small id="status">Loader v2 · no old cache.</small></div>
+<script>
+(async()=>{
+ const status=document.getElementById('status');
+ const names=['part-1.b64','part-2.b64','part-3.b64','part-4.b64','part-5.b64','part-6.b64'];
+ const bases=[new URL('chunks/',location.href).href,'https://raw.githubusercontent.com/cyo-ramadan/game-iseng/main/chunks/'];
+ async function loadChunk(name,i){
+   let err='';
+   for(const base of bases){
+     try{
+       status.textContent=`Loading ${i+1}/${names.length}…`;
+       const r=await fetch(base+name+'?v=gamev2',{cache:'no-store'});
+       if(!r.ok)throw new Error('HTTP '+r.status);
+       const txt=(await r.text()).replace(/\s+/g,'');
+       if(!txt)throw new Error('empty');
+       return txt;
+     }catch(e){err=String(e)}
+   }
+   throw new Error(name+' '+err);
+ }
+ function b64bytes(s){
+   const pad=s.length%4;
+   if(pad) s += '='.repeat(4-pad);
+   const bin=atob(s);
+   const out=new Uint8Array(bin.length);
+   for(let i=0;i<bin.length;i++)out[i]=bin.charCodeAt(i);
+   return out;
+ }
+ try{
+   const arrays=[];let total=0;
+   for(let i=0;i<names.length;i++){
+     const txt=await loadChunk(names[i],i);
+     const arr=b64bytes(txt);arrays.push(arr);total+=arr.length;
+   }
+   const all=new Uint8Array(total);let off=0;
+   for(const arr of arrays){all.set(arr,off);off+=arr.length;}
+   const html=new TextDecoder().decode(all);
+   if(!html.includes('<title>Kebun vs Pejabat</title>'))throw new Error('payload game invalid');
+   document.open();document.write(html);document.close();
+ }catch(e){
+   document.body.innerHTML='<div class="loading">⚠️ Loader v2 gagal.<small>'+String(e).replace(/[<>]/g,'')+'</small></div>';
+ }
+})();
+</script>
+</body>
+</html>
