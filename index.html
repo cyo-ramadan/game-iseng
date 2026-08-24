@@ -4,22 +4,48 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
 <title>Kebun vs Pejabat</title>
-<style>html,body{margin:0;height:100%;background:#0e1a13;color:#fff;font-family:system-ui,sans-serif;display:grid;place-items:center}.loading{text-align:center;font-weight:900}.loading small{display:block;margin-top:8px;opacity:.65;font-weight:600}</style>
+<style>
+html,body{margin:0;height:100%;background:#0e1a13;color:#fff;font-family:system-ui,-apple-system,Segoe UI,sans-serif;display:grid;place-items:center}.loading{text-align:center;font-weight:900;padding:24px}.loading small{display:block;margin-top:8px;opacity:.65;font-weight:600;line-height:1.5}.spin{font-size:42px;animation:b 1s infinite alternate}@keyframes b{to{transform:translateY(-7px)}}
+</style>
 </head>
 <body>
-<div class="loading">🌱 Loading Kebun vs Pejabat…<small>restoring full prototype</small></div>
+<div class="loading"><div class="spin">🌱</div>Loading Kebun vs Pejabat…<small id="status">Nyambungin full prototype.</small></div>
 <script>
 (async()=>{
+  const status=document.getElementById('status');
+  const names=['part-1.b64','part-2.b64','part-3.b64','part-4.b64','part-5.b64','part-6.b64'];
+  const bases=[
+    'https://raw.githubusercontent.com/cyo-ramadan/game-iseng/main/chunks/',
+    new URL('chunks/',location.href).href
+  ];
+  async function getPart(name,index){
+    let lastErr='';
+    for(const base of bases){
+      try{
+        status.textContent=`Loading data ${index+1}/${names.length}…`;
+        const r=await fetch(base+name+'?v='+Date.now(),{cache:'no-store'});
+        if(!r.ok)throw new Error('HTTP '+r.status);
+        const t=(await r.text()).trim();
+        if(!t)throw new Error('empty chunk');
+        return t;
+      }catch(e){lastErr=String(e)}
+    }
+    throw new Error(name+': '+lastErr);
+  }
   try{
-    const files=['chunks/part-1.b64','chunks/part-2.b64','chunks/part-3.b64','chunks/part-4.b64','chunks/part-5.b64','chunks/part-6.b64'];
-    const parts=await Promise.all(files.map(async f=>{const r=await fetch(f,{cache:'no-store'});if(!r.ok)throw new Error(f+' '+r.status);return r.text();}));
+    const parts=[];
+    for(let i=0;i<names.length;i++)parts.push(await getPart(names[i],i));
+    status.textContent='Menyalakan engine game…';
     const raw=parts.join('').replace(/\s+/g,'');
     const bin=atob(raw);
     const bytes=new Uint8Array(bin.length);
     for(let i=0;i<bin.length;i++)bytes[i]=bin.charCodeAt(i);
     const html=new TextDecoder('utf-8').decode(bytes);
+    if(!html.includes('Kebun vs Pejabat'))throw new Error('game payload invalid');
     document.open();document.write(html);document.close();
-  }catch(err){document.body.innerHTML='<div class="loading">⚠️ Game gagal dimuat.<small>'+String(err)+'</small></div>';}
+  }catch(err){
+    document.body.innerHTML='<div class="loading"><div style="font-size:42px">⚠️</div>Game belum berhasil dimuat.<small>'+String(err).replace(/[<>]/g,'')+'<br><br>Coba refresh sekali. Kalau tetap gagal, repo sedang menunggu cache GitHub Pages.</small></div>';
+  }
 })();
 </script>
 </body>
