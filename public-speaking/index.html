@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>What Can You Tell People? - Public Speaking Game</title>
+<style>
+  :root{
+    --bg:#fff8e7;
+    --card:#ffffff;
+    --text:#25324a;
+    --soft:#6c7a96;
+    --accent:#ff8a3d;
+    --accent2:#6d5dfc;
+    --good:#22a06b;
+    --line:#e7e9f0;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family: "Trebuchet MS", Arial, sans-serif;
+    background:linear-gradient(180deg,#fff8e7 0%,#eef5ff 100%);
+    color:var(--text);
+    min-height:100vh;
+  }
+  .wrap{
+    width:min(980px,92%);
+    margin:0 auto;
+    padding:28px 0 50px;
+  }
+  .hero{text-align:center;margin-bottom:18px;}
+  .hero h1{margin:0;font-size:clamp(28px,5vw,52px);line-height:1;}
+  .hero p{color:var(--soft);font-size:18px;margin:10px 0 0;}
+  .progress{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:18px 0 22px;}
+  .step{background:#fff;border:2px solid var(--line);border-radius:14px;padding:10px 8px;text-align:center;font-weight:700;color:#8a94aa;font-size:14px;}
+  .step.active{border-color:var(--accent2);color:var(--accent2);box-shadow:0 5px 16px rgba(109,93,252,.12);}
+  .panel{display:none;background:var(--card);border-radius:24px;padding:24px;box-shadow:0 14px 40px rgba(41,54,85,.10);border:1px solid rgba(0,0,0,.04);}
+  .panel.active{display:block}
+  h2{margin-top:0;font-size:30px}
+  .sub{color:var(--soft);margin-top:-8px;margin-bottom:18px}
+  .topics{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;}
+  .topic{border:3px solid var(--line);background:#fff;border-radius:20px;padding:20px 12px;cursor:pointer;text-align:center;transition:.18s;min-height:140px;}
+  .topic:hover{transform:translateY(-3px);border-color:#cfcaff}
+  .topic.selected{border-color:var(--accent2);background:#f4f2ff;transform:translateY(-3px);}
+  .emoji{font-size:46px;display:block;margin-bottom:8px}
+  .topic b{font-size:18px}
+  .prompt{margin:14px 0;padding:16px;border:2px solid var(--line);border-radius:18px;background:#fbfcff;}
+  .prompt label{display:block;font-weight:800;margin-bottom:8px;font-size:17px;}
+  input,textarea{width:100%;border:2px solid #dfe3ec;border-radius:13px;padding:12px 14px;font:inherit;font-size:17px;outline:none;background:white;}
+  input:focus,textarea:focus{border-color:var(--accent2)}
+  textarea{min-height:75px;resize:vertical}
+  .buttons{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px;}
+  button{border:0;border-radius:14px;padding:12px 18px;font:inherit;font-weight:800;cursor:pointer;transition:.15s;}
+  button:hover{transform:translateY(-1px)}
+  .primary{background:var(--accent2);color:white}
+  .orange{background:var(--accent);color:white}
+  .ghost{background:#eef1f7;color:var(--text)}
+  .speech{font-size:22px;line-height:1.65;background:#f8f7ff;border:3px dashed #b7afff;padding:20px;border-radius:18px;}
+  .speech span{font-weight:800;color:#5545d8}
+  .practice-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;}
+  .timer-card,.power-card{border:2px solid var(--line);border-radius:18px;padding:18px;background:#fff;}
+  .timer{font-size:64px;font-weight:900;text-align:center;color:var(--accent2);margin:8px 0;}
+  .challenge{text-align:center;font-size:22px;padding:14px;border-radius:14px;background:#fff3e8;margin-bottom:14px;}
+  .powers{display:grid;gap:10px;}
+  .power{display:flex;align-items:center;gap:10px;padding:12px;border:2px solid var(--line);border-radius:14px;cursor:pointer;user-select:none;}
+  .power.done{background:#eaf8f1;border-color:#7fd0ae;}
+  .stars{text-align:center;font-size:54px;letter-spacing:4px;margin:14px 0 4px;}
+  .result{text-align:center;padding:16px;border-radius:16px;background:#f5f7fb;margin-top:14px;font-weight:800;}
+  .tiny{font-size:13px;color:var(--soft)}
+  @media (max-width:760px){.practice-grid{grid-template-columns:1fr}.progress{grid-template-columns:1fr 1fr}.panel{padding:18px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="hero">
+    <h1>🎤 What Can You Tell People?</h1>
+    <p>Build your mini speech, practice, and become a speaking star! ⭐</p>
+  </div>
+
+  <div class="progress">
+    <div class="step active" id="s1">1. Choose</div>
+    <div class="step" id="s2">2. Think</div>
+    <div class="step" id="s3">3. Build</div>
+    <div class="step" id="s4">4. Speak</div>
+  </div>
+
+  <section class="panel active" id="p1">
+    <h2>Pick Your Story 🌟</h2>
+    <div class="sub">What do you want to tell your friends?</div>
+    <div class="topics" id="topics">
+      <div class="topic" data-topic="myself"><span class="emoji">🙋</span><b>About Me</b></div>
+      <div class="topic" data-topic="pet"><span class="emoji">🐶</span><b>My Pet</b></div>
+      <div class="topic" data-topic="food"><span class="emoji">🍕</span><b>Favorite Food</b></div>
+      <div class="topic" data-topic="activity"><span class="emoji">⚽</span><b>Favorite Activity</b></div>
+      <div class="topic" data-topic="thing"><span class="emoji">🧸</span><b>Favorite Thing</b></div>
+    </div>
+    <div class="buttons"><button class="primary" onclick="goThink()">Next ➜</button></div>
+  </section>
+
+  <section class="panel" id="p2">
+    <h2>Think About It 💭</h2>
+    <div class="sub">Short answers are okay. One idea is enough!</div>
+    <div class="prompt"><label id="q1">What is it?</label><input id="a1" placeholder="Example: My cat, Milo"></div>
+    <div class="prompt"><label id="q2">What does it look like?</label><input id="a2" placeholder="Example: Small and orange"></div>
+    <div class="prompt"><label id="q3">What do you do with it?</label><input id="a3" placeholder="Example: I play with him"></div>
+    <div class="prompt"><label id="q4">Why do you like it?</label><input id="a4" placeholder="Example: Because he is funny"></div>
+    <div class="buttons"><button class="ghost" onclick="showPanel(1)">← Back</button><button class="primary" onclick="buildSpeech()">Build My Speech ✨</button></div>
+  </section>
+
+  <section class="panel" id="p3">
+    <h2>Your Mini Speech 🧩</h2>
+    <div class="sub">Read it once. Then try looking up while you speak.</div>
+    <div class="speech" id="speechBox"></div>
+    <div class="buttons"><button class="ghost" onclick="showPanel(2)">← Edit Answers</button><button class="orange" onclick="readSpeech()">🔊 Read It To Me</button><button class="primary" onclick="startPractice()">Practice Speaking 🎤</button></div>
+    <p class="tiny">Voice playback uses your browser's built-in text-to-speech.</p>
+  </section>
+
+  <section class="panel" id="p4">
+    <h2>Speaker Challenge 🎤</h2>
+    <div class="sub">Try to finish your speech before the timer ends.</div>
+    <div class="practice-grid">
+      <div class="timer-card">
+        <div class="challenge" id="challenge">🎯 Challenge: Speak clearly!</div>
+        <div class="timer" id="timer">30</div>
+        <div class="buttons" style="justify-content:center"><button class="orange" onclick="runTimer()">▶ Start 30s</button><button class="ghost" onclick="resetTimer()">↻ Reset</button></div>
+      </div>
+      <div class="power-card">
+        <h3 style="margin-top:0">Speaker Power Check ⚡</h3>
+        <div class="powers">
+          <div class="power" onclick="togglePower(this)">🔊 <b>Clear Voice</b></div>
+          <div class="power" onclick="togglePower(this)">👀 <b>Look Up</b></div>
+          <div class="power" onclick="togglePower(this)">🧍 <b>Stand Tall</b></div>
+          <div class="power" onclick="togglePower(this)">😊 <b>Smile</b></div>
+        </div>
+      </div>
+    </div>
+    <div class="stars" id="stars">☆☆☆☆☆</div>
+    <div class="result" id="result">Tap the Speaker Powers you completed!</div>
+    <div class="buttons"><button class="ghost" onclick="showPanel(3)">← See Speech</button><button class="primary" onclick="newRound()">New Story 🔄</button></div>
+  </section>
+</div>
+
+<script>
+let topic = "";
+let timerId = null;
+let timeLeft = 30;
+
+const topicConfig = {
+  myself:{qs:["What is your name?","How old are you?","What do you like to do?","What makes you happy?"],ph:["Example: Kevin","Example: 8 years old","Example: Play football","Example: Playing with my friends"]},
+  pet:{qs:["What is your pet?","What does your pet look like?","What do you do together?","Why do you like your pet?"],ph:["Example: My cat, Milo","Example: Small and orange","Example: We play together","Example: Because he is funny"]},
+  food:{qs:["What food do you like?","What does it look or taste like?","When do you eat it?","Why do you like it?"],ph:["Example: Pizza","Example: Cheesy and crispy","Example: On the weekend","Example: Because it is delicious"]},
+  activity:{qs:["What activity do you like?","Where do you do it?","Who do you do it with?","Why do you like it?"],ph:["Example: Football","Example: At school","Example: With my friends","Example: Because it is exciting"]},
+  thing:{qs:["What is your favorite thing?","What does it look like?","What do you do with it?","Why do you like it?"],ph:["Example: My robot toy","Example: Blue and white","Example: I play with it","Example: Because it is cool"]}
+};
+
+document.querySelectorAll(".topic").forEach(el=>{el.addEventListener("click",()=>{document.querySelectorAll(".topic").forEach(x=>x.classList.remove("selected"));el.classList.add("selected");topic=el.dataset.topic;});});
+function showPanel(n){document.querySelectorAll(".panel").forEach(x=>x.classList.remove("active"));document.querySelectorAll(".step").forEach(x=>x.classList.remove("active"));document.getElementById("p"+n).classList.add("active");document.getElementById("s"+n).classList.add("active");window.scrollTo({top:0,behavior:"smooth"});}
+function goThink(){if(!topic){alert("Pick one story first! 🌟");return;}const c=topicConfig[topic];for(let i=1;i<=4;i++){document.getElementById("q"+i).textContent=c.qs[i-1];document.getElementById("a"+i).placeholder=c.ph[i-1];}showPanel(2);}
+function val(id,fallback){const v=document.getElementById(id).value.trim();return v||fallback;}
+function buildSpeech(){const a1=val("a1","something special"),a2=val("a2","very interesting"),a3=val("a3","I enjoy it"),a4=val("a4","it makes me happy");let speech="";if(topic==="myself"){speech=`Hello everyone!<br>My name is <span>${a1}</span>.<br>I am <span>${a2}</span>.<br>I like to <span>${a3}</span>.<br>I am happy when <span>${a4}</span>.<br>Thank you for listening!`;}else if(topic==="pet"){speech=`Hello everyone!<br>Today I want to tell you about <span>${a1}</span>.<br>My pet is <span>${a2}</span>.<br><span>${a3}</span>.<br>I like my pet because <span>${a4}</span>.<br>Thank you for listening!`;}else if(topic==="food"){speech=`Hello everyone!<br>My favorite food is <span>${a1}</span>.<br>It is <span>${a2}</span>.<br>I eat it <span>${a3}</span>.<br>I like it because <span>${a4}</span>.<br>Thank you for listening!`;}else if(topic==="activity"){speech=`Hello everyone!<br>My favorite activity is <span>${a1}</span>.<br>I do it <span>${a2}</span>.<br>I do it <span>${a3}</span>.<br>I like it because <span>${a4}</span>.<br>Thank you for listening!`;}else{speech=`Hello everyone!<br>Today I want to tell you about <span>${a1}</span>.<br>It is <span>${a2}</span>.<br><span>${a3}</span>.<br>I like it because <span>${a4}</span>.<br>Thank you for listening!`;}document.getElementById("speechBox").innerHTML=speech;showPanel(3);}
+function readSpeech(){if(!("speechSynthesis" in window)){alert("Sorry, voice playback is not supported in this browser.");return;}window.speechSynthesis.cancel();const text=document.getElementById("speechBox").innerText;const u=new SpeechSynthesisUtterance(text);u.rate=.88;u.pitch=1.08;u.lang="en-US";window.speechSynthesis.speak(u);}
+function startPractice(){const challenges=["🎯 Challenge: Speak clearly!","👀 Challenge: Look up 3 times!","🧍 Challenge: Stand tall!","😊 Challenge: Smile at the start!","🔊 Challenge: Use your speaking voice!"];document.getElementById("challenge").textContent=challenges[Math.floor(Math.random()*challenges.length)];resetTimer();document.querySelectorAll(".power").forEach(x=>x.classList.remove("done"));updateScore();showPanel(4);}
+function runTimer(){if(timerId)return;timerId=setInterval(()=>{timeLeft--;document.getElementById("timer").textContent=timeLeft;if(timeLeft<=0){clearInterval(timerId);timerId=null;document.getElementById("timer").textContent="⭐";document.getElementById("result").textContent="Time! Great job finishing your speech! 🎉";}},1000);}
+function resetTimer(){if(timerId){clearInterval(timerId);timerId=null;}timeLeft=30;document.getElementById("timer").textContent="30";}
+function togglePower(el){el.classList.toggle("done");updateScore();}
+function updateScore(){const done=document.querySelectorAll(".power.done").length;const score=Math.min(5,done+(done===4?1:0));document.getElementById("stars").textContent="★".repeat(score)+"☆".repeat(5-score);const messages=["Tap the Speaker Powers you completed!","Nice start! Keep going 🌱","Good! Your speaker power is growing 💪","Great job! Almost there 🚀","Speaking Star! You did all 4 powers 🌟"];document.getElementById("result").textContent=messages[done];}
+function newRound(){topic="";document.querySelectorAll(".topic").forEach(x=>x.classList.remove("selected"));document.querySelectorAll("input").forEach(x=>x.value="");document.querySelectorAll(".power").forEach(x=>x.classList.remove("done"));resetTimer();showPanel(1);}
+</script>
+</body>
+</html>
