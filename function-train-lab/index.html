@@ -91,9 +91,9 @@ for(const key of ['Sim','Concept','Business','Quiz'])el('nav'+key).addEventListe
 (()=>{'use strict';const $=id=>document.getElementById(id);
 let zoom=24;function render(){const a=Number($('xyA').value),b=Number($('xyB').value),x=Number($('xyX').value),y=a*x+b;
 $('xyAOut').textContent=a;$('xyBOut').textContent=b;$('xyXOut').textContent=x;
-$('xyFormula').textContent='Rumus: y = '+a+' × x + ('+b+')';
+$('xyFormula').textContent='Rumus: y = '+(a===0?'0':a===1?'x':a===-1?'-x':a+'x')+(b<0?' − '+Math.abs(b):' + '+b);
 $('xyResult').textContent='Saat x = '+x+', y = '+y;
-$('xySteps').textContent='Langkah: y = '+a+' × '+x+' + ('+b+') = '+(a*x)+' + ('+b+') = '+y+'.';
+$('xySteps').textContent='Langkah: y = '+a+'('+x+')'+(b<0?' − '+Math.abs(b):' + '+b)+' = '+(a*x)+(b<0?' − '+Math.abs(b):' + '+b)+' = '+y+'.';
 const rows=[-4,-3,-2,-1,0,1,2,3,4,x].filter((v,i,arr)=>arr.indexOf(v)===i).sort((p,q)=>p-q);
 const table=document.createElement('table');table.style.cssText='width:100%;border-collapse:collapse;text-align:center';
 const header=table.insertRow();['x',...rows.map(String)].forEach(v=>{const cell=header.insertCell();cell.textContent=v;cell.style.padding='9px';cell.style.borderBottom='1px solid #7895ad';});
