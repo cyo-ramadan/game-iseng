@@ -17,16 +17,47 @@ return {title,question,answer,explanation,unit,choices:shuffle([...nums])};
 }
 function generate(){
 const a=rand(1,5),b=rand(1,9),x=rand(2,10),fx=a*x+b;
-const m=rand(2,5),k=rand(1,7),y=rand(3,10),out=m*y+k;
-const price=rand(3,12)*1000,q=rand(2,12),revenue=price*q;
+const m=rand(2,5),k=rand(1,7),unknown=rand(3,10),out=m*unknown+k;
+const c=rand(1,5),z=rand(2,9),d=rand(1,8),pointY=c*z+d;
 const m1=rand(1,3),m2=rand(m1+1,5),cross=rand(2,9),base=(m2-m1)*cross;
-const start=rand(2,9),speed=rand(1,5),watch=start+rand(2,9),position=speed*(watch-start);
+const departure=rand(2,9),speed=rand(1,5),observation=departure+rand(2,9),distance=speed*(observation-departure);
 questions=[
-makeQuestion('01 · Nilai fungsi','Jika f(x) = '+a+'x + '+b+', berapa f('+x+')?',fx,'Substitusikan x = '+x+': f('+x+') = '+a+' × '+x+' + '+b+' = '+fx+'.',''),
-makeQuestion('02 · Mencari input (invers sederhana)','Diketahui f(x) = '+m+'x + '+k+'. Nilai x berapa yang menghasilkan f(x) = '+out+'?',y,'Mulai dari '+out+' = '+m+'x + '+k+', maka x = ('+out+' − '+k+') ÷ '+m+' = '+y+'.',''),
-makeQuestion('03 · Domain & fungsi pendapatan','R(q) = '+price.toLocaleString('id-ID')+'q rupiah, dengan q jumlah unit (bilangan bulat ≥ 0). Berapa R('+q+')?',revenue,'Karena q = '+q+' termasuk domain, R('+q+') = '+price.toLocaleString('id-ID')+' × '+q+' = Rp'+revenue.toLocaleString('id-ID')+'.','Rp',1000),
-makeQuestion('04 · Titik potong fungsi','Dua kereta mempunyai posisi f(t) = '+m1+'t + '+base+' dan g(t) = '+m2+'t (km). Pada t berapa f(t) = g(t)?',cross,'Samakan output: '+m1+'t + '+base+' = '+m2+'t, maka '+base+' = ('+m2+' − '+m1+')t, jadi t = '+cross+'.','menit'),
-makeQuestion('05 · Fungsi piecewise','Kereta mulai bergerak pada t = '+start+' menit dengan v = '+speed+' km/menit. f(t) = '+speed+' × max(0, t − '+start+'). Berapa f('+watch+')?',position,'Sebelum t = '+start+' posisi 0. Setelahnya f('+watch+') = '+speed+' × ('+watch+' − '+start+') = '+position+'.','km')];
+makeQuestion('01 · Menghitung nilai fungsi','Jika f(x) = '+a+'x + '+b+', berapa f('+x+')?',fx,[
+['Diketahui','f(x) = '+a+'x + '+b+' dan x = '+x+'.'],
+['Ditanya','Nilai f('+x+') atau hasil fungsi ketika x = '+x+'.'],
+['Mengapa?','Anggap fungsi sebagai mesin angka. Setiap x yang masuk dikalikan '+a+', lalu ditambah '+b+'. Jadi semua huruf x diganti dengan '+x+'.'],
+['Jawab','f('+x+') = '+a+' × '+x+' + '+b+' = '+(a*x)+' + '+b+' = '+fx+'.'],
+['Kesimpulan','Untuk input '+x+', output fungsi adalah '+fx+'.']
+],''),
+makeQuestion('02 · Mencari x dari y','Diketahui f(x) = '+m+'x + '+k+'. Nilai x berapa yang menghasilkan f(x) = '+out+'?',unknown,[
+['Diketahui','f(x) = '+m+'x + '+k+' dan hasil f(x) = '+out+'.'],
+['Ditanya','Nilai x yang menghasilkan output '+out+'.'],
+['Mengapa?','Sekarang hasil mesin sudah diketahui, tetapi input belum. Kita balik urutan operasi: karena fungsi menambah '+k+' setelah mengalikan '+m+', kurangi '+k+' dahulu, lalu bagi dengan '+m+'.'],
+['Jawab',out+' = '+m+'x + '+k+'. Kurangi kedua ruas dengan '+k+': '+(out-k)+' = '+m+'x. Bagi kedua ruas dengan '+m+': x = '+(out-k)+' ÷ '+m+' = '+unknown+'.'],
+['Cek','f('+unknown+') = '+m+' × '+unknown+' + '+k+' = '+out+'. Cocok.']
+],''),
+makeQuestion('03 · Pasangan x dan y','Pada grafik fungsi y = '+c+'x + '+d+', jika x = '+z+', berapa y?',pointY,[
+['Diketahui','y = '+c+'x + '+d+' dan x = '+z+'.'],
+['Ditanya','Nilai y dari pasangan titik (x, y).'],
+['Mengapa?','Titik pada grafik ditulis (x, y). Nilai x menentukan nilai y lewat aturan fungsi. Untuk x yang sama, aturan ini selalu memberi satu y yang sama.'],
+['Jawab','y = '+c+' × '+z+' + '+d+' = '+(c*z)+' + '+d+' = '+pointY+'.'],
+['Kesimpulan','Titik pada grafik adalah ('+z+', '+pointY+').']
+],''),
+makeQuestion('04 · Titik potong fungsi','Dua kereta mempunyai posisi f(t) = '+m1+'t + '+base+' dan g(t) = '+m2+'t (km). Pada t berapa f(t) = g(t)?',cross,[
+['Diketahui','Kereta A: f(t) = '+m1+'t + '+base+' km. Kereta B: g(t) = '+m2+'t km. t adalah waktu dalam menit. Keduanya bergerak searah.'],
+['Ditanya','Kapan kedua kereta berada di posisi yang sama?'],
+['Mengapa f(t) dan g(t) harus sama?','Bayangkan kereta A sudah berada '+base+' km di depan. Kereta B mulai dari km 0, tetapi melaju lebih cepat. Ketika B berhasil menyusul A, keduanya berada di kilometer yang SAMA pada menit yang SAMA. f(t) dan g(t) sama-sama menunjukkan posisi, jadi kita setarakan f(t) = g(t). Pada grafik, inilah titik perpotongan dua garis.'],
+['Jawab',m1+'t + '+base+' = '+m2+'t. Kurangi kedua ruas dengan '+m1+'t: '+base+' = ('+m2+' − '+m1+')t = '+(m2-m1)+'t. Maka t = '+base+' ÷ '+(m2-m1)+' = '+cross+' menit.'],
+['Buktikan','Saat t = '+cross+', posisi A = '+m1+' × '+cross+' + '+base+' = '+(m1*cross+base)+' km. Posisi B = '+m2+' × '+cross+' = '+(m2*cross)+' km. Posisi mereka sama, jadi benar bertemu.'],
+['Kesimpulan','Kedua kereta bertemu pada menit ke-'+cross+' di km '+(m2*cross)+'.']
+],'menit'),
+makeQuestion('05 · Fungsi sebelum dan sesudah berangkat','Kereta mulai bergerak pada t = '+departure+' menit dengan v = '+speed+' km/menit. f(t) = '+speed+' × max(0, t − '+departure+'). Berapa f('+observation+')?',distance,[
+['Diketahui','Kereta menunggu di km 0 sampai menit '+departure+'. Setelah berangkat kecepatannya '+speed+' km/menit. Waktu pengamatan t = '+observation+' menit.'],
+['Ditanya','Posisi kereta f('+observation+').'],
+['Mengapa waktu harus dikurangi?','Bayangkan jam di stasiun sudah menunjukkan menit '+observation+', tetapi keretanya baru berangkat saat menit '+departure+'. Artinya kereta hanya bergerak selama '+(observation-departure)+' menit, bukan '+observation+' menit. max(0, ...) menjaga hasil tetap nol ketika kereta belum berangkat.'],
+['Jawab','Waktu bergerak = '+observation+' − '+departure+' = '+(observation-departure)+' menit. f('+observation+') = '+speed+' × max(0, '+(observation-departure)+') = '+speed+' × '+(observation-departure)+' = '+distance+' km.'],
+['Kesimpulan','Saat t = '+observation+' menit, kereta berada di km '+distance+'.']
+],'km')];
 answered=0;correct=0;render();
 }
 function render(){
@@ -44,7 +75,7 @@ btn.addEventListener('click',()=>{
 if(card.dataset.done)return;
 card.dataset.done='1';answered++;const isCorrect=value===q.answer;if(isCorrect)correct++;
 opts.querySelectorAll('button').forEach(b=>{b.disabled=true;if(b.dataset.correct==='true')b.classList.add('correct');else if(b===btn)b.classList.add('wrong')});
-feedback.hidden=false;feedback.textContent=(isCorrect?'✅ Benar! ':'❌ Belum tepat. Jawaban: '+q.answer+' '+q.unit+'. ')+'Pembahasan: '+q.explanation;
+feedback.hidden=false;const heading=document.createElement('strong');heading.textContent=isCorrect?'✅ Benar!':'❌ Belum tepat. Jawaban yang benar: '+q.answer+' '+q.unit+'.';feedback.append(heading);q.explanation.forEach(section=>{const p=document.createElement('p');p.style.margin='11px 0';const label=document.createElement('strong');label.textContent=section[0]+': ';p.append(label,document.createTextNode(section[1]));feedback.append(p)});
 progress();
 });
 btn.dataset.correct=String(value===q.answer);opts.append(btn);
