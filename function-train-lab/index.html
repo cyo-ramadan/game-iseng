@@ -85,7 +85,7 @@ card.append(k,title,body,opts,feedback);grid.append(card);
 }
 function progress(){el('quizProgress').textContent=answered+' / '+questions.length+' dijawab · '+correct+' benar'}
 function show(page){for(const key of ['Sim','Concept','Business','Quiz','Canvas']){el(({Sim:'simulation',Concept:'concept',Business:'business',Quiz:'quiz',Canvas:'canvas'})[key]+'Page').hidden=(key.toLowerCase()!==page);el('nav'+key).classList.toggle('active',key.toLowerCase()===page)}window.dispatchEvent(new Event('resize'))}
-for(const key of ['Sim','Concept','Business','Quiz'])el('nav'+key).addEventListener('click',()=>show(key.toLowerCase()));el('resetQuiz').addEventListener('click',generate);generate();
+for(const key of ['Sim','Concept','Business','Quiz','Canvas'])el('nav'+key).addEventListener('click',()=>show(key.toLowerCase()));el('resetQuiz').addEventListener('click',generate);generate();
 })();
 </script><script>
 (()=>{'use strict';const $=id=>document.getElementById(id);
