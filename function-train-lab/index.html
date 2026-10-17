@@ -320,7 +320,7 @@ function makeTable(){
  const wrap=$('plotTable'),table=document.createElement('table');table.style.cssText='width:100%;border-collapse:collapse;text-align:center';
  const xs=[-3,-2,-1,0,1,2,3],row1=table.insertRow(),row2=table.insertRow();
  ['x',...xs].forEach(v=>{const td=row1.insertCell();td.textContent=v;td.style.padding='9px';td.style.borderBottom='1px solid #89a4bb'});
- ['y',...xs.map(x=>evaluate(x))].forEach(v=>{const td=row2.insertCell();td.textContent=Number(v.toFixed(4)).toLocaleString('id-ID');td.style.padding='9px'});
+ ['y',...xs.map(x=>evaluate(x))].forEach(v=>{const td=row2.insertCell();td.textContent=typeof v==='number'?Number(v.toFixed(4)).toLocaleString('id-ID'):String(v);td.style.padding='9px'});
  wrap.replaceChildren(table);
 }
 function plot(){
