@@ -9,6 +9,18 @@ html[data-theme=light] .graph-presets button{background:#edf6ff;color:#25506d;bo
 html[data-theme=light] #slopeCanvas,html[data-theme=light] #areaCanvas,html[data-theme=light] #plotCanvas{background:#fff;border-color:#c9d9e5}
 html[data-theme=light] #formulaInput{background:#fff;color:#12354d;border-color:#abc5db}
 #plotCanvas{touch-action:pan-y}
+
+.slope-editor{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:17px;align-items:center}
+.slope-workspace{display:grid;grid-template-columns:minmax(0,1.18fr) minmax(0,1fr);gap:16px;align-items:start;margin-top:16px}
+.slope-workspace .panel{min-width:0}
+.slope-panel-heading{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.slope-panel-heading h2{margin-bottom:0}
+#slopeFormula{border:1px solid #55708c;background:#15283f;color:#fff}
+html[data-theme=light] #slopeFormula{background:#fff;color:#14374c;border-color:#afc5d8}
+#slopeAnalysisCanvas{border:1px solid #344d66;border-radius:12px;background:#0d1c30}
+html[data-theme=light] #slopeAnalysisCanvas{background:#fff;border-color:#c9d9e5}
+.slope-explanation p{margin:11px 0;line-height:1.65}
+@media (max-width:850px){.slope-workspace,.slope-editor{grid-template-columns:1fr}}
 </style><header><div class="brand">🚄 RAIL LAB <span class="tag">/ FUNCTION PLAYGROUND</span></div><button class="theme-toggle" id="themeToggle" type="button">☀️ Light Mode</button></header><nav class="page-nav" aria-label="Navigasi Rail Lab"><button class="active" type="button" id="navSim">🚄 Simulasi</button><button type="button" id="navConcept">📚 Konsep Fungsi</button><button type="button" id="navBusiness">📈 Eksplorasi x & y</button><button type="button" id="navQuiz">🧠 Latihan Soal</button><button type="button" id="navCanvas">✏️ Canvas Latihan</button><button type="button" id="navSlope">📐 Kemiringan</button><button type="button" id="navArea">🟦 Luas x × y</button><button type="button" id="navWorksheet">📝 Lembar Grafik</button></nav><main><div class="page" id="simulationPage"><section class="hero"><div class="tag">MATEMATIKA × FISIKA × SIMULASI</div><h1>Kalau dua kereta balapan,<br>kapan mereka ketemu?</h1><p class="muted">Geser speed, posisi awal, dan waktu berangkat. Lihat keretanya bergerak dan grafik fungsi berubah real-time.</p></section><div class="layout"><aside class="panel"><h2>🎛️ Control room</h2><div class="train-heading">🚆 Kereta A <span class="pill">TEAL</span></div><div class="control"><label>Kecepatan A <b id="vaOut">3 km/menit</b></label><input id="va" type="range" min="1" max="5" step="0.5" value="3"></div><div class="triple"><div class="control"><label>Start A (menit)</label><input type="number" id="ta" value="0" min="0" max="20" step="1"></div><div class="control"><label>Posisi A (km)</label><input type="number" id="sa" value="0" min="0" max="100" step="1"></div></div><div class="train-heading">🚄 Kereta B <span class="pill train-b">ORANGE</span></div><div class="control"><label>Kecepatan B <b id="vbOut">2 km/menit</b></label><input id="vb" type="range" min="1" max="5" step="0.5" value="2"></div><div class="triple"><div class="control"><label>Start B (menit)</label><input type="number" id="tb" value="4" min="0" max="20" step="1"></div><div class="control"><label>Posisi B (km)</label><input type="number" id="sb" value="20" min="0" max="100" step="1"></div></div><hr style="border:0;border-top:1px solid #2e3d57;margin:22px 0"><div class="control"><label>Waktu pengamatan maksimum</label><input type="number" id="duration" value="30" min="5" max="120" step="5" style="width:100%"></div><p class="note">Kecepatan 1–5 km/menit untuk learning demo. Keduanya bergerak ke arah kanan; sebelum berangkat, kereta diam di posisi awal.</p><button class="btn secondary" id="reset" style="width:100%">↺ Reset skenario</button></aside><section class="maincol"><article class="panel"><h2>🛤️ Live train simulation</h2><div class="track" id="track"><div class="rails"></div><div class="station" style="left:6%">KM 0</div><div class="station" style="left:94%">END</div><div class="train" id="trainA">🚆</div><div class="train b" id="trainB">🚄</div></div><div class="progress"><button class="btn" id="play">▶ Play</button><button class="btn secondary" id="restart">↺</button><input type="range" id="time" value="0" min="0" max="30" step=".05"><b id="clock">0.0 m</b></div><div class="status" id="status"></div></article><article class="panel"><h2>📈 Function graph</h2><div class="tabs"><button id="tabTime" class="active">s terhadap t</button><button id="tabSpeed">s terhadap v</button></div><canvas id="graph"></canvas><div class="formula" id="formula"></div><p class="note" id="explain"></p></article></section></div></div><section id="conceptPage" class="page" hidden><section class="hero"><div class="tag">LEARN THE WHY</div><h1>Fungsi itu mesin input → output</h1><p class="muted">Satu input menghasilkan tepat satu output. Eksperimen variabel, domain, range, gradien, dan titik potong dengan contoh nyata.</p></section><div class="lesson-grid"><article class="lesson"><h3>01 · Apa itu fungsi?</h3><p>Fungsi menghubungkan tiap nilai input (x) ke satu nilai output (y). Contoh <code>f(x) = 2x + 3</code>.</p><p class="note">Jika x = 4, f(4) = 11. Dua input berbeda boleh menghasilkan output sama, tetapi satu input tidak boleh punya dua output berbeda.</p></article><article class="lesson"><h3>02 · Domain & range</h3><p><b>Domain</b> adalah input yang diperbolehkan. <b>Range</b> adalah output yang dihasilkan.</p><p class="note">Contoh jumlah gelas x hanya bilangan bulat ≥ 0. Kalau harganya Rp6.000, range pendapatan = Rp0, Rp6.000, Rp12.000, ...</p></article><article class="lesson"><h3>03 · Gradien & konstanta</h3><p>Untuk fungsi linear <code>f(x) = ax + b</code>, <code>a</code> adalah perubahan output tiap input naik 1. <code>b</code> adalah output ketika x = 0.</p><p class="note">Di kereta: gradien = kecepatan. Dalam bisnis: gradien fungsi pendapatan = harga per unit.</p></article><article class="lesson"><h3>04 · Titik potong</h3><p>Dua grafik berpotongan saat nilai output keduanya sama untuk input yang sama: <code>f(x) = g(x)</code>.</p><p class="note">Dua kereta bertemu pada waktu dan posisi yang sama. Dua strategi harga punya revenue sama pada volume tertentu.</p></article></div><article class="panel" style="margin-top:18px"><h2>🔬 Mesin fungsi: f(x) = ax + b</h2><div class="lab-controls"><label>a (gradien) <input type="number" id="coefA" value="2" step="1"></label><label>b (konstanta) <input type="number" id="coefB" value="3" step="1"></label><label>x (input) <input type="number" id="funcX" value="4" step="1"></label></div><div class="function-example"><div id="funcEquation"></div><div class="function-output" id="funcResult"></div><p class="note" id="funcExplain"></p></div></article></section>
 <section id="businessPage" class="page" hidden><section class="hero"><div class="tag">MATEMATIKA SMP · FUNGSI LINEAR</div><h1>Mainkan x dan y 📈</h1><p class="muted">Coba fungsi y = ax + b. Geser x, a, atau b. Amati titik di grafik berpindah dan isi tabel berubah.</p></section><div class="layout"><aside class="panel"><h2>🎛️ Atur nilai</h2><div class="control"><label>Nilai a (angka pengali)</label><input id="xyA" type="range" min="-5" max="5" step="1" value="2"><b id="xyAOut">2</b></div><div class="control"><label>Nilai b (angka tambahan)</label><input id="xyB" type="range" min="-10" max="10" step="1" value="1"><b id="xyBOut">1</b></div><div class="control"><label>Nilai x (input)</label><input id="xyX" type="range" min="-10" max="10" step="1" value="3"><b id="xyXOut">3</b></div><div class="function-example"><div class="note" id="xyFormula"></div><div class="function-output" id="xyResult"></div><p class="note" id="xySteps"></p></div><button class="btn secondary" id="xyReset" type="button" style="width:100%;margin-top:15px">↺ Reset nilai</button></aside><section class="maincol"><article class="panel"><h2>📈 Grafik y terhadap x</h2><div class="graph-controls"><button type="button" id="xyZoomIn">＋ Zoom In</button><button type="button" id="xyZoomOut">－ Zoom Out</button><button type="button" id="xyZoomReset">Reset View</button><span id="xyZoomLabel">24 px/unit</span></div><canvas id="xyGraph" style="width:100%;height:300px"></canvas><p class="note">Garis memperlihatkan semua pasangan x dan y. Titik besar menunjukkan nilai x yang dipilih. Kalau a positif, garis naik. Kalau a negatif, garis turun.</p></article><article class="panel"><h2>🔢 Tabel pasangan (x, y)</h2><div id="xyTable" style="overflow-x:auto"></div><p class="note">Setiap x punya tepat satu y. Itulah ide utama fungsi. Coba ubah a dan b, lalu lihat tabelnya.</p></article></section></div></section>
 <section id="canvasPage" class="page" hidden>
@@ -25,13 +37,41 @@ html[data-theme=light] #formulaInput{background:#fff;color:#12354d;border-color:
 </article></section>
 
 <section id="slopePage" class="page" hidden>
-<section class="hero"><div class="tag">BAB 1 · KEMIRINGAN GARIS</div><h1>Kenapa garis bisa miring? 🛝</h1><p class="muted">Bayangkan maju ke kanan di atas kotak-kotak. Garis bisa naik, turun, atau tetap datar. Pelajari satu ide dulu: berapa banyak naik atau turun setiap maju ke kanan.</p></section>
-<div class="lesson-grid" style="margin-bottom:18px">
-<article class="lesson"><h3>① Mulai dari dua titik</h3><p>Dari <b>(0,0)</b> menuju <b>(2,4)</b>, kita maju <b>2</b> kotak ke kanan dan naik <b>4</b> kotak. Setiap maju satu kotak, naik dua kotak.</p><p class="note">Kemiringan = perubahan tinggi ÷ perubahan ke kanan = 4 ÷ 2 = 2.</p></article>
-<article class="lesson"><h3>② Kenapa bisa positif atau negatif?</h3><p>Naik ke kanan berarti <b>positif</b>, turun ke kanan berarti <b>negatif</b>, dan lurus mendatar berarti <b>nol</b>.</p><p class="note">Untuk y = 2x + 1, angka 2 menunjukkan garis naik 2 satuan ketika x bertambah 1.</p></article>
+<section class="hero"><div class="tag">BAB 1 · KEMIRINGAN GARIS DAN KURVA</div><h1>Kemiringan berubah saat titiknya bergeser? 📐</h1><p class="muted">Tulis fungsi, lalu klik salah satu titik pada grafik. Lihat garis bantu di grafik utama dan pelajari kemiringannya pada layar analisis yang berpusat di (0,0).</p></section>
+<article class="panel">
+<div class="slope-editor">
+<div><h2>✍️ Masukkan fungsi f(x)</h2><label for="slopeFormula">Fungsi linear atau kuadrat</label><input id="slopeFormula" value="x²" type="text" spellcheck="false" autocomplete="off" placeholder="contoh: x² − 2x + 1" aria-describedby="slopeFormulaHint" style="width:100%;font-size:20px;padding:12px;border-radius:10px"></div>
+<div><p class="note" id="slopeFormulaHint">Contoh fungsi, langsung ketuk untuk mencoba:</p><div class="graph-presets"><button type="button" data-slope-example="2x + 1">2x + 1</button><button type="button" data-slope-example="-x + 3">−x + 3</button><button type="button" data-slope-example="x²">x²</button><button type="button" data-slope-example="-x² + 2x + 3">−x² + 2x + 3</button></div></div>
 </div>
-<article class="panel"><h2>🔬 Coba sendiri: kemiringan garis</h2><div class="layout"><div><div class="control"><label for="slopeRun">Maju ke kanan <b id="slopeRunValue">3 kotak</b></label><input type="range" min="1" max="6" step="1" id="slopeRun" value="3"></div><div class="control"><label for="slopeRise">Naik / turun <b id="slopeRiseValue">3 kotak</b></label><input type="range" min="-6" max="6" step="1" id="slopeRise" value="3"></div><div class="function-example"><b id="slopeResult"></b><p class="note" id="slopeReason"></p></div></div><div><canvas id="slopeCanvas" style="width:100%;height:300px;display:block"></canvas><p class="note">Garis oranye putus-putus memperlihatkan langkah kanan, lalu naik atau turun.</p></div></div></article>
-<article class="panel" style="margin-top:18px"><h2>Selanjutnya mau belajar apa?</h2><p class="note">Kemiringan membahas perubahan tinggi suatu garis. Bab berikutnya membahas luas, yaitu banyaknya kotak yang mengisi suatu daerah.</p><button id="openArea" class="btn" type="button">Lanjut ke Bab Luas →</button></article>
+<p id="slopeFormulaError" class="note" style="color:#df815e" role="status" hidden></p>
+<p class="note">🟠 Klik titik bulat pada grafik untuk mengubah posisi analisis. Di HP, titik juga bisa dipilih lewat slider agar lebih presisi.</p>
+<div class="control"><label for="slopePointX">Titik yang dianalisis: <b id="slopePointXValue">x = 1</b></label><input type="range" id="slopePointX" min="-4" max="4" step="1" value="1"></div>
+</article>
+<div class="slope-workspace">
+<article class="panel">
+<div class="slope-panel-heading"><h2>① Grafik fungsi asli</h2><div class="graph-controls"><button type="button" id="slopeZoomIn" aria-label="Zoom in grafik kemiringan">＋</button><button type="button" id="slopeZoomOut" aria-label="Zoom out grafik kemiringan">−</button><button type="button" id="slopeZoomReset">Reset</button></div></div>
+<canvas id="slopeCanvas" style="width:100%;height:420px;display:block;touch-action:none;cursor:crosshair" aria-label="Grafik fungsi: ketuk titik bulat untuk memilih koordinat"></canvas>
+<p class="note">Hijau: grafik asli. Ungu putus-putus: garis singgung pada titik yang dipilih. Garis bantu oranye menunjukkan posisi titik terhadap sumbu.</p>
+<div class="function-example"><div class="note" id="slopeSelectedFunction"></div><b id="slopeSelectedPoint"></b></div>
+</article>
+<article class="panel">
+<h2>② Layar analisis dari (0,0)</h2>
+<canvas id="slopeAnalysisCanvas" style="width:100%;height:330px;display:block" aria-label="Garis analisis yang sejajar dengan kemiringan di titik terpilih dan melewati titik nol"></canvas>
+<div class="function-example"><div class="note">Segitiga kemiringan: geser ke kanan, lalu naik atau turun</div><div class="function-output" id="slopeResult">m = 2</div><p class="note" id="slopeRunRise"></p></div>
+<p class="note">Garis pada layar analisis <b>digeser sejajar</b> agar melalui (0,0). Untuk fungsi kuadrat, yang digeser adalah garis <b>singgung</b> di titik terpilih, bukan garis yang menghubungkan titik kurva dengan (0,0).</p>
+</article>
+</div>
+<article class="panel" style="margin-top:18px">
+<h2>🧠 Kenapa hasilnya begitu?</h2>
+<div class="slope-explanation">
+<p><b>Diketahui:</b> <span id="slopeKnown"></span></p>
+<p><b>Ditanya:</b> <span id="slopeAsked"></span></p>
+<p><b>Alasannya:</b> <span id="slopeWhy"></span></p>
+<p><b>Jawab:</b> <span id="slopeWork"></span></p>
+<p><b>Kesimpulan:</b> <span id="slopeConclusion"></span></p>
+</div>
+<button id="openArea" class="btn secondary" type="button">Lanjut ke Bab Luas →</button>
+</article>
 </section>
 <section id="areaPage" class="page" hidden>
 <section class="hero"><div class="tag">BAB 2 · PONDASI LUAS & INTEGRAL</div><h1>Luas dimulai dari x kali y 🟦</h1><p class="muted">Lihat bidang koordinat. Ambil x sebagai panjang ke kanan dan y sebagai tinggi ke atas. Kalau daerahnya persegi panjang, banyak kotaknya adalah x × y.</p></section>
@@ -277,19 +317,112 @@ function grid(g,scale,ox,oy){
  ctx.textAlign='left';ctx.fillText('x',w-14,Math.max(12,Math.min(h-13,oy-13)));ctx.fillText('y',Math.max(6,Math.min(w-15,ox+8)),11);
  return {px,py};
 }
-function drawSlope(){
-const run=pick('slopeRun'),rise=pick('slopeRise');
-$('slopeRunValue').textContent=run+' kotak';$('slopeRiseValue').textContent=rise+' kotak';
-const m=rise/run;const f=n=>Number(n.toFixed(2)).toLocaleString('id-ID');
-$('slopeResult').textContent='Kemiringan = '+rise+' ÷ '+run+' = '+f(m);
-$('slopeReason').textContent=rise>0?'Maju '+run+' kotak ke kanan lalu naik '+rise+' kotak. Garis menanjak.':rise<0?'Maju '+run+' kotak ke kanan lalu turun '+Math.abs(rise)+' kotak. Garis menurun.':'Garis datar: setiap maju '+run+' kotak, tidak ada kenaikan atau penurunan.';
-const g=canvasCtx('slopeCanvas',300);if(!g)return;const {ctx,w,h,light}=g;
-const unit=Math.min(29,(w-45)/9),ox=w*.27,oy=h*.54,{px,py}=grid(g,unit,ox,oy);
-ctx.save();ctx.beginPath();ctx.rect(0,0,w,h);ctx.clip();
-ctx.lineWidth=3;ctx.strokeStyle=light?'#0c9b88':'#7df1d7';ctx.beginPath();ctx.moveTo(px(-3),py(-3*m));ctx.lineTo(px(7),py(7*m));ctx.stroke();
-ctx.setLineDash([6,4]);ctx.strokeStyle=light?'#d17e40':'#f3a579';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(px(0),py(0));ctx.lineTo(px(run),py(0));ctx.lineTo(px(run),py(rise));ctx.stroke();ctx.setLineDash([]);
-for(const p of [{x:0,y:0},{x:run,y:rise}]){ctx.fillStyle=light?'#df793f':'#ffb380';ctx.beginPath();ctx.arc(px(p.x),py(p.y),5,0,Math.PI*2);ctx.fill()}ctx.restore();
+let slopeCoefficients=[1,0,0],slopeEquation='x²',selectedSlopeX=1,slopeZoom=1;
+const slopeValue=x=>slopeCoefficients[0]*x*x+slopeCoefficients[1]*x+slopeCoefficients[2];
+const slopeDerivative=x=>2*slopeCoefficients[0]*x+slopeCoefficients[1];
+const fmtSlope=n=>Number(n.toFixed(3)).toLocaleString('id-ID');
+const signedSlope=n=>(n<0?'− '+fmtSlope(Math.abs(n)):'+ '+fmtSlope(n));
+function slopeUpdate(){
+ const raw=$('slopeFormula').value,parsed=parseFormula(raw);
+ if(!parsed){$('slopeFormulaError').hidden=false;$('slopeFormulaError').textContent='Gunakan bentuk linear atau kuadrat, misalnya 2x + 1 atau x² − 2x + 3. Hindari tanda kurung.';return;}
+ $('slopeFormulaError').hidden=true;slopeCoefficients=parsed;slopeEquation=raw.replace(/^\s*(?:f\(x\)|y)\s*=\s*/i,'').trim()||'0';
+ drawSlope();
 }
+function slopeLayout(){
+ const rect=$('slopeCanvas').getBoundingClientRect(),w=rect.width,h=420;if(w<1)return null;
+ // Keep the points x=-4..4 and the selected point readable for ordinary SMP examples.
+ const maximum=Math.max(5,...[-4,-3,-2,-1,0,1,2,3,4].map(x=>Math.abs(slopeValue(x))));
+ const fit=Math.min(35,(w-48)/9,(h-48)/(2*(maximum+1)));
+ const scale=Math.max(1.5,fit*slopeZoom),ox=w/2,oy=h/2;
+ return {w,h,scale,ox,oy,px:x=>ox+x*scale,py:y=>oy-y*scale};
+}
+function slopeDot(ctx,l,p,color,radius=6){
+ const X=l.px(p.x),Y=l.py(p.y);if(X<-10||X>l.w+10||Y<-10||Y>l.h+10)return;
+ ctx.beginPath();ctx.arc(X,Y,radius,0,Math.PI*2);ctx.fillStyle=color;ctx.fill();
+}
+function drawSlope(){
+ const g=canvasCtx('slopeCanvas',420);if(!g)return;const l=slopeLayout();if(!l)return;
+ const {ctx,w,h,light}=g,{px,py,ox,oy,scale}=l;
+ grid(g,scale,ox,oy);
+ const x0=selectedSlopeX,y0=slopeValue(x0),m=slopeDerivative(x0);
+ // Main function: line or quadratic, finely sampled for a smooth curve.
+ ctx.save();ctx.beginPath();ctx.rect(0,0,w,h);ctx.clip();
+ const count=Math.max(200,Math.round(w/2));
+ ctx.strokeStyle=light?'#008d7d':'#74efce';ctx.lineWidth=3;
+ ctx.beginPath();for(let i=0;i<=count;i++){
+   const screenX=w*i/count,x=(screenX-ox)/scale,yy=py(slopeValue(x));
+   if(i===0)ctx.moveTo(screenX,yy);else ctx.lineTo(screenX,yy);
+ }ctx.stroke();
+ // Tangent line through P, with the correct local slope.
+ ctx.strokeStyle=light?'#7758b5':'#c5a4ff';ctx.lineWidth=2.4;ctx.setLineDash([7,5]);
+ ctx.beginPath();ctx.moveTo(0,py(y0+m*((0-ox)/scale-x0)));ctx.lineTo(w,py(y0+m*((w-ox)/scale-x0)));ctx.stroke();ctx.setLineDash([]);
+ // Horizontal/vertical guides to coordinate axes.
+ ctx.strokeStyle=light?'#dd894b':'#ffb67c';ctx.lineWidth=1.8;ctx.setLineDash([4,4]);
+ ctx.beginPath();ctx.moveTo(px(x0),py(y0));ctx.lineTo(px(x0),oy);ctx.moveTo(px(x0),py(y0));ctx.lineTo(ox,py(y0));ctx.stroke();ctx.setLineDash([]);
+ for(let x=-4;x<=4;x++)slopeDot(ctx,l,{x,y:slopeValue(x)},light?'#e9a765':'#ffc38f',x===x0?8:5);
+ slopeDot(ctx,l,{x:x0,y:y0},light?'#b44931':'#ff866e',8);
+ ctx.font='bold 12px system-ui';ctx.fillStyle=light?'#75562d':'#ffd3a3';ctx.textAlign=px(x0)>w-105?'right':'left';
+ ctx.fillText('P('+fmtSlope(x0)+', '+fmtSlope(y0)+')',px(x0)+(px(x0)>w-105?-10:10),Math.max(16,Math.min(h-12,py(y0)-17)));
+ ctx.restore();
+ $('slopePointX').value=String(x0);$('slopePointXValue').textContent='x = '+x0;
+ $('slopeSelectedFunction').textContent='Fungsi: y = '+slopeEquation;
+ $('slopeSelectedPoint').textContent='Titik P = ('+fmtSlope(x0)+', '+fmtSlope(y0)+')';
+ drawSlopeAnalysis();
+ updateSlopeExplanation();
+}
+function drawSlopeAnalysis(){
+ const g=canvasCtx('slopeAnalysisCanvas',330);if(!g)return;
+ const {ctx,w,h,light}=g,m=slopeDerivative(selectedSlopeX);
+ const run=Math.abs(m)>6?0.5:1,rise=m*run;
+ const scale=Math.max(9,Math.min(45,(w-44)/5,(h-38)/(2*Math.max(3,Math.abs(rise)+1))));
+ const ox=w*.43,oy=h/2,l={w,h,px:x=>ox+x*scale,py:y=>oy-y*scale};
+ const {px,py}=grid(g,scale,ox,oy);
+ ctx.save();ctx.beginPath();ctx.rect(0,0,w,h);ctx.clip();
+ // This is a parallel translation of the tangent, not a chord to the selected point.
+ ctx.strokeStyle=light?'#7954ac':'#c2a1ff';ctx.lineWidth=3;ctx.beginPath();
+ ctx.moveTo(0,py(m*((0-ox)/scale)));ctx.lineTo(w,py(m*((w-ox)/scale)));ctx.stroke();
+ ctx.strokeStyle=light?'#e39046':'#ffb47e';ctx.lineWidth=4;ctx.beginPath();ctx.moveTo(px(0),py(0));ctx.lineTo(px(run),py(0));ctx.stroke();
+ ctx.strokeStyle=light?'#2e7acb':'#79b9ff';ctx.beginPath();ctx.moveTo(px(run),py(0));ctx.lineTo(px(run),py(rise));ctx.stroke();
+ slopeDot(ctx,l,{x:0,y:0},light?'#ba5e34':'#ffa778',6);
+ slopeDot(ctx,l,{x:run,y:rise},light?'#ba5e34':'#ffa778',6);
+ ctx.fillStyle=light?'#94602b':'#ffd09b';ctx.font='bold 12px system-ui';ctx.textAlign='center';
+ ctx.fillText('run = '+fmtSlope(run),px(run/2),py(0)+16);
+ ctx.fillStyle=light?'#276ba2':'#96caff';ctx.textAlign='left';
+ ctx.fillText('rise = '+fmtSlope(rise),Math.min(w-100,px(run)+9),Math.max(14,Math.min(h-10,py(rise/2))));
+ ctx.restore();
+ $('slopeResult').textContent='m = '+fmtSlope(rise)+' ÷ '+fmtSlope(run)+' = '+fmtSlope(m);
+ $('slopeRunRise').textContent='Dari (0,0): geser ke kanan '+fmtSlope(run)+' satuan, lalu '+(rise<0?'turun ':'naik ')+fmtSlope(Math.abs(rise))+' satuan. Garis analisis punya kemiringan sama dengan garis singgung di P.';
+}
+function updateSlopeExplanation(){
+ const [a,b,c]=slopeCoefficients,x=selectedSlopeX,y=slopeValue(x),m=slopeDerivative(x),quadratic=a!==0;
+ $('slopeKnown').textContent='y = '+slopeEquation+'; titik P('+fmtSlope(x)+', '+fmtSlope(y)+').';
+ $('slopeAsked').textContent='Berapa kemiringan grafik tepat di titik P?';
+ $('slopeWhy').textContent=quadratic
+ ?'Pada parabola, kemiringan tidak selalu sama di tiap titik. Garis penghubung dari (0,0) ke P bisa berbeda dari kemiringan kurvanya. Kita ambil garis yang menyentuh kurva tepat di P, yaitu garis singgung, lalu geser sejajar ke (0,0) agar naik/turunnya mudah dilihat.'
+ :'Garis lurus mempunyai kemiringan tetap. Memindahkan garis sejajar ke (0,0) tidak mengubah kemiringannya sehingga segitiga naik dan gesernya mudah dibaca.';
+ $('slopeWork').textContent=quadratic
+ ?'Untuk y = ax² + bx + c, kemiringan di posisi x adalah m = 2ax + b. Di sini a = '+fmtSlope(a)+', b = '+fmtSlope(b)+'. Maka m = 2('+fmtSlope(a)+')('+fmtSlope(x)+') '+signedSlope(b)+' = '+fmtSlope(m)+'.'
+ :'Untuk y = ax + b, kemiringan selalu angka di depan x, yaitu a = '+fmtSlope(b)+'. Jadi m = '+fmtSlope(m)+' di setiap titik.';
+ $('slopeConclusion').textContent='Pada P('+fmtSlope(x)+', '+fmtSlope(y)+'), kemiringannya '+fmtSlope(m)+'. '+(quadratic?'Geser titik pilihan ke kiri atau kanan untuk melihat nilai kemiringan parabola berubah.':'Coba ganti titik: nilai kemiringan garis lurus tetap sama.');
+}
+$('slopeFormula').addEventListener('input',slopeUpdate);
+document.querySelectorAll('[data-slope-example]').forEach(button=>button.addEventListener('click',()=>{$('slopeFormula').value=button.dataset.slopeExample;slopeUpdate()}));
+$('slopePointX').addEventListener('input',()=>{selectedSlopeX=Number($('slopePointX').value);drawSlope()});
+$('slopeCanvas').addEventListener('pointerdown',e=>{
+ const l=slopeLayout();if(!l)return;
+ const rect=$('slopeCanvas').getBoundingClientRect();
+ const mx=e.clientX-rect.left,my=e.clientY-rect.top;
+ let closest=null,distance=Infinity;
+ for(let x=-4;x<=4;x++){
+  const dx=l.px(x)-mx,dy=l.py(slopeValue(x))-my,d2=dx*dx+dy*dy;
+  if(d2<distance){distance=d2;closest=x}
+ }
+ if(distance>36*36){$('slopePointXValue').textContent='Ketuk titik bulat pada garis';return}
+ e.preventDefault();selectedSlopeX=closest;drawSlope();
+},{passive:false});
+$('slopeZoomIn').addEventListener('click',()=>{slopeZoom=Math.min(3,slopeZoom*1.25);drawSlope()});
+$('slopeZoomOut').addEventListener('click',()=>{slopeZoom=Math.max(.35,slopeZoom/1.25);drawSlope()});
+$('slopeZoomReset').addEventListener('click',()=>{slopeZoom=1;drawSlope()});
 function drawArea(){
  const aw=pick('areaWidth'),ah=pick('areaHeight'),area=aw*ah;
  $('areaWidthValue').textContent=aw+' kotak';$('areaHeightValue').textContent=ah+' kotak';
@@ -316,7 +449,7 @@ function drawAreaBridge(){
  ctx.strokeStyle=light?'#45627b':'#abbdd0';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(ox-20,oy);ctx.lineTo(ox+4*unit+18,oy);ctx.moveTo(ox,oy+8);ctx.lineTo(ox,oy-4*unit-18);ctx.stroke();
  ctx.font='bold 13px system-ui';ctx.fillStyle=light?'#24665d':'#d3faee';ctx.textAlign='center';for(let i=0;i<4;i++)ctx.fillText('1×'+(i+1),ox+i*unit+unit/2,oy-(i+1)*unit-12);
 }
-['slopeRun','slopeRise'].forEach(id=>$(id).addEventListener('input',drawSlope));
+
 ['areaWidth','areaHeight'].forEach(id=>$(id).addEventListener('input',drawArea));
 $('openArea').addEventListener('click',()=>{$('navArea').click()});
 $('areaToWorksheet').addEventListener('click',()=>{$('navWorksheet').click()});
