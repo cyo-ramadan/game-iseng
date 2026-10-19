@@ -21,7 +21,26 @@ html[data-theme=light] #slopeFormula{background:#fff;color:#14374c;border-color:
 html[data-theme=light] #slopeAnalysisCanvas{background:#fff;border-color:#c9d9e5}
 .slope-explanation p{margin:11px 0;line-height:1.65}
 @media (max-width:850px){.slope-workspace,.slope-editor{grid-template-columns:1fr}}
-</style><header><div class="brand">🚄 RAIL LAB <span class="tag">/ FUNCTION PLAYGROUND</span></div><button class="theme-toggle" id="themeToggle" type="button">☀️ Light Mode</button></header><nav class="page-nav" aria-label="Navigasi Rail Lab"><button class="active" type="button" id="navSim">🚄 Simulasi</button><button type="button" id="navConcept">📚 Konsep Fungsi</button><button type="button" id="navBusiness">📈 Eksplorasi x & y</button><button type="button" id="navQuiz">🧠 Latihan Soal</button><button type="button" id="navCanvas">✏️ Canvas Latihan</button><button type="button" id="navSlope">📐 Kemiringan</button><button type="button" id="navArea">🟦 Luas x × y</button><button type="button" id="navWorksheet">📝 Lembar Grafik</button></nav><main><div class="page" id="simulationPage"><section class="hero"><div class="tag">MATEMATIKA × FISIKA × SIMULASI</div><h1>Kalau dua kereta balapan,<br>kapan mereka ketemu?</h1><p class="muted">Geser speed, posisi awal, dan waktu berangkat. Lihat keretanya bergerak dan grafik fungsi berubah real-time.</p></section><div class="layout"><aside class="panel"><h2>🎛️ Control room</h2><div class="train-heading">🚆 Kereta A <span class="pill">TEAL</span></div><div class="control"><label>Kecepatan A <b id="vaOut">3 km/menit</b></label><input id="va" type="range" min="1" max="5" step="0.5" value="3"></div><div class="triple"><div class="control"><label>Start A (menit)</label><input type="number" id="ta" value="0" min="0" max="20" step="1"></div><div class="control"><label>Posisi A (km)</label><input type="number" id="sa" value="0" min="0" max="100" step="1"></div></div><div class="train-heading">🚄 Kereta B <span class="pill train-b">ORANGE</span></div><div class="control"><label>Kecepatan B <b id="vbOut">2 km/menit</b></label><input id="vb" type="range" min="1" max="5" step="0.5" value="2"></div><div class="triple"><div class="control"><label>Start B (menit)</label><input type="number" id="tb" value="4" min="0" max="20" step="1"></div><div class="control"><label>Posisi B (km)</label><input type="number" id="sb" value="20" min="0" max="100" step="1"></div></div><hr style="border:0;border-top:1px solid #2e3d57;margin:22px 0"><div class="control"><label>Waktu pengamatan maksimum</label><input type="number" id="duration" value="30" min="5" max="120" step="5" style="width:100%"></div><p class="note">Kecepatan 1–5 km/menit untuk learning demo. Keduanya bergerak ke arah kanan; sebelum berangkat, kereta diam di posisi awal.</p><button class="btn secondary" id="reset" style="width:100%">↺ Reset skenario</button></aside><section class="maincol"><article class="panel"><h2>🛤️ Live train simulation</h2><div class="track" id="track"><div class="rails"></div><div class="station" style="left:6%">KM 0</div><div class="station" style="left:94%">END</div><div class="train" id="trainA">🚆</div><div class="train b" id="trainB">🚄</div></div><div class="progress"><button class="btn" id="play">▶ Play</button><button class="btn secondary" id="restart">↺</button><input type="range" id="time" value="0" min="0" max="30" step=".05"><b id="clock">0.0 m</b></div><div class="status" id="status"></div></article><article class="panel"><h2>📈 Function graph</h2><div class="tabs"><button id="tabTime" class="active">s terhadap t</button><button id="tabSpeed">s terhadap v</button></div><canvas id="graph"></canvas><div class="formula" id="formula"></div><p class="note" id="explain"></p></article></section></div></div><section id="conceptPage" class="page" hidden><section class="hero"><div class="tag">LEARN THE WHY</div><h1>Fungsi itu mesin input → output</h1><p class="muted">Satu input menghasilkan tepat satu output. Eksperimen variabel, domain, range, gradien, dan titik potong dengan contoh nyata.</p></section><div class="lesson-grid"><article class="lesson"><h3>01 · Apa itu fungsi?</h3><p>Fungsi menghubungkan tiap nilai input (x) ke satu nilai output (y). Contoh <code>f(x) = 2x + 3</code>.</p><p class="note">Jika x = 4, f(4) = 11. Dua input berbeda boleh menghasilkan output sama, tetapi satu input tidak boleh punya dua output berbeda.</p></article><article class="lesson"><h3>02 · Domain & range</h3><p><b>Domain</b> adalah input yang diperbolehkan. <b>Range</b> adalah output yang dihasilkan.</p><p class="note">Contoh jumlah gelas x hanya bilangan bulat ≥ 0. Kalau harganya Rp6.000, range pendapatan = Rp0, Rp6.000, Rp12.000, ...</p></article><article class="lesson"><h3>03 · Gradien & konstanta</h3><p>Untuk fungsi linear <code>f(x) = ax + b</code>, <code>a</code> adalah perubahan output tiap input naik 1. <code>b</code> adalah output ketika x = 0.</p><p class="note">Di kereta: gradien = kecepatan. Dalam bisnis: gradien fungsi pendapatan = harga per unit.</p></article><article class="lesson"><h3>04 · Titik potong</h3><p>Dua grafik berpotongan saat nilai output keduanya sama untuk input yang sama: <code>f(x) = g(x)</code>.</p><p class="note">Dua kereta bertemu pada waktu dan posisi yang sama. Dua strategi harga punya revenue sama pada volume tertentu.</p></article></div><article class="panel" style="margin-top:18px"><h2>🔬 Mesin fungsi: f(x) = ax + b</h2><div class="lab-controls"><label>a (gradien) <input type="number" id="coefA" value="2" step="1"></label><label>b (konstanta) <input type="number" id="coefB" value="3" step="1"></label><label>x (input) <input type="number" id="funcX" value="4" step="1"></label></div><div class="function-example"><div id="funcEquation"></div><div class="function-output" id="funcResult"></div><p class="note" id="funcExplain"></p></div></article></section>
+
+.weight-facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:18px}
+.weight-fact{display:flex;align-items:center;gap:11px;padding:15px;background:var(--panel,rgba(72,133,142,.08));border:1px solid var(--border,rgba(120,150,170,.28));border-radius:15px}
+.weight-fact>span{font-size:28px}.weight-fact strong{font-size:17px}.weight-fact p{margin:5px 0 0;font-size:13px;color:var(--muted,#8499b0)}
+.weight-activity{margin-bottom:18px}.weight-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.weight-heading h2{margin:8px 0 0}
+.weight-score{border-radius:50px;padding:10px 14px;background:#075e56;color:#fff;font-weight:800;white-space:nowrap}
+.weight-progress-track{height:11px;background:rgba(90,129,150,.22);border-radius:50px;overflow:hidden;margin-top:15px}.weight-progress-fill{width:0%;height:100%;background:#19a98e;transition:width .25s}
+.weight-question{font-size:clamp(18px,3vw,24px);font-weight:750;line-height:1.5;margin:18px 0}
+.weight-choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.weight-choice{font-size:18px;font-weight:750;padding:17px 12px;border-radius:13px;border:2px solid #577b92;background:rgba(52,102,123,.08);color:inherit;cursor:pointer;min-height:60px}
+.weight-choice:not(:disabled):hover{border-color:#159c8b;background:rgba(46,185,151,.12)}
+.weight-choice.correct{border-color:#139c77!important;background:rgba(12,161,118,.17)}.weight-choice.wrong{border-color:#e16e6e!important;background:rgba(214,81,81,.15)}
+.weight-choice:disabled{cursor:default;opacity:1}
+.weight-explanation{border-radius:14px;border:1px solid rgba(105,154,172,.32);padding:17px;margin-top:17px;background:rgba(53,107,133,.065)}
+.weight-explanation>strong{display:block;font-size:19px;margin-bottom:11px}
+.weight-explanation p{margin:8px 0;line-height:1.6}
+.weight-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:18px}
+.weight-finish{text-align:center;padding:24px 12px}.weight-medal{font-size:50px}.weight-finish h2{margin:12px 0}.weight-finish p{margin-bottom:22px}
+@media(max-width:640px){.weight-facts{grid-template-columns:1fr}.weight-choices{grid-template-columns:1fr}}
+</style><header><div class="brand">🚄 RAIL LAB <span class="tag">/ FUNCTION PLAYGROUND</span></div><button class="theme-toggle" id="themeToggle" type="button">☀️ Light Mode</button></header><nav class="page-nav" aria-label="Navigasi Rail Lab"><button class="active" type="button" id="navSim">🚄 Simulasi</button><button type="button" id="navConcept">📚 Konsep Fungsi</button><button type="button" id="navBusiness">📈 Eksplorasi x & y</button><button type="button" id="navQuiz">🧠 Latihan Soal</button><button type="button" id="navCanvas">✏️ Canvas Latihan</button><button type="button" id="navSlope">📐 Kemiringan</button><button type="button" id="navArea">🟦 Luas x × y</button><button type="button" id="navWorksheet">📝 Lembar Grafik</button><button type="button" id="navWeight">⚖️ Satuan Berat SD 3</button></nav><main><div class="page" id="simulationPage"><section class="hero"><div class="tag">MATEMATIKA × FISIKA × SIMULASI</div><h1>Kalau dua kereta balapan,<br>kapan mereka ketemu?</h1><p class="muted">Geser speed, posisi awal, dan waktu berangkat. Lihat keretanya bergerak dan grafik fungsi berubah real-time.</p></section><div class="layout"><aside class="panel"><h2>🎛️ Control room</h2><div class="train-heading">🚆 Kereta A <span class="pill">TEAL</span></div><div class="control"><label>Kecepatan A <b id="vaOut">3 km/menit</b></label><input id="va" type="range" min="1" max="5" step="0.5" value="3"></div><div class="triple"><div class="control"><label>Start A (menit)</label><input type="number" id="ta" value="0" min="0" max="20" step="1"></div><div class="control"><label>Posisi A (km)</label><input type="number" id="sa" value="0" min="0" max="100" step="1"></div></div><div class="train-heading">🚄 Kereta B <span class="pill train-b">ORANGE</span></div><div class="control"><label>Kecepatan B <b id="vbOut">2 km/menit</b></label><input id="vb" type="range" min="1" max="5" step="0.5" value="2"></div><div class="triple"><div class="control"><label>Start B (menit)</label><input type="number" id="tb" value="4" min="0" max="20" step="1"></div><div class="control"><label>Posisi B (km)</label><input type="number" id="sb" value="20" min="0" max="100" step="1"></div></div><hr style="border:0;border-top:1px solid #2e3d57;margin:22px 0"><div class="control"><label>Waktu pengamatan maksimum</label><input type="number" id="duration" value="30" min="5" max="120" step="5" style="width:100%"></div><p class="note">Kecepatan 1–5 km/menit untuk learning demo. Keduanya bergerak ke arah kanan; sebelum berangkat, kereta diam di posisi awal.</p><button class="btn secondary" id="reset" style="width:100%">↺ Reset skenario</button></aside><section class="maincol"><article class="panel"><h2>🛤️ Live train simulation</h2><div class="track" id="track"><div class="rails"></div><div class="station" style="left:6%">KM 0</div><div class="station" style="left:94%">END</div><div class="train" id="trainA">🚆</div><div class="train b" id="trainB">🚄</div></div><div class="progress"><button class="btn" id="play">▶ Play</button><button class="btn secondary" id="restart">↺</button><input type="range" id="time" value="0" min="0" max="30" step=".05"><b id="clock">0.0 m</b></div><div class="status" id="status"></div></article><article class="panel"><h2>📈 Function graph</h2><div class="tabs"><button id="tabTime" class="active">s terhadap t</button><button id="tabSpeed">s terhadap v</button></div><canvas id="graph"></canvas><div class="formula" id="formula"></div><p class="note" id="explain"></p></article></section></div></div><section id="conceptPage" class="page" hidden><section class="hero"><div class="tag">LEARN THE WHY</div><h1>Fungsi itu mesin input → output</h1><p class="muted">Satu input menghasilkan tepat satu output. Eksperimen variabel, domain, range, gradien, dan titik potong dengan contoh nyata.</p></section><div class="lesson-grid"><article class="lesson"><h3>01 · Apa itu fungsi?</h3><p>Fungsi menghubungkan tiap nilai input (x) ke satu nilai output (y). Contoh <code>f(x) = 2x + 3</code>.</p><p class="note">Jika x = 4, f(4) = 11. Dua input berbeda boleh menghasilkan output sama, tetapi satu input tidak boleh punya dua output berbeda.</p></article><article class="lesson"><h3>02 · Domain & range</h3><p><b>Domain</b> adalah input yang diperbolehkan. <b>Range</b> adalah output yang dihasilkan.</p><p class="note">Contoh jumlah gelas x hanya bilangan bulat ≥ 0. Kalau harganya Rp6.000, range pendapatan = Rp0, Rp6.000, Rp12.000, ...</p></article><article class="lesson"><h3>03 · Gradien & konstanta</h3><p>Untuk fungsi linear <code>f(x) = ax + b</code>, <code>a</code> adalah perubahan output tiap input naik 1. <code>b</code> adalah output ketika x = 0.</p><p class="note">Di kereta: gradien = kecepatan. Dalam bisnis: gradien fungsi pendapatan = harga per unit.</p></article><article class="lesson"><h3>04 · Titik potong</h3><p>Dua grafik berpotongan saat nilai output keduanya sama untuk input yang sama: <code>f(x) = g(x)</code>.</p><p class="note">Dua kereta bertemu pada waktu dan posisi yang sama. Dua strategi harga punya revenue sama pada volume tertentu.</p></article></div><article class="panel" style="margin-top:18px"><h2>🔬 Mesin fungsi: f(x) = ax + b</h2><div class="lab-controls"><label>a (gradien) <input type="number" id="coefA" value="2" step="1"></label><label>b (konstanta) <input type="number" id="coefB" value="3" step="1"></label><label>x (input) <input type="number" id="funcX" value="4" step="1"></label></div><div class="function-example"><div id="funcEquation"></div><div class="function-output" id="funcResult"></div><p class="note" id="funcExplain"></p></div></article></section>
 <section id="businessPage" class="page" hidden><section class="hero"><div class="tag">MATEMATIKA SMP · FUNGSI LINEAR</div><h1>Mainkan x dan y 📈</h1><p class="muted">Coba fungsi y = ax + b. Geser x, a, atau b. Amati titik di grafik berpindah dan isi tabel berubah.</p></section><div class="layout"><aside class="panel"><h2>🎛️ Atur nilai</h2><div class="control"><label>Nilai a (angka pengali)</label><input id="xyA" type="range" min="-5" max="5" step="1" value="2"><b id="xyAOut">2</b></div><div class="control"><label>Nilai b (angka tambahan)</label><input id="xyB" type="range" min="-10" max="10" step="1" value="1"><b id="xyBOut">1</b></div><div class="control"><label>Nilai x (input)</label><input id="xyX" type="range" min="-10" max="10" step="1" value="3"><b id="xyXOut">3</b></div><div class="function-example"><div class="note" id="xyFormula"></div><div class="function-output" id="xyResult"></div><p class="note" id="xySteps"></p></div><button class="btn secondary" id="xyReset" type="button" style="width:100%;margin-top:15px">↺ Reset nilai</button></aside><section class="maincol"><article class="panel"><h2>📈 Grafik y terhadap x</h2><div class="graph-controls"><button type="button" id="xyZoomIn">＋ Zoom In</button><button type="button" id="xyZoomOut">－ Zoom Out</button><button type="button" id="xyZoomReset">Reset View</button><span id="xyZoomLabel">24 px/unit</span></div><canvas id="xyGraph" style="width:100%;height:300px"></canvas><p class="note">Garis memperlihatkan semua pasangan x dan y. Titik besar menunjukkan nilai x yang dipilih. Kalau a positif, garis naik. Kalau a negatif, garis turun.</p></article><article class="panel"><h2>🔢 Tabel pasangan (x, y)</h2><div id="xyTable" style="overflow-x:auto"></div><p class="note">Setiap x punya tepat satu y. Itulah ide utama fungsi. Coba ubah a dan b, lalu lihat tabelnya.</p></article></section></div></section>
 <section id="canvasPage" class="page" hidden>
 <section class="hero"><div class="tag">LATIHAN INTERAKTIF · BIDANG KOORDINAT</div><h1>Gambar sendiri 7 titik ✏️</h1><p class="muted">Pilih level, hitung nilai y dari 7 nilai x, lalu ketuk titik koordinat pada canvas. Periksa jawaban untuk melihat grafik yang benar.</p></section>
@@ -98,7 +117,24 @@ html[data-theme=light] #slopeAnalysisCanvas{background:#fff;border-color:#c9d9e5
 <section class="maincol"><article class="panel"><div class="graph-topline"><h2>📈 Bidang koordinat</h2><div class="graph-controls"><button type="button" id="plotZoomIn">＋</button><button type="button" id="plotZoomOut">−</button><button type="button" id="plotZoomReset">Reset Zoom</button><span id="plotZoomLabel"></span></div></div><canvas id="plotCanvas" style="width:100%;height:440px;display:block"></canvas><p class="note">Garis sumbu X dan Y bertemu di (0, 0). Garis kotak berjarak 1 satuan. Titik oranye adalah hasil untuk nilai x yang dipilih.</p></article><article class="panel"><h2>🔢 Contoh pasangan koordinat</h2><div id="plotTable" style="overflow-x:auto"></div><p class="note">Coba pilih x lain. Untuk setiap x, rumus akan menghasilkan satu nilai y.</p></article></section>
 </div>
 </section>
-<section id="quizPage" class="page" hidden><section class="hero"><div class="tag">LEARNING CHALLENGE · FUNGSI MATEMATIKA</div><h1>Train your brain 🧠</h1><p class="muted">Latihan domain, nilai fungsi, fungsi linear, invers sederhana, dan titik potong. Klik jawaban untuk pembahasan; Reset Soal mengganti angka.</p></section><div class="quiz-top"><span class="quiz-progress" id="quizProgress">0 / 5 dijawab</span><button class="btn" type="button" id="resetQuiz">↻ Reset Soal (Angka Baru)</button></div><div id="quizGrid" class="quiz-grid"></div></section><p class="footer">RAIL LAB · dibuat untuk memahami fungsi melalui eksperimen · Angka dan grafik di-update otomatis</p></main><script>
+<section id="quizPage" class="page" hidden><section class="hero"><div class="tag">LEARNING CHALLENGE · FUNGSI MATEMATIKA</div><h1>Train your brain 🧠</h1><p class="muted">Latihan domain, nilai fungsi, fungsi linear, invers sederhana, dan titik potong. Klik jawaban untuk pembahasan; Reset Soal mengganti angka.</p></section><div class="quiz-top"><span class="quiz-progress" id="quizProgress">0 / 5 dijawab</span><button class="btn" type="button" id="resetQuiz">↻ Reset Soal (Angka Baru)</button></div><div id="quizGrid" class="quiz-grid"></div></section>
+<section id="weightPage" class="page" hidden>
+<section class="hero"><div class="tag">MATEMATIKA SD · KELAS 3</div><h1>⚖️ Petualangan Satuan Berat</h1><p class="muted">Yuk belajar mengubah kilogram, ons, dan gram! Mulai dari soal mudah, lalu naik ke soal cerita yang dekat dengan kegiatan sehari-hari.</p></section>
+<div class="weight-facts">
+<article class="weight-fact"><span>🛍️</span><div><strong>1 kg = 1.000 g</strong><p>Satu kilogram sama dengan seribu gram.</p></div></article>
+<article class="weight-fact"><span>🍎</span><div><strong>1 ons = 100 g</strong><p>Satu ons sama dengan seratus gram.</p></div></article>
+<article class="weight-fact"><span>⚖️</span><div><strong>1 kg = 10 ons</strong><p>Satu kilogram setara sepuluh ons.</p></div></article>
+</div>
+<article class="panel weight-activity">
+<div class="weight-heading"><div><span class="tag">LATIHAN PILIHAN GANDA · 10 SOAL</span><h2 id="weightQuestionTitle">Soal 1</h2></div><div class="weight-score" id="weightScore">⭐ 0 benar</div></div>
+<div class="weight-progress-track" aria-label="Kemajuan latihan"><div class="weight-progress-fill" id="weightProgressFill"></div></div>
+<p id="weightProgressLabel" class="note">Soal 1 dari 10</p>
+<div id="weightStage"><p class="weight-question" id="weightQuestionText">Berapakah 1 kilogram dalam gram?</p><div id="weightChoices" class="weight-choices"></div><div class="weight-explanation" id="weightExplanation" hidden aria-live="polite"></div><div class="weight-actions"><button class="btn" id="weightNext" type="button" hidden>Soal Selanjutnya →</button><button class="btn secondary" id="weightRestart" type="button">↻ Mulai Soal Baru</button></div></div>
+<div id="weightFinished" hidden class="weight-finish"><div class="weight-medal">🏆</div><h2 id="weightFinishTitle">Latihan selesai!</h2><p id="weightFinishText" class="muted"></p><button class="btn" type="button" id="weightAgain">↻ Latihan Lagi dengan Angka Baru</button></div>
+</article>
+<article class="panel"><h2>🧠 Trik memahami satuan berat</h2><div class="lesson-grid"><div class="lesson"><h3>Naik ke satuan lebih kecil</h3><p>Kalau dari <b>kg ke gram</b>, kalikan 1.000. Misalnya 2 kg = 2 × 1.000 = 2.000 g.</p></div><div class="lesson"><h3>Balik ke satuan lebih besar</h3><p>Kalau dari <b>gram ke kg</b>, bagi 1.000. Misalnya 3.000 g = 3.000 ÷ 1.000 = 3 kg.</p></div></div><p class="note">Saat menjumlahkan atau mengurangi berat, ubah dulu semuanya ke satuan yang sama. Baru dihitung.</p></article>
+</section>
+<p class="footer">RAIL LAB · dibuat untuk memahami fungsi melalui eksperimen · Angka dan grafik di-update otomatis</p></main><script>
 (()=>{'use strict';const $=id=>document.getElementById(id);let theme='light';try{theme=localStorage.getItem('rail-lab-theme')||'light'}catch(e){}if(theme!=='dark')theme='light';function applyTheme(){document.documentElement.dataset.theme=theme;$('themeToggle').textContent=theme==='light'?'🌙 Dark Mode':'☀️ Light Mode'}$('themeToggle').addEventListener('click',()=>{theme=theme==='light'?'dark':'light';try{localStorage.setItem('rail-lab-theme',theme)}catch(e){}applyTheme();paint()});applyTheme();const ids=['va','vb','ta','tb','sa','sb','duration'];const defaults={va:3,vb:2,ta:0,tb:4,sa:0,sb:20,duration:30};let running=false,mode='time',now=0,last=0;function params(){const p={};ids.forEach(k=>p[k]=Number($(k).value));p.ta=Math.max(0,p.ta||0);p.tb=Math.max(0,p.tb||0);p.sa=Math.max(0,p.sa||0);p.sb=Math.max(0,p.sb||0);p.duration=Math.max(5,Math.min(120,p.duration||30));return p}function pos(s,v,start,t){return s+v*Math.max(0,t-start)}function meetings(p){let times=[];const cuts=[0,p.ta,p.tb,p.duration].filter(x=>x>=0&&x<=p.duration).sort((a,b)=>a-b);const unique=[...new Set(cuts)];function diff(t){return pos(p.sa,p.va,p.ta,t)-pos(p.sb,p.vb,p.tb,t)}for(let i=0;i<unique.length-1;i++){let l=unique[i],r=unique[i+1],dl=diff(l),dr=diff(r);if(Math.abs(dl)<1e-8)times.push(l);if(dl*dr<0){times.push(l+(r-l)*(-dl)/(dr-dl))}if(Math.abs(dr)<1e-8)times.push(r)}if(Math.abs(diff(0))<1e-8)times.push(0);return [...new Set(times.map(x=>Math.round(x*10000)/10000))].sort((a,b)=>a-b)}function fmt(n){return Number(n.toFixed(2)).toLocaleString('id-ID')}function paint(){let p=params();now=Math.max(0,Math.min(now,p.duration));$('time').max=p.duration;$('time').value=now;$('clock').textContent=fmt(now)+' m';$('vaOut').textContent=fmt(p.va)+' km/menit';$('vbOut').textContent=fmt(p.vb)+' km/menit';let a=pos(p.sa,p.va,p.ta,now),b=pos(p.sb,p.vb,p.tb,now),limit=Math.max(30,pos(p.sa,p.va,p.ta,p.duration),pos(p.sb,p.vb,p.tb,p.duration))*1.06;const toLeft=s=>(5+90*Math.min(s/limit,1))+'%';$('trainA').style.left=toLeft(a);$('trainB').style.left=toLeft(b);const hits=meetings(p);let txt='<strong>t = '+fmt(now)+' menit</strong><br>Kereta A: '+fmt(a)+' km · Kereta B: '+fmt(b)+' km.<br>';if(hits.length){txt+='🎯 Posisi sama pada t = '+hits.map(fmt).join(', ')+' menit (dalam jendela simulasi).';if(p.sa===p.sb&&p.ta===p.tb&&p.va===p.vb)txt+=' Sepanjang simulasi keduanya berimpit.'}else txt+='↗ Tidak ada pertemuan dalam '+fmt(p.duration)+' menit pengamatan.';$('status').innerHTML=txt;drawGraph(p)}function drawGraph(p){const c=$('graph'),r=c.getBoundingClientRect(),d=window.devicePixelRatio||1;c.width=Math.max(300,Math.floor(r.width*d));c.height=Math.floor(330*d);const ctx=c.getContext('2d');ctx.scale(d,d);let w=r.width,h=330,pad={l:52,r:18,t:20,b:42},gw=w-pad.l-pad.r,gh=h-pad.t-pad.b;ctx.clearRect(0,0,w,h);const valueAt=(s,v,start,t)=>pos(s,v,start,t);let xmax=mode==='time'?p.duration:5,ymax=mode==='time'?Math.max(10,valueAt(p.sa,p.va,p.ta,xmax),valueAt(p.sb,p.vb,p.tb,xmax))*1.12:Math.max(10,p.sa+5*Math.max(0,now-p.ta),p.sb+5*Math.max(0,now-p.tb))*1.12;const px=x=>pad.l+x/xmax*gw,py=y=>h-pad.b-y/ymax*gh;ctx.font='12px system-ui';ctx.fillStyle=theme==='light'?'#4b647c':'#9cacc6';ctx.strokeStyle=theme==='light'?'#dce6f2':'#293d56';ctx.lineWidth=1;for(let i=0;i<=5;i++){const x=px(i*xmax/5),y=py(i*ymax/5);ctx.beginPath();ctx.moveTo(x,pad.t);ctx.lineTo(x,h-pad.b);ctx.moveTo(pad.l,y);ctx.lineTo(w-pad.r,y);ctx.stroke();ctx.fillText(fmt(i*xmax/5),x-8,h-18);ctx.fillText(fmt(i*ymax/5),4,y+4)}ctx.fillText(mode==='time'?'Waktu (menit) →':'Kecepatan (km/menit) →',w-180,h-3);ctx.fillText('Posisi (km)',pad.l,12);const lines=[{color:theme==='light'?'#008f82':'#72e7d0',s:p.sa,v:p.va,start:p.ta},{color:theme==='light'?'#e07840':'#ffad8a',s:p.sb,v:p.vb,start:p.tb}];for(const line of lines){ctx.strokeStyle=line.color;ctx.lineWidth=3;ctx.beginPath();for(let j=0;j<=240;j++){let x=j*xmax/240,y=mode==='time'?valueAt(line.s,line.v,line.start,x):line.s+x*Math.max(0,now-line.start);if(j===0)ctx.moveTo(px(x),py(y));else ctx.lineTo(px(x),py(y))}ctx.stroke();let cx=mode==='time'?now:line.v,cy=mode==='time'?valueAt(line.s,line.v,line.start,now):line.s+line.v*Math.max(0,now-line.start);ctx.beginPath();ctx.arc(px(cx),py(cy),5,0,2*Math.PI);ctx.fillStyle=line.color;ctx.fill()}if(mode==='time'){$('formula').textContent='A: s(t) = '+fmt(p.sa)+' + '+fmt(p.va)+' × max(0, t − '+fmt(p.ta)+')   |   B: s(t) = '+fmt(p.sb)+' + '+fmt(p.vb)+' × max(0, t − '+fmt(p.tb)+')';$('explain').textContent='Sumbu X adalah waktu. Sumbu Y adalah posisi. Kemiringan garis setelah berangkat = kecepatan. Titik potong dua garis berarti posisi sama pada waktu yang sama.'}else{$('formula').textContent='Pada t = '+fmt(now)+': A: s(v) = '+fmt(p.sa)+' + v × '+fmt(Math.max(0,now-p.ta))+'   |   B: s(v) = '+fmt(p.sb)+' + v × '+fmt(Math.max(0,now-p.tb));$('explain').textContent='Sekarang waktu dikunci pada t yang dipilih. Sumbu X menjadi kecepatan hipotetis (1–5), sumbu Y menjadi posisi. Masing-masing garis menunjukkan pengaruh mengubah speed saat faktor lain tetap. Titik potong pada mode ini bukan otomatis pertemuan dua kereta dengan kecepatan aktualnya.'}}ids.forEach(id=>$(id).addEventListener('input',()=>{if(id==='duration')now=Math.min(now,params().duration);paint()}));$('time').addEventListener('input',e=>{running=false;$('play').textContent='▶ Play';now=Number(e.target.value);paint()});$('play').addEventListener('click',()=>{if(now>=params().duration)now=0;running=!running;$('play').textContent=running?'⏸ Pause':'▶ Play';last=performance.now()});$('restart').addEventListener('click',()=>{running=false;now=0;$('play').textContent='▶ Play';paint()});$('reset').addEventListener('click',()=>{ids.forEach(k=>$(k).value=defaults[k]);now=0;running=false;mode='time';$('play').textContent='▶ Play';tabs();paint()});function tabs(){$('tabTime').classList.toggle('active',mode==='time');$('tabSpeed').classList.toggle('active',mode==='speed')}$('tabTime').addEventListener('click',()=>{mode='time';tabs();paint()});$('tabSpeed').addEventListener('click',()=>{mode='speed';tabs();paint()});function tick(t){if(running){now+=(t-last)/1000*1.7;if(now>=params().duration){now=params().duration;running=false;$('play').textContent='▶ Play'}paint()}last=t;requestAnimationFrame(tick)}window.addEventListener('resize',paint);paint();requestAnimationFrame(tick)})();
 </script><script>
 (()=>{'use strict';
@@ -180,8 +216,8 @@ card.append(k,title,body,opts,feedback);grid.append(card);
 });progress();
 }
 function progress(){el('quizProgress').textContent=answered+' / '+questions.length+' dijawab · '+correct+' benar'}
-function show(page){for(const key of ['Sim','Concept','Business','Quiz','Canvas','Slope','Area','Worksheet']){el(({Sim:'simulation',Concept:'concept',Business:'business',Quiz:'quiz',Canvas:'canvas',Slope:'slope',Area:'area',Worksheet:'worksheet'})[key]+'Page').hidden=(key.toLowerCase()!==page);el('nav'+key).classList.toggle('active',key.toLowerCase()===page)}window.dispatchEvent(new Event('resize'))}
-for(const key of ['Sim','Concept','Business','Quiz','Canvas','Slope','Area','Worksheet'])el('nav'+key).addEventListener('click',()=>show(key.toLowerCase()));el('resetQuiz').addEventListener('click',generate);generate();
+function show(page){for(const key of ['Sim','Concept','Business','Quiz','Canvas','Slope','Area','Worksheet','Weight']){el(({Sim:'simulation',Concept:'concept',Business:'business',Quiz:'quiz',Canvas:'canvas',Slope:'slope',Area:'area',Worksheet:'worksheet',Weight:'weight'})[key]+'Page').hidden=(key.toLowerCase()!==page);el('nav'+key).classList.toggle('active',key.toLowerCase()===page)}window.dispatchEvent(new Event('resize'))}
+for(const key of ['Sim','Concept','Business','Quiz','Canvas','Slope','Area','Worksheet','Weight'])el('nav'+key).addEventListener('click',()=>show(key.toLowerCase()));el('resetQuiz').addEventListener('click',generate);generate();
 })();
 </script><script>
 (()=>{'use strict';const $=id=>document.getElementById(id);
@@ -508,5 +544,126 @@ $('plotZoomReset').addEventListener('click',()=>{zoom=24;plot()});
 window.addEventListener('resize',()=>{drawSlope();drawArea();drawAreaBridge();plot()});
 new MutationObserver(()=>{drawSlope();drawArea();plot()}).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
 drawSlope();drawArea();drawAreaBridge();updateFormula();
+})();
+</script><script>
+(()=>{'use strict';
+const $=id=>document.getElementById(id),rand=(min,max)=>Math.floor(Math.random()*(max-min+1))+min,fmt=n=>n.toLocaleString('id-ID');
+const shuffle=items=>{const a=[...items];for(let i=a.length-1;i>0;i--){const j=rand(0,i);[a[i],a[j]]=[a[j],a[i]];}return a;};
+const make=(category,question,answer,unit,wrong,known,asked,why,work,conclusion)=>{
+ const pool=[answer,...wrong.filter(n=>Number.isInteger(n)&&n>=0&&n!==answer)];
+ let attempt=0;
+ while(new Set(pool).size<4&&attempt++<100){pool.push(Math.max(0,answer+rand(1,8)*(unit==='kg'||unit==='kantong'?1:unit==='ons'?10:100)*(Math.random()<.5?-1:1)));}
+ return {category,question,answer,unit,options:shuffle([...new Set(pool)].slice(0,4)),known,asked,why,work,conclusion};
+};
+function makeSet(){
+ const kg1=rand(2,5),kg2=rand(2,6),kg3=rand(2,5);
+ const ons1=rand(2,8),ons2=rand(2,8),ons3=rand(2,7);
+ const small=rand(2,8)*100,small2=rand(2,8)*100;
+ const diffG=rand(2,8)*100,addG=rand(2,8)*100,usedG=rand(2,9)*100;
+ const packKg=rand(2,5),other=rand(2,6)*100;
+ return [
+ make('Mengenal kilogram','Berapa gram berat '+kg1+' kg beras?',kg1*1000,'g',[kg1*100,kg1*10,kg1*10000],
+ 'Beras seberat '+kg1+' kg.','Berat beras dalam gram.',
+ 'Setiap 1 kg berisi 1.000 g, jadi jumlah kilogram harus dikalikan 1.000.',
+ kg1+' × 1.000 = '+fmt(kg1*1000)+' g.','Berat beras adalah '+fmt(kg1*1000)+' gram.'),
+ make('Mengubah gram ke kilogram','Tepung seberat '+fmt(kg2*1000)+' gram sama dengan berapa kg?',kg2,'kg',[kg2*10,kg2*100,kg2+1],
+ 'Tepung '+fmt(kg2*1000)+' g.','Berapa kilogram berat tepung?',
+ 'Karena 1 kg = 1.000 g, untuk mengubah gram menjadi kilogram kita bagi 1.000.',
+ fmt(kg2*1000)+' ÷ 1.000 = '+kg2+' kg.','Berat tepung sama dengan '+kg2+' kilogram.'),
+ make('Mengubah kilogram ke ons','Bunda membawa '+kg3+' kg apel. Berapa ons beratnya?',kg3*10,'ons',[kg3,kg3*100,kg3*1000],
+ 'Ada '+kg3+' kg apel.','Berapa ons berat apel?',
+ 'Satu kilogram sama dengan 10 ons, maka kilogram dikali 10.',
+ kg3+' × 10 = '+(kg3*10)+' ons.','Berat apel adalah '+(kg3*10)+' ons.'),
+ make('Mengubah ons ke gram','Berapa gram berat '+ons1+' ons gula?',ons1*100,'g',[ons1*10,ons1*1000,ons1*100+100],
+ 'Berat gula '+ons1+' ons.','Berapa gram berat gula?',
+ 'Satu ons sama dengan 100 gram, jadi banyak ons dikalikan 100.',
+ ons1+' × 100 = '+fmt(ons1*100)+' g.','Berat gula '+fmt(ons1*100)+' gram.'),
+ make('Mengubah gram ke ons','Seorang pedagang menimbang '+fmt(ons2*100)+' g kacang. Berapa ons?',ons2,'ons',[ons2*10,ons2*100,ons2+1],
+ 'Berat kacang '+fmt(ons2*100)+' g.','Berat kacang dalam ons.',
+ 'Karena 100 g = 1 ons, kita bagi jumlah gram dengan 100.',
+ fmt(ons2*100)+' ÷ 100 = '+ons2+' ons.','Berat kacang adalah '+ons2+' ons.'),
+ make('Membandingkan berat','Semangka memiliki berat 1 kg, sedangkan melon '+diffG+' g. Berapa gram selisih beratnya?',1000-diffG,'g',[1000+diffG,diffG,1000],
+ 'Semangka 1 kg dan melon '+diffG+' g.','Selisih berat keduanya dalam gram.',
+ 'Kedua berat harus menggunakan satuan yang sama dahulu. 1 kg diubah menjadi 1.000 g, kemudian dikurangi berat melon.',
+ '1.000 − '+diffG+' = '+(1000-diffG)+' g.','Semangka lebih berat '+(1000-diffG)+' gram daripada melon.'),
+ make('Menjumlahkan berat','Ibu membeli '+kg1+' kg gula dan tambahan '+addG+' g gula. Berapa gram jumlah semuanya?',kg1*1000+addG,'g',[kg1*1000,kg1*1000-addG,kg1*100+addG],
+ 'Ibu membeli '+kg1+' kg gula dan '+addG+' g gula.','Jumlah seluruh gula dalam gram.',
+ 'Sebelum dijumlahkan, ubah kg ke gram supaya satuannya sama.',
+ kg1+' kg = '+fmt(kg1*1000)+' g. Lalu '+fmt(kg1*1000)+' + '+addG+' = '+fmt(kg1*1000+addG)+' g.',
+ 'Total gula '+fmt(kg1*1000+addG)+' gram.'),
+ make('Mengurangkan berat','Di dapur tersedia '+kg2+' kg tepung. Dipakai '+usedG+' g. Berapa gram yang tersisa?',kg2*1000-usedG,'g',[kg2*1000+usedG,usedG,kg2*1000],
+ 'Tepung awal '+kg2+' kg, terpakai '+usedG+' g.','Sisa tepung dalam gram.',
+ 'Karena sebagian tepung dipakai, berat awal harus dikurangi berat yang digunakan. Samakan satuannya lebih dulu.',
+ fmt(kg2*1000)+' − '+usedG+' = '+fmt(kg2*1000-usedG)+' g.',
+ 'Tepung yang tersisa '+fmt(kg2*1000-usedG)+' gram.'),
+ make('Membagi berat sama banyak','Ada '+packKg+' kg beras. Setiap kantong diisi 500 g. Berapa kantong yang bisa dibuat?',packKg*2,'kantong',[packKg,packKg*4,packKg*2+1],
+ 'Beras '+packKg+' kg; setiap kantong berisi 500 g.','Jumlah kantong yang terisi.',
+ 'Karena tiap kantong harus memiliki berat yang sama, seluruh berat dibagi berat satu kantong. Ubah kg ke gram terlebih dahulu.',
+ fmt(packKg*1000)+' ÷ 500 = '+(packKg*2)+' kantong.','Dapat dibuat '+(packKg*2)+' kantong beras.'),
+ make('Soal cerita campuran','Rani membeli '+ons3+' ons jeruk dan '+other+' g apel. Berapa gram berat buah seluruhnya?',ons3*100+other,'g',[ons3*100,ons3*100-other,ons3+other],
+ 'Jeruk '+ons3+' ons, apel '+other+' gram.','Berat seluruh buah dalam gram.',
+ 'Berat jeruk dan apel dijumlahkan, tetapi lebih dulu ubah ons menjadi gram.',
+ ons3+' × 100 = '+fmt(ons3*100)+' g. Jumlah = '+fmt(ons3*100)+' + '+other+' = '+fmt(ons3*100+other)+' g.',
+ 'Total berat buah '+fmt(ons3*100+other)+' gram.')
+ ];
+}
+let questions=[],position=0,correct=0,answered=false;
+function explanationLine(container,label,content){
+ const p=document.createElement('p'),strong=document.createElement('strong');strong.textContent=label+': ';
+ p.append(strong,document.createTextNode(content));container.append(p);
+}
+function updateHeader(){
+ $('weightScore').textContent='⭐ '+correct+' benar';
+ $('weightQuestionTitle').textContent=position<questions.length?'Soal '+(position+1)+' · '+questions[position].category:'Latihan selesai';
+ $('weightProgressLabel').textContent=position<questions.length?'Soal '+(position+1)+' dari '+questions.length:(questions.length)+' soal selesai';
+ $('weightProgressFill').style.width=(Math.min(position+(answered?1:0),questions.length)/questions.length*100)+'%';
+}
+function render(){
+ answered=false;
+ const q=questions[position],choices=$('weightChoices'),box=$('weightExplanation');
+ choices.replaceChildren();box.hidden=true;box.replaceChildren();$('weightNext').hidden=true;
+ $('weightQuestionText').textContent=q.question;
+ q.options.forEach(value=>{
+   const button=document.createElement('button');button.type='button';button.className='weight-choice';button.textContent=fmt(value)+' '+q.unit;
+   button.addEventListener('click',()=>{
+      if(answered)return;
+      answered=true;
+      const right=value===q.answer;if(right)correct++;
+      Array.from(choices.children).forEach(ch=>{ch.disabled=true;if(ch.dataset.value===String(q.answer))ch.classList.add('correct');else if(ch===button)ch.classList.add('wrong');});
+      const heading=document.createElement('strong');heading.textContent=right?'✅ Tepat sekali!':'🔎 Belum tepat. Jawaban: '+fmt(q.answer)+' '+q.unit+'.';
+      box.append(heading);
+      explanationLine(box,'Diketahui',q.known);
+      explanationLine(box,'Ditanya',q.asked);
+      explanationLine(box,'Kenapa caranya begitu?',q.why);
+      explanationLine(box,'Jawab',q.work);
+      explanationLine(box,'Kesimpulan',q.conclusion);
+      box.hidden=false;
+      $('weightNext').textContent=position===questions.length-1?'Lihat Hasil Akhir →':'Soal Selanjutnya →';
+      $('weightNext').hidden=false;updateHeader();
+   });
+   button.dataset.value=String(value);choices.append(button);
+ });
+ updateHeader();
+}
+function next(){
+ if(!answered)return;
+ position++;
+ if(position>=questions.length){
+  $('weightStage').hidden=true;$('weightFinished').hidden=false;
+  const pct=Math.round(correct/questions.length*100);
+  $('weightFinishTitle').textContent=pct===100?'🌟 Hebat! Semua jawaban benar!':pct>=70?'🎉 Bagus! Terus berlatih!':'🌱 Bagus sudah mencoba!';
+  $('weightFinishText').textContent='Skormu '+correct+' dari '+questions.length+' ('+pct+'%). Kamu bisa mengulang dengan angka yang berbeda untuk semakin mahir.';
+  updateHeader();
+ }else render();
+}
+function restart(){
+ questions=makeSet();position=0;correct=0;answered=false;
+ $('weightStage').hidden=false;$('weightFinished').hidden=true;
+ render();
+}
+$('weightNext').addEventListener('click',next);
+$('weightRestart').addEventListener('click',restart);
+$('weightAgain').addEventListener('click',restart);
+restart();
 })();
 </script></html>
