@@ -615,7 +615,7 @@ function makeSet(){
  const ons1=rand(2,8),ons2=rand(2,8),ons3=rand(2,7);
  const small=rand(2,8)*100,small2=rand(2,8)*100;
  const diffG=rand(2,8)*100,addG=rand(2,8)*100,usedG=rand(2,9)*100;
- const packKg=rand(2,5),other=rand(2,6)*100;
+ const packKg=rand(2,5),kgMixed=rand(1,4);
  return [
  make('Mengenal kilogram','Berapa gram berat '+kg1+' kg beras?',kg1*1000,'g',[kg1*100,kg1*10,kg1*10000],
  'Beras seberat '+kg1+' kg.','Berat beras dalam gram.',
@@ -655,11 +655,11 @@ function makeSet(){
  'Beras '+packKg+' kg; setiap kantong berisi 500 g.','Jumlah kantong yang terisi.',
  'Karena tiap kantong harus memiliki berat yang sama, seluruh berat dibagi berat satu kantong. Ubah kg ke gram terlebih dahulu.',
  fmt(packKg*1000)+' ÷ 500 = '+(packKg*2)+' kantong.','Dapat dibuat '+(packKg*2)+' kantong beras.'),
- make('Soal cerita campuran','Rani membeli '+ons3+' ons jeruk dan '+other+' g apel. Berapa gram berat buah seluruhnya?',ons3*100+other,'g',[ons3*100,ons3*100-other,ons3+other],
- 'Jeruk '+ons3+' ons, apel '+other+' gram.','Berat seluruh buah dalam gram.',
- 'Berat jeruk dan apel dijumlahkan, tetapi lebih dulu ubah ons menjadi gram.',
- ons3+' × 100 = '+fmt(ons3*100)+' g. Jumlah = '+fmt(ons3*100)+' + '+other+' = '+fmt(ons3*100+other)+' g.',
- 'Total berat buah '+fmt(ons3*100+other)+' gram.')
+ make('Soal cerita kg dan ons','Berat buah dalam keranjang adalah '+kgMixed+' kg '+ons3+' ons. Berapa gram seluruhnya?',kgMixed*1000+ons3*100,'g',[kgMixed*1000,ons3*100,(kgMixed+ons3)*100],
+ 'Buah seberat '+kgMixed+' kg ditambah '+ons3+' ons.','Berat seluruh buah dalam gram.',
+ 'Ada dua satuan berbeda. Turun dari kg ke gram sebanyak 3 anak tangga: ×10 ×10 ×10. Turun dari hg/ons ke gram sebanyak 2 anak tangga: ×10 ×10. Setelah keduanya jadi gram, jumlahkan.',
+ kgMixed+' kg = '+fmt(kgMixed*1000)+' g. '+ons3+' ons = '+fmt(ons3*100)+' g. Total = '+fmt(kgMixed*1000)+' + '+fmt(ons3*100)+' = '+fmt(kgMixed*1000+ons3*100)+' g.',
+ 'Berat seluruhnya '+fmt(kgMixed*1000+ons3*100)+' gram.')
  ];
 }
 let questions=[],position=0,correct=0,answered=false;
