@@ -186,7 +186,44 @@ html[data-theme=light] #divisionPage{--dv-plate:#f4f8ff;--dv-edge:#9db4cf;--dv-n
 .dv-quizbox .weight-choice{font-size:22px}
 .dv-story{font-size:20px;line-height:1.6;word-break:break-word}
 @media(prefers-reduced-motion:reduce){.dv-new,.dv-pop{animation:none}}
-</style><header><div class="brand">🚄 RAIL LAB <span class="tag">/ FUNCTION PLAYGROUND</span></div><button class="theme-toggle" id="themeToggle" type="button">☀️ Light Mode</button></header><nav class="page-nav" aria-label="Navigasi Rail Lab"><button class="active" type="button" id="navSim">🚄 Simulasi</button><button type="button" id="navConcept">📚 Konsep Fungsi</button><button type="button" id="navBusiness">📈 Eksplorasi x & y</button><button type="button" id="navQuiz">🧠 Latihan Soal</button><button type="button" id="navCanvas">✏️ Canvas Latihan</button><button type="button" id="navSlope">📐 Kemiringan</button><button type="button" id="navArea">🟦 Luas x × y</button><button type="button" id="navWorksheet">📝 Lembar Grafik</button><button type="button" id="navWeight">⚖️ Satuan Berat SD 3</button><button type="button" id="navFraction">🍕 Pecahan SD 3</button><button type="button" id="navDivision">➗ Pembagian SD 2</button></nav><main><div class="page" id="simulationPage"><section class="hero"><div class="tag">MATEMATIKA × FISIKA × SIMULASI</div><h1>Kalau dua kereta balapan,<br>kapan mereka ketemu?</h1><p class="muted">Geser speed, posisi awal, dan waktu berangkat. Lihat keretanya bergerak dan grafik fungsi berubah real-time.</p></section><div class="layout"><aside class="panel"><h2>🎛️ Control room</h2><div class="train-heading">🚆 Kereta A <span class="pill">TEAL</span></div><div class="control"><label>Kecepatan A <b id="vaOut">3 km/menit</b></label><input id="va" type="range" min="1" max="5" step="0.5" value="3"></div><div class="triple"><div class="control"><label>Start A (menit)</label><input type="number" id="ta" value="0" min="0" max="20" step="1"></div><div class="control"><label>Posisi A (km)</label><input type="number" id="sa" value="0" min="0" max="100" step="1"></div></div><div class="train-heading">🚄 Kereta B <span class="pill train-b">ORANGE</span></div><div class="control"><label>Kecepatan B <b id="vbOut">2 km/menit</b></label><input id="vb" type="range" min="1" max="5" step="0.5" value="2"></div><div class="triple"><div class="control"><label>Start B (menit)</label><input type="number" id="tb" value="4" min="0" max="20" step="1"></div><div class="control"><label>Posisi B (km)</label><input type="number" id="sb" value="20" min="0" max="100" step="1"></div></div><hr style="border:0;border-top:1px solid #2e3d57;margin:22px 0"><div class="control"><label>Waktu pengamatan maksimum</label><input type="number" id="duration" value="30" min="5" max="120" step="5" style="width:100%"></div><p class="note">Kecepatan 1–5 km/menit untuk learning demo. Keduanya bergerak ke arah kanan; sebelum berangkat, kereta diam di posisi awal.</p><button class="btn secondary" id="reset" style="width:100%">↺ Reset skenario</button></aside><section class="maincol"><article class="panel"><h2>🛤️ Live train simulation</h2><div class="track" id="track"><div class="rails"></div><div class="station" style="left:6%">KM 0</div><div class="station" style="left:94%">END</div><div class="train" id="trainA">🚆</div><div class="train b" id="trainB">🚄</div></div><div class="progress"><button class="btn" id="play">▶ Play</button><button class="btn secondary" id="restart">↺</button><input type="range" id="time" value="0" min="0" max="30" step=".05"><b id="clock">0.0 m</b></div><div class="status" id="status"></div></article><article class="panel"><h2>📈 Function graph</h2><div class="tabs"><button id="tabTime" class="active">s terhadap t</button><button id="tabSpeed">s terhadap v</button></div><canvas id="graph"></canvas><div class="formula" id="formula"></div><p class="note" id="explain"></p></article></section></div></div><section id="conceptPage" class="page" hidden><section class="hero"><div class="tag">LEARN THE WHY</div><h1>Fungsi itu mesin input → output</h1><p class="muted">Satu input menghasilkan tepat satu output. Eksperimen variabel, domain, range, gradien, dan titik potong dengan contoh nyata.</p></section><div class="lesson-grid"><article class="lesson"><h3>01 · Apa itu fungsi?</h3><p>Fungsi menghubungkan tiap nilai input (x) ke satu nilai output (y). Contoh <code>f(x) = 2x + 3</code>.</p><p class="note">Jika x = 4, f(4) = 11. Dua input berbeda boleh menghasilkan output sama, tetapi satu input tidak boleh punya dua output berbeda.</p></article><article class="lesson"><h3>02 · Domain & range</h3><p><b>Domain</b> adalah input yang diperbolehkan. <b>Range</b> adalah output yang dihasilkan.</p><p class="note">Contoh jumlah gelas x hanya bilangan bulat ≥ 0. Kalau harganya Rp6.000, range pendapatan = Rp0, Rp6.000, Rp12.000, ...</p></article><article class="lesson"><h3>03 · Gradien & konstanta</h3><p>Untuk fungsi linear <code>f(x) = ax + b</code>, <code>a</code> adalah perubahan output tiap input naik 1. <code>b</code> adalah output ketika x = 0.</p><p class="note">Di kereta: gradien = kecepatan. Dalam bisnis: gradien fungsi pendapatan = harga per unit.</p></article><article class="lesson"><h3>04 · Titik potong</h3><p>Dua grafik berpotongan saat nilai output keduanya sama untuk input yang sama: <code>f(x) = g(x)</code>.</p><p class="note">Dua kereta bertemu pada waktu dan posisi yang sama. Dua strategi harga punya revenue sama pada volume tertentu.</p></article></div><article class="panel" style="margin-top:18px"><h2>🔬 Mesin fungsi: f(x) = ax + b</h2><div class="lab-controls"><label>a (gradien) <input type="number" id="coefA" value="2" step="1"></label><label>b (konstanta) <input type="number" id="coefB" value="3" step="1"></label><label>x (input) <input type="number" id="funcX" value="4" step="1"></label></div><div class="function-example"><div id="funcEquation"></div><div class="function-output" id="funcResult"></div><p class="note" id="funcExplain"></p></div></article></section>
+
+#porogapitPage{--dv-plate:#1a2b46;--dv-edge:#5f7fa6;--dv-next:#f39a4c;--dv-ink:#edf3ff;--dv-line:#a9bdd9;--dv-hop:#5fb2ff;--dv-soft:rgba(95,178,255,.12)}
+html[data-theme=light] #porogapitPage{--dv-plate:#f4f8ff;--dv-edge:#9db4cf;--dv-next:#e0731f;--dv-ink:#14243b;--dv-line:#36536f;--dv-hop:#1f6fd1;--dv-soft:rgba(31,111,209,.07)}
+.ms-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;margin:14px 0}
+.ms-item{display:grid;grid-template-columns:auto auto minmax(0,1fr) auto;gap:8px;align-items:center;padding:10px 12px;border:2px solid rgba(120,150,170,.35);border-radius:14px;min-width:0}
+.ms-item.ok{border-color:#139c77;background:rgba(12,161,118,.12)}
+.ms-item.bad{border-color:#e16e6e;background:rgba(214,81,81,.10)}
+.ms-item.shown{border-style:dashed}
+.ms-no{font-weight:800;opacity:.7}
+.ms-q{font-size:22px;font-weight:850;white-space:nowrap}
+.ms-in{width:100%;min-width:56px;max-width:110px;font-size:22px;font-weight:800;padding:6px 8px;border:1px solid #66849b;border-radius:10px;background:rgba(74,140,162,.10);color:inherit}
+.ms-mark{font-size:20px;min-width:1.2em}
+.ms-how{grid-column:1/-1;justify-self:start;border:0;background:none;color:inherit;text-decoration:underline;cursor:pointer;font-size:13px;padding:0;opacity:.8}
+.pg-story{padding:14px 16px;border:1px solid rgba(84,145,158,.37);background:rgba(43,117,140,.055);border-radius:14px;margin:6px 0 14px}
+.pg-text{font-size:clamp(17px,2.2vw,20px);line-height:1.6;margin:6px 0 0}
+.pg-work{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:18px;align-items:start}
+@media(max-width:800px){.pg-work{grid-template-columns:1fr}}
+.pg-store{border:2px dashed var(--dv-edge);border-radius:18px;padding:10px 14px;background:var(--dv-soft)}
+.pg-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:6px 0}
+.pg-row>b{min-width:118px;font-size:15px}
+.pv-wrap{display:flex;flex-wrap:wrap;gap:3px;align-items:flex-end;min-width:0}
+.pv-h{display:block;width:30px;height:30px;border-radius:3px;background-color:#3a8de0;background-image:linear-gradient(rgba(255,255,255,.4) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.4) 1px,transparent 1px);background-size:3px 3px}
+.pv-t{display:block;width:6px;height:30px;border-radius:2px;background-color:#16a38a;background-image:linear-gradient(rgba(255,255,255,.5) 1px,transparent 1px);background-size:6px 3px}
+.pv-o{display:block;width:8px;height:8px;border-radius:2px;background:#f08a3c}
+.pg-groups{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin-top:12px}
+.pg-group{background:var(--dv-plate);border:3px solid var(--dv-edge);border-radius:18px;padding:10px;min-height:110px;display:grid;grid-template-rows:auto 1fr auto;text-align:center;justify-items:center;min-width:0}
+.pg-group .pg-row{justify-content:center;margin:3px 0}
+.pg-poro{display:inline-grid;font-family:ui-monospace,Consolas,"Courier New",monospace;font-size:clamp(28px,4.4vw,38px);font-weight:800;line-height:1.25;margin-top:10px;padding:8px 6px}
+.pg-poro span{text-align:center;min-height:1.25em}
+.pg-dv{padding-right:.25em;text-align:right!important}
+.pg-dd{border-top:3px solid var(--dv-ink)}
+.pg-dd1{border-left:3px solid var(--dv-ink);border-top-left-radius:16px}
+.pg-ul{border-bottom:2px solid var(--dv-ink)}
+.pg-qd{color:var(--dv-next)}
+.pg-sign{opacity:.65;font-size:.8em}
+.pg-legend{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;margin-top:6px;align-items:center}
+.pg-legend span{display:inline-flex;gap:6px;align-items:center}
+</style><header><div class="brand">🚄 RAIL LAB <span class="tag">/ FUNCTION PLAYGROUND</span></div><button class="theme-toggle" id="themeToggle" type="button">☀️ Light Mode</button></header><nav class="page-nav" aria-label="Navigasi Rail Lab"><button class="active" type="button" id="navSim">🚄 Simulasi</button><button type="button" id="navConcept">📚 Konsep Fungsi</button><button type="button" id="navBusiness">📈 Eksplorasi x & y</button><button type="button" id="navQuiz">🧠 Latihan Soal</button><button type="button" id="navCanvas">✏️ Canvas Latihan</button><button type="button" id="navSlope">📐 Kemiringan</button><button type="button" id="navArea">🟦 Luas x × y</button><button type="button" id="navWorksheet">📝 Lembar Grafik</button><button type="button" id="navWeight">⚖️ Satuan Berat SD 3</button><button type="button" id="navFraction">🍕 Pecahan SD 3</button><button type="button" id="navDivision">➗ Pembagian SD 2</button><button type="button" id="navPorogapit">🧮 Pembagian SD 3</button></nav><main><div class="page" id="simulationPage"><section class="hero"><div class="tag">MATEMATIKA × FISIKA × SIMULASI</div><h1>Kalau dua kereta balapan,<br>kapan mereka ketemu?</h1><p class="muted">Geser speed, posisi awal, dan waktu berangkat. Lihat keretanya bergerak dan grafik fungsi berubah real-time.</p></section><div class="layout"><aside class="panel"><h2>🎛️ Control room</h2><div class="train-heading">🚆 Kereta A <span class="pill">TEAL</span></div><div class="control"><label>Kecepatan A <b id="vaOut">3 km/menit</b></label><input id="va" type="range" min="1" max="5" step="0.5" value="3"></div><div class="triple"><div class="control"><label>Start A (menit)</label><input type="number" id="ta" value="0" min="0" max="20" step="1"></div><div class="control"><label>Posisi A (km)</label><input type="number" id="sa" value="0" min="0" max="100" step="1"></div></div><div class="train-heading">🚄 Kereta B <span class="pill train-b">ORANGE</span></div><div class="control"><label>Kecepatan B <b id="vbOut">2 km/menit</b></label><input id="vb" type="range" min="1" max="5" step="0.5" value="2"></div><div class="triple"><div class="control"><label>Start B (menit)</label><input type="number" id="tb" value="4" min="0" max="20" step="1"></div><div class="control"><label>Posisi B (km)</label><input type="number" id="sb" value="20" min="0" max="100" step="1"></div></div><hr style="border:0;border-top:1px solid #2e3d57;margin:22px 0"><div class="control"><label>Waktu pengamatan maksimum</label><input type="number" id="duration" value="30" min="5" max="120" step="5" style="width:100%"></div><p class="note">Kecepatan 1–5 km/menit untuk learning demo. Keduanya bergerak ke arah kanan; sebelum berangkat, kereta diam di posisi awal.</p><button class="btn secondary" id="reset" style="width:100%">↺ Reset skenario</button></aside><section class="maincol"><article class="panel"><h2>🛤️ Live train simulation</h2><div class="track" id="track"><div class="rails"></div><div class="station" style="left:6%">KM 0</div><div class="station" style="left:94%">END</div><div class="train" id="trainA">🚆</div><div class="train b" id="trainB">🚄</div></div><div class="progress"><button class="btn" id="play">▶ Play</button><button class="btn secondary" id="restart">↺</button><input type="range" id="time" value="0" min="0" max="30" step=".05"><b id="clock">0.0 m</b></div><div class="status" id="status"></div></article><article class="panel"><h2>📈 Function graph</h2><div class="tabs"><button id="tabTime" class="active">s terhadap t</button><button id="tabSpeed">s terhadap v</button></div><canvas id="graph"></canvas><div class="formula" id="formula"></div><p class="note" id="explain"></p></article></section></div></div><section id="conceptPage" class="page" hidden><section class="hero"><div class="tag">LEARN THE WHY</div><h1>Fungsi itu mesin input → output</h1><p class="muted">Satu input menghasilkan tepat satu output. Eksperimen variabel, domain, range, gradien, dan titik potong dengan contoh nyata.</p></section><div class="lesson-grid"><article class="lesson"><h3>01 · Apa itu fungsi?</h3><p>Fungsi menghubungkan tiap nilai input (x) ke satu nilai output (y). Contoh <code>f(x) = 2x + 3</code>.</p><p class="note">Jika x = 4, f(4) = 11. Dua input berbeda boleh menghasilkan output sama, tetapi satu input tidak boleh punya dua output berbeda.</p></article><article class="lesson"><h3>02 · Domain & range</h3><p><b>Domain</b> adalah input yang diperbolehkan. <b>Range</b> adalah output yang dihasilkan.</p><p class="note">Contoh jumlah gelas x hanya bilangan bulat ≥ 0. Kalau harganya Rp6.000, range pendapatan = Rp0, Rp6.000, Rp12.000, ...</p></article><article class="lesson"><h3>03 · Gradien & konstanta</h3><p>Untuk fungsi linear <code>f(x) = ax + b</code>, <code>a</code> adalah perubahan output tiap input naik 1. <code>b</code> adalah output ketika x = 0.</p><p class="note">Di kereta: gradien = kecepatan. Dalam bisnis: gradien fungsi pendapatan = harga per unit.</p></article><article class="lesson"><h3>04 · Titik potong</h3><p>Dua grafik berpotongan saat nilai output keduanya sama untuk input yang sama: <code>f(x) = g(x)</code>.</p><p class="note">Dua kereta bertemu pada waktu dan posisi yang sama. Dua strategi harga punya revenue sama pada volume tertentu.</p></article></div><article class="panel" style="margin-top:18px"><h2>🔬 Mesin fungsi: f(x) = ax + b</h2><div class="lab-controls"><label>a (gradien) <input type="number" id="coefA" value="2" step="1"></label><label>b (konstanta) <input type="number" id="coefB" value="3" step="1"></label><label>x (input) <input type="number" id="funcX" value="4" step="1"></label></div><div class="function-example"><div id="funcEquation"></div><div class="function-output" id="funcResult"></div><p class="note" id="funcExplain"></p></div></article></section>
 <section id="businessPage" class="page" hidden><section class="hero"><div class="tag">MATEMATIKA SMP · FUNGSI LINEAR</div><h1>Mainkan x dan y 📈</h1><p class="muted">Coba fungsi y = ax + b. Geser x, a, atau b. Amati titik di grafik berpindah dan isi tabel berubah.</p></section><div class="layout"><aside class="panel"><h2>🎛️ Atur nilai</h2><div class="control"><label>Nilai a (angka pengali)</label><input id="xyA" type="range" min="-5" max="5" step="1" value="2"><b id="xyAOut">2</b></div><div class="control"><label>Nilai b (angka tambahan)</label><input id="xyB" type="range" min="-10" max="10" step="1" value="1"><b id="xyBOut">1</b></div><div class="control"><label>Nilai x (input)</label><input id="xyX" type="range" min="-10" max="10" step="1" value="3"><b id="xyXOut">3</b></div><div class="function-example"><div class="note" id="xyFormula"></div><div class="function-output" id="xyResult"></div><p class="note" id="xySteps"></p></div><button class="btn secondary" id="xyReset" type="button" style="width:100%;margin-top:15px">↺ Reset nilai</button></aside><section class="maincol"><article class="panel"><h2>📈 Grafik y terhadap x</h2><div class="graph-controls"><button type="button" id="xyZoomIn">＋ Zoom In</button><button type="button" id="xyZoomOut">－ Zoom Out</button><button type="button" id="xyZoomReset">Reset View</button><span id="xyZoomLabel">24 px/unit</span></div><canvas id="xyGraph" style="width:100%;height:300px"></canvas><p class="note">Garis memperlihatkan semua pasangan x dan y. Titik besar menunjukkan nilai x yang dipilih. Kalau a positif, garis naik. Kalau a negatif, garis turun.</p></article><article class="panel"><h2>🔢 Tabel pasangan (x, y)</h2><div id="xyTable" style="overflow-x:auto"></div><p class="note">Setiap x punya tepat satu y. Itulah ide utama fungsi. Coba ubah a dan b, lalu lihat tabelnya.</p></article></section></div></section>
 <section id="canvasPage" class="page" hidden>
 <section class="hero"><div class="tag">LATIHAN INTERAKTIF · BIDANG KOORDINAT</div><h1>Gambar sendiri 7 titik ✏️</h1><p class="muted">Pilih level, hitung nilai y dari 7 nilai x, lalu ketuk titik koordinat pada canvas. Periksa jawaban untuk melihat grafik yang benar.</p></section>
@@ -406,6 +443,13 @@ html[data-theme=light] #divisionPage{--dv-plate:#f4f8ff;--dv-edge:#9db4cf;--dv-n
 <p class="note" id="dvTriHint"></p>
 </article>
 
+<article class="panel dv-section" id="dvSheet">
+<div class="weight-heading"><div><span class="tag">LEMBAR LATIHAN · 10 SOAL SEKALIGUS</span><h2>Kerjakan 10 soal pembagian</h2></div><div class="weight-score" data-s="score">⭐ belum diperiksa</div></div>
+<p class="muted">Tulis semua jawabannya dulu, lalu tekan <b>Periksa</b>. Kalau masih bingung, tekan <b>Lihat cara</b> untuk mencoba soal itu di simulasi piring. <b>Ganti 10 Soal</b> memberi soal baru.</p>
+<div class="ms-grid" data-s="grid"></div>
+<div class="weight-actions"><button class="btn" type="button" data-s="check">✅ Periksa</button><button class="btn secondary" type="button" data-s="new">🔄 Ganti 10 Soal</button><button class="btn secondary" type="button" data-s="show">👀 Tunjukkan Jawaban</button></div>
+</article>
+
 <article class="panel dv-section dv-quizbox" id="dvQuiz">
 <div class="weight-heading"><div><span class="tag">LATIHAN SOAL CERITA · 10 SOAL</span><h2 data-q="title">Soal 1</h2></div><div class="weight-score" data-q="score">⭐ 0 benar</div></div>
 <div data-q="body"><p class="weight-question" data-q="text"></p><div class="weight-choices" data-q="choices"></div><div class="weight-explanation" data-q="exp" hidden aria-live="polite"></div></div>
@@ -418,6 +462,41 @@ html[data-theme=light] #divisionPage{--dv-plate:#f4f8ff;--dv-edge:#9db4cf;--dv-n
 <div class="lesson"><h3>Dua arti pembagian</h3><p>12 : 3 bisa berarti "dibagi ke 3 piring, tiap piring dapat berapa" atau "tiap kantong isi 3, butuh berapa kantong". Hasilnya sama-sama 4. Soal cerita memakai keduanya.</p></div>
 <div class="lesson"><h3>Pegangan: perkalian</h3><p>Kalau anak sudah hafal 3 × 4 = 12, berarti dia sudah tahu 12 : 3 = 4 dan 12 : 4 = 3. Tidak perlu menghafal tabel pembagian sendiri.</p></div>
 <div class="lesson"><h3>Kesalahan yang sering muncul</h3><p>Membagi tidak rata, menukar urutan (12 : 3 bukan 3 : 12), dan bingung dengan 0 (0 : 3 = 0). Latihan pendek 5 soal tiap hari lebih nempel daripada 30 soal seminggu sekali.</p></div>
+</div></article>
+</section>
+<section id="porogapitPage" class="page" hidden>
+<section class="hero"><div class="tag">MATEMATIKA SD · KELAS 3 · PEMBAGIAN BERSUSUN</div><h1>🧮 Membagi Bilangan Ratusan</h1><p class="muted">Contoh 216 : 3. Kita bagi dari tempat yang paling besar: ratusan dulu, lalu puluhan, lalu satuan. Kalau tidak cukup dibagi, tukar ke tempat yang lebih kecil. Balok di kiri dan porogapit di kanan bergerak bersamaan.</p></section>
+<div class="weight-facts">
+<article class="weight-fact"><span>🟦</span><div><strong>1 ratusan = 10 puluhan</strong><p>Satu kotak besar bisa ditukar jadi sepuluh batang.</p></div></article>
+<article class="weight-fact"><span>🟩</span><div><strong>1 puluhan = 10 satuan</strong><p>Satu batang bisa ditukar jadi sepuluh kubus kecil.</p></div></article>
+<article class="weight-fact"><span>⬅️</span><div><strong>Mulai dari kiri</strong><p>Membagi dimulai dari ratusan, lalu puluhan, lalu satuan.</p></div></article>
+</div>
+
+<article class="panel dv-section" id="pgPanel">
+<span class="tag">SIMULASI · BALOK NILAI TEMPAT + POROGAPIT</span><h2 id="pgTitle">216 : 3</h2>
+<div class="dv-controls"><label for="pgN">Bilangan yang dibagi<input id="pgN" type="number" min="10" max="999" value="216" inputmode="numeric"></label><label for="pgD">Dibagi<input id="pgD" type="number" min="2" max="9" value="3" inputmode="numeric"></label><button class="btn secondary" id="pgRandom" type="button">🎲 Soal acak</button></div>
+<div class="dv-controls"><button class="btn" id="pgNext" type="button">👣 Langkah berikutnya</button><button class="btn secondary" id="pgPrev" type="button">◀ Mundur</button><button class="btn secondary" id="pgReset" type="button">↺ Ulang</button></div>
+<div class="pg-story"><div class="tag" id="pgStep">LANGKAH 0</div><p class="pg-text" id="pgText" aria-live="polite"></p></div>
+<div class="pg-work">
+<div style="min-width:0"><div class="pg-store"><span class="dv-label">Gudang (yang belum dibagi)</span><div id="pgStore"></div>
+<div class="pg-legend"><span><i class="pv-h"></i>ratusan</span><span><i class="pv-t"></i>puluhan</span><span><i class="pv-o"></i>satuan</span></div></div>
+<div class="pg-groups" id="pgGroups"></div></div>
+<div style="min-width:0"><span class="dv-label">Porogapit (cara bersusun)</span><div class="pg-poro" id="pgPoro" aria-label="Porogapit"></div></div>
+</div>
+</article>
+
+<article class="panel dv-section" id="pgSheet">
+<div class="weight-heading"><div><span class="tag">LEMBAR LATIHAN · 10 SOAL SEKALIGUS</span><h2>Kerjakan 10 soal pembagian bersusun</h2></div><div class="weight-score" data-s="score">⭐ belum diperiksa</div></div>
+<p class="muted">Kerjakan di buku dengan porogapit, lalu tulis hasilnya di sini dan tekan <b>Periksa</b>. Soal makin lama makin menantang: ada yang harus ditukar dulu, ada yang hasilnya punya angka 0 di tengah. Tekan <b>Lihat cara</b> untuk memutar soal itu di simulasi.</p>
+<div class="ms-grid" data-s="grid"></div>
+<div class="weight-actions"><button class="btn" type="button" data-s="check">✅ Periksa</button><button class="btn secondary" type="button" data-s="new">🔄 Ganti 10 Soal</button><button class="btn secondary" type="button" data-s="show">👀 Tunjukkan Jawaban</button></div>
+</article>
+
+<article class="panel"><h2>🧠 Tips untuk guru</h2><div class="lesson-grid">
+<div class="lesson"><h3>Syaratnya: hafal perkalian 1 sampai 9</h3><p>Setiap langkah porogapit adalah pertanyaan "berapa kali 3 yang paling dekat dengan 21?". Kalau perkalian belum lancar, latih dulu di tab Pembagian SD 2.</p></div>
+<div class="lesson"><h3>Tidak cukup? Tukar</h3><p>2 ratusan tidak bisa dibagi ke 3 kelompok, jadi ditukar jadi 20 puluhan. Ditambah 1 puluhan jadi 21 puluhan. Inilah alasan di porogapit kita "ambil dua angka" (21).</p></div>
+<div class="lesson"><h3>Jangan lupa angka 0</h3><p>Kalau di tengah tidak cukup dibagi, tulis 0 di hasil. Contoh 618 : 6 = 103, bukan 13. Cek dengan balok: puluhannya cuma 1, tidak cukup untuk 6 kelompok.</p></div>
+<div class="lesson"><h3>Selalu cek dengan perkalian</h3><p>216 : 3 = 72, cek 3 × 72 = 216. Kalau hasil perkaliannya sama, jawabannya benar.</p></div>
 </div></article>
 </section>
 
@@ -503,8 +582,8 @@ card.append(k,title,body,opts,feedback);grid.append(card);
 });progress();
 }
 function progress(){el('quizProgress').textContent=answered+' / '+questions.length+' dijawab · '+correct+' benar'}
-function show(page){for(const key of ['Sim','Concept','Business','Quiz','Canvas','Slope','Area','Worksheet','Weight','Fraction','Division']){el(({Sim:'simulation',Concept:'concept',Business:'business',Quiz:'quiz',Canvas:'canvas',Slope:'slope',Area:'area',Worksheet:'worksheet',Weight:'weight',Fraction:'fraction',Division:'division'})[key]+'Page').hidden=(key.toLowerCase()!==page);el('nav'+key).classList.toggle('active',key.toLowerCase()===page)}window.dispatchEvent(new Event('resize'))}
-for(const key of ['Sim','Concept','Business','Quiz','Canvas','Slope','Area','Worksheet','Weight','Fraction','Division'])el('nav'+key).addEventListener('click',()=>show(key.toLowerCase()));el('resetQuiz').addEventListener('click',generate);generate();
+function show(page){for(const key of ['Sim','Concept','Business','Quiz','Canvas','Slope','Area','Worksheet','Weight','Fraction','Division','Porogapit']){el(({Sim:'simulation',Concept:'concept',Business:'business',Quiz:'quiz',Canvas:'canvas',Slope:'slope',Area:'area',Worksheet:'worksheet',Weight:'weight',Fraction:'fraction',Division:'division',Porogapit:'porogapit'})[key]+'Page').hidden=(key.toLowerCase()!==page);el('nav'+key).classList.toggle('active',key.toLowerCase()===page)}window.dispatchEvent(new Event('resize'))}
+for(const key of ['Sim','Concept','Business','Quiz','Canvas','Slope','Area','Worksheet','Weight','Fraction','Division','Porogapit'])el('nav'+key).addEventListener('click',()=>show(key.toLowerCase()));el('resetQuiz').addEventListener('click',generate);generate();
 })();
 </script><script>
 (()=>{'use strict';const $=id=>document.getElementById(id);
@@ -1387,5 +1466,124 @@ function gen(i){
 })($('dvQuiz'),10);
 
 renderShare();renderGroup();renderArr();
+})();
+</script><script>
+(()=>{'use strict';
+const $=id=>document.getElementById(id);
+const rnd=(a,b)=>a+Math.floor(Math.random()*(b-a+1));
+const toInt=(v,lo,hi)=>{const n=Math.round(Number(v));return Number.isFinite(n)?Math.max(lo,Math.min(hi,n)):lo};
+
+/* ---------- Lembar 10 soal sekaligus (dipakai kelas 2 dan kelas 3) ---------- */
+function makeSheet(root,gen,onHow){
+ const s=k=>root.querySelector('[data-s="'+k+'"]');let items=[];
+ function fresh(){
+  items=gen();const g=s('grid');g.replaceChildren();
+  items.forEach((it,i)=>{
+   const d=document.createElement('div');d.className='ms-item';const id=root.id+'In'+i;
+   d.innerHTML='<span class="ms-no">'+(i+1)+'.</span><label class="ms-q" for="'+id+'">'+it.q+' =</label><input id="'+id+'" class="ms-in" inputmode="numeric" autocomplete="off"><span class="ms-mark" aria-live="polite"></span>'+(onHow?'<button type="button" class="ms-how">Lihat cara</button>':'');
+   const inp=d.querySelector('input');
+   inp.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();const nx=g.querySelectorAll('.ms-in')[i+1];if(nx)nx.focus();else check()}});
+   inp.addEventListener('input',()=>{d.classList.remove('ok','bad','shown');d.querySelector('.ms-mark').textContent=''});
+   if(onHow)d.querySelector('.ms-how').addEventListener('click',()=>onHow(it));
+   g.append(d);
+  });
+  s('score').textContent='⭐ belum diperiksa';
+ }
+ function check(){
+  let ok=0,empty=0;
+  [...s('grid').children].forEach((d,i)=>{const v=d.querySelector('input').value.trim().replace(/\./g,''),m=d.querySelector('.ms-mark');d.classList.remove('ok','bad');
+   if(v===''){m.textContent='';empty++;return}const right=Number(v)===items[i].a;d.classList.add(right?'ok':'bad');m.textContent=right?'✅':'❌';if(right)ok++});
+  s('score').textContent='⭐ '+ok+' / '+items.length+' benar'+(ok===items.length?' 🏆':empty?' · '+empty+' belum diisi':'');
+ }
+ function reveal(){[...s('grid').children].forEach((d,i)=>{const inp=d.querySelector('input');if(Number(inp.value.trim())!==items[i].a||inp.value.trim()===''){inp.value=items[i].a;d.classList.remove('ok','bad');d.classList.add('shown');d.querySelector('.ms-mark').textContent='👀'}})}
+ s('check').addEventListener('click',check);s('new').addEventListener('click',fresh);s('show').addEventListener('click',reveal);
+ fresh();
+}
+function loadInto(fields,panel){for(const[id,v]of fields){const el=$(id);el.value=v;el.dispatchEvent(new Event('change'))}const p=$(panel);if(p)p.scrollIntoView({behavior:'smooth',block:'start'})}
+
+/* Kelas 2: 10 soal gampang, hasil bulat, angka sampai 50 */
+function genK2(){
+ const out=[],seen=new Set();let guard=0;
+ while(out.length<10&&guard++<1000){const i=out.length,a=i<6?rnd(2,5):rnd(2,10),b=rnd(1,10),c=a*b;if(c>50||(i<6&&b>6))continue;const k=c+':'+a;if(seen.has(k))continue;seen.add(k);out.push({q:c+' : '+a,a:b,c,d:a})}
+ return out;
+}
+const sharePanel=$('dvShareTotal')&&$('dvShareTotal').closest('.panel');if(sharePanel&&!sharePanel.id)sharePanel.id='dvSharePanel';
+makeSheet($('dvSheet'),genK2,it=>loadInto([['dvShareTotal',it.c],['dvSharePlates',it.d]],'dvSharePanel'));
+
+/* ---------- Kelas 3: bagi bersusun dengan balok nilai tempat ---------- */
+const PL=['ratusan','puluhan','satuan'];
+let pgN=216,pgD=3,snaps=[],items=[],stage=0;
+function build(){
+ const D=String(pgN).padStart(3,'0').split('').map(Number),store=D.slice(),each=[0,0,0];snaps=[];items=[];
+ const snap=(text,n,bring)=>snaps.push({store:store.slice(),each:each.slice(),text,n,bring});
+ const parts=[];D.forEach((v,p)=>{if(v||parts.length||p===2)parts.push(v+' '+PL[p])});
+ snap('Kita bagi <b>'+pgN+'</b> ke <b>'+pgD+' kelompok</b> sama banyak. '+pgN+' = '+parts.join(', ')+'. Mulai dari tempat paling kiri.',0,0);
+ let started=false;
+ for(let p=0;p<3;p++){
+  const cur=store[p];
+  if(!started&&cur===0&&p<2)continue;
+  const q=Math.floor(cur/pgD),r=cur%pgD;
+  if(!started&&q===0&&p<2){
+   snap('<b>'+cur+' '+PL[p]+'</b> tidak cukup dibagi ke '+pgD+' kelompok, karena '+cur+' lebih kecil dari '+pgD+'. Kita tukar dulu ke '+PL[p+1]+'.',0,0);
+   store[p]=0;store[p+1]+=cur*10;
+   snap('Tukar: '+cur+' '+PL[p]+' = '+(cur*10)+' '+PL[p+1]+'. Ditambah '+D[p+1]+' '+PL[p+1]+' yang sudah ada, sekarang ada <b>'+store[p+1]+' '+PL[p+1]+'</b>. Di porogapit, ini sebabnya kita ambil dua angka sekaligus ('+store[p+1]+').',0,0);
+   continue;
+  }
+  started=true;each[p]+=q;store[p]=r;items.push({p,cur,q,prod:q*pgD,r});const k=items.length;
+  let t=q===0?'<b>'+cur+' '+PL[p]+'</b> tidak cukup dibagi ke '+pgD+' kelompok. Tiap kelompok dapat 0 '+PL[p]+', jadi di hasil ditulis <b>0</b>.':'Bagi <b>'+cur+' '+PL[p]+'</b> ke '+pgD+' kelompok: tiap kelompok dapat <b>'+q+' '+PL[p]+'</b>. Yang terpakai '+pgD+' × '+q+' = '+(q*pgD)+'.'+(r?' Sisa '+r+' '+PL[p]+'.':' Habis, tidak ada sisa.');
+  snap(t,k,k-1);
+  if(r>0&&p<2){store[p]=0;store[p+1]+=r*10;snap('Sisa '+r+' '+PL[p]+' ditukar jadi '+(r*10)+' '+PL[p+1]+'. Ditambah '+D[p+1]+' '+PL[p+1]+' yang sudah ada, sekarang ada <b>'+store[p+1]+' '+PL[p+1]+'</b>. Di porogapit: turunkan angka '+D[p+1]+' sehingga jadi '+store[p+1]+'.',k,k)}
+ }
+ const Q=Math.floor(pgN/pgD),R=pgN%pgD;
+ snap('🎉 <b>Selesai! '+pgN+' : '+pgD+' = '+Q+(R?' sisa '+R:'')+'</b>. Tiap kelompok dapat '+Q+'. Cek: '+pgD+' × '+Q+' = '+(pgD*Q)+(R?', ditambah sisa '+R+' = '+pgN:'')+'.',items.length,items.length);
+}
+const blocks=(p,count)=>count?'<span class="pv-wrap">'+('<i class="'+['pv-h','pv-t','pv-o'][p]+'"></i>').repeat(count)+'</span>':'<span class="dv-empty">–</span>';
+function renderPoro(s){
+ const str=String(pgN),n=str.length,off=3-n,W=n+2,rows=[];
+ const blank=()=>Array.from({length:W},()=>({t:'',c:''}));
+ const put=(row,text,end,cls)=>{text=String(text);for(let j=0;j<text.length;j++){const col=1+end-(text.length-1-j);if(col>=1&&col<=n)row[col]={t:text[j],c:((row[col].c||'')+' '+(cls||'')).trim()}}};
+ const qrow=blank();for(let k=0;k<s.n;k++)put(qrow,items[k].q,items[k].p-off,'pg-qd');rows.push(qrow);
+ const drow=blank();drow[0]={t:String(pgD),c:'pg-dv'};for(let j=0;j<n;j++)drow[1+j]={t:str[j],c:'pg-dd'+(j===0?' pg-dd1':'')};rows.push(drow);
+ for(let k=0;k<s.n;k++){
+  const it=items[k],c=it.p-off,pr=blank();put(pr,it.prod,c);pr[W-1]={t:'−',c:'pg-sign'};
+  const w=Math.max(String(it.cur).length,String(it.prod).length);for(let j=c-w+1;j<=c;j++)if(j>=0)pr[1+j].c=(pr[1+j].c+' pg-ul').trim();
+  rows.push(pr);
+  const rr=blank();if(k<s.bring&&it.p<2){const dig=str[c+1];put(rr,it.r>0?String(it.r)+dig:dig,c+1)}else put(rr,it.r,c);rows.push(rr);
+ }
+ const box=$('pgPoro');box.style.gridTemplateColumns='auto repeat('+n+',1.15em) 1.1em';
+ box.innerHTML=rows.map(r=>r.map(x=>'<span class="'+x.c+'">'+x.t+'</span>').join('')).join('');
+}
+function render(){
+ const s=snaps[stage],last=snaps.length-1;
+ $('pgTitle').textContent=pgN+' : '+pgD;
+ $('pgStep').textContent=stage===last?'SELESAI':'LANGKAH '+stage+' DARI '+last;
+ $('pgText').innerHTML=s.text;
+ $('pgStore').innerHTML=PL.map((nm,p)=>'<div class="pg-row"><b>'+s.store[p]+' '+nm+'</b>'+blocks(p,s.store[p])+'</div>').join('');
+ const val=s.each[0]*100+s.each[1]*10+s.each[2];
+ $('pgGroups').innerHTML=Array.from({length:pgD},(_,i)=>'<div class="pg-group"><span class="dv-label">Kelompok '+(i+1)+'</span><div>'+PL.map((nm,p)=>s.each[p]?'<div class="pg-row">'+blocks(p,s.each[p])+'</div>':'').join('')+'</div><span class="dv-count">'+val+'</span></div>').join('');
+ renderPoro(s);
+ $('pgPrev').disabled=stage===0;$('pgNext').disabled=stage===last;
+}
+function readPg(){pgN=toInt($('pgN').value,10,999);pgD=toInt($('pgD').value,2,9);$('pgN').value=pgN;$('pgD').value=pgD;build();stage=0;render()}
+$('pgNext').addEventListener('click',()=>{if(stage<snaps.length-1){stage++;render()}});
+$('pgPrev').addEventListener('click',()=>{if(stage>0){stage--;render()}});
+$('pgReset').addEventListener('click',()=>{stage=0;render()});
+['pgN','pgD'].forEach(id=>$(id).addEventListener('change',readPg));
+
+/* Kelas 3: 10 soal, dari yang mudah ke yang menantang */
+function genK3(){
+ const out=[],seen=new Set();
+ const add=(N,d)=>{const k=N+':'+d;if(seen.has(k))return false;seen.add(k);out.push({q:N+' : '+d,a:N/d,N,d});return true};
+ const make=(fn,count)=>{let made=0,g=0;while(made<count&&g++<800){const r=fn();if(r&&add(r[0],r[1]))made++}};
+ make(()=>{const d=rnd(2,4),Q=rnd(11,Math.floor(99/d)),N=Q*d;return N<=99&&Number(String(N)[0])>=d?[N,d]:null},2);
+ make(()=>{const d=rnd(2,4),Q=rnd(Math.ceil(100/d),Math.floor(999/d)),N=Q*d;return Number(String(N)[0])>=d?[N,d]:null},3);
+ make(()=>{const d=rnd(3,9),Q=rnd(Math.ceil(100/d),Math.floor(999/d)),N=Q*d;return Number(String(N)[0])<d?[N,d]:null},3);
+ make(()=>{const d=rnd(2,9),Q=rnd(1,4)*100+rnd(1,9),N=Q*d;return N<=999?[N,d]:null},2);
+ return out;
+}
+$('pgRandom').addEventListener('click',()=>{const list=genK3().slice(2),it=list[rnd(0,list.length-1)];$('pgN').value=it.N;$('pgD').value=it.d;readPg()});
+makeSheet($('pgSheet'),genK3,it=>loadInto([['pgN',it.N],['pgD',it.d]],'pgPanel'));
+
+readPg();
 })();
 </script></html>
