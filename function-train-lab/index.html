@@ -135,7 +135,58 @@ html[data-theme=light] #fractionPage{--fr-disc:#ffffff;--fr-line:#36536f;--fr-in
 .fr-side-name{font-size:18px}
 .fr-result .fr-big-eq{font-size:30px;font-weight:900;display:block;margin-bottom:4px}
 @media(prefers-reduced-motion:reduce){.fr-new{animation:none}}
-</style><header><div class="brand">🚄 RAIL LAB <span class="tag">/ FUNCTION PLAYGROUND</span></div><button class="theme-toggle" id="themeToggle" type="button">☀️ Light Mode</button></header><nav class="page-nav" aria-label="Navigasi Rail Lab"><button class="active" type="button" id="navSim">🚄 Simulasi</button><button type="button" id="navConcept">📚 Konsep Fungsi</button><button type="button" id="navBusiness">📈 Eksplorasi x & y</button><button type="button" id="navQuiz">🧠 Latihan Soal</button><button type="button" id="navCanvas">✏️ Canvas Latihan</button><button type="button" id="navSlope">📐 Kemiringan</button><button type="button" id="navArea">🟦 Luas x × y</button><button type="button" id="navWorksheet">📝 Lembar Grafik</button><button type="button" id="navWeight">⚖️ Satuan Berat SD 3</button><button type="button" id="navFraction">🍕 Pecahan SD 3</button></nav><main><div class="page" id="simulationPage"><section class="hero"><div class="tag">MATEMATIKA × FISIKA × SIMULASI</div><h1>Kalau dua kereta balapan,<br>kapan mereka ketemu?</h1><p class="muted">Geser speed, posisi awal, dan waktu berangkat. Lihat keretanya bergerak dan grafik fungsi berubah real-time.</p></section><div class="layout"><aside class="panel"><h2>🎛️ Control room</h2><div class="train-heading">🚆 Kereta A <span class="pill">TEAL</span></div><div class="control"><label>Kecepatan A <b id="vaOut">3 km/menit</b></label><input id="va" type="range" min="1" max="5" step="0.5" value="3"></div><div class="triple"><div class="control"><label>Start A (menit)</label><input type="number" id="ta" value="0" min="0" max="20" step="1"></div><div class="control"><label>Posisi A (km)</label><input type="number" id="sa" value="0" min="0" max="100" step="1"></div></div><div class="train-heading">🚄 Kereta B <span class="pill train-b">ORANGE</span></div><div class="control"><label>Kecepatan B <b id="vbOut">2 km/menit</b></label><input id="vb" type="range" min="1" max="5" step="0.5" value="2"></div><div class="triple"><div class="control"><label>Start B (menit)</label><input type="number" id="tb" value="4" min="0" max="20" step="1"></div><div class="control"><label>Posisi B (km)</label><input type="number" id="sb" value="20" min="0" max="100" step="1"></div></div><hr style="border:0;border-top:1px solid #2e3d57;margin:22px 0"><div class="control"><label>Waktu pengamatan maksimum</label><input type="number" id="duration" value="30" min="5" max="120" step="5" style="width:100%"></div><p class="note">Kecepatan 1–5 km/menit untuk learning demo. Keduanya bergerak ke arah kanan; sebelum berangkat, kereta diam di posisi awal.</p><button class="btn secondary" id="reset" style="width:100%">↺ Reset skenario</button></aside><section class="maincol"><article class="panel"><h2>🛤️ Live train simulation</h2><div class="track" id="track"><div class="rails"></div><div class="station" style="left:6%">KM 0</div><div class="station" style="left:94%">END</div><div class="train" id="trainA">🚆</div><div class="train b" id="trainB">🚄</div></div><div class="progress"><button class="btn" id="play">▶ Play</button><button class="btn secondary" id="restart">↺</button><input type="range" id="time" value="0" min="0" max="30" step=".05"><b id="clock">0.0 m</b></div><div class="status" id="status"></div></article><article class="panel"><h2>📈 Function graph</h2><div class="tabs"><button id="tabTime" class="active">s terhadap t</button><button id="tabSpeed">s terhadap v</button></div><canvas id="graph"></canvas><div class="formula" id="formula"></div><p class="note" id="explain"></p></article></section></div></div><section id="conceptPage" class="page" hidden><section class="hero"><div class="tag">LEARN THE WHY</div><h1>Fungsi itu mesin input → output</h1><p class="muted">Satu input menghasilkan tepat satu output. Eksperimen variabel, domain, range, gradien, dan titik potong dengan contoh nyata.</p></section><div class="lesson-grid"><article class="lesson"><h3>01 · Apa itu fungsi?</h3><p>Fungsi menghubungkan tiap nilai input (x) ke satu nilai output (y). Contoh <code>f(x) = 2x + 3</code>.</p><p class="note">Jika x = 4, f(4) = 11. Dua input berbeda boleh menghasilkan output sama, tetapi satu input tidak boleh punya dua output berbeda.</p></article><article class="lesson"><h3>02 · Domain & range</h3><p><b>Domain</b> adalah input yang diperbolehkan. <b>Range</b> adalah output yang dihasilkan.</p><p class="note">Contoh jumlah gelas x hanya bilangan bulat ≥ 0. Kalau harganya Rp6.000, range pendapatan = Rp0, Rp6.000, Rp12.000, ...</p></article><article class="lesson"><h3>03 · Gradien & konstanta</h3><p>Untuk fungsi linear <code>f(x) = ax + b</code>, <code>a</code> adalah perubahan output tiap input naik 1. <code>b</code> adalah output ketika x = 0.</p><p class="note">Di kereta: gradien = kecepatan. Dalam bisnis: gradien fungsi pendapatan = harga per unit.</p></article><article class="lesson"><h3>04 · Titik potong</h3><p>Dua grafik berpotongan saat nilai output keduanya sama untuk input yang sama: <code>f(x) = g(x)</code>.</p><p class="note">Dua kereta bertemu pada waktu dan posisi yang sama. Dua strategi harga punya revenue sama pada volume tertentu.</p></article></div><article class="panel" style="margin-top:18px"><h2>🔬 Mesin fungsi: f(x) = ax + b</h2><div class="lab-controls"><label>a (gradien) <input type="number" id="coefA" value="2" step="1"></label><label>b (konstanta) <input type="number" id="coefB" value="3" step="1"></label><label>x (input) <input type="number" id="funcX" value="4" step="1"></label></div><div class="function-example"><div id="funcEquation"></div><div class="function-output" id="funcResult"></div><p class="note" id="funcExplain"></p></div></article></section>
+
+#divisionPage{--dv-plate:#1a2b46;--dv-edge:#5f7fa6;--dv-next:#f39a4c;--dv-ink:#edf3ff;--dv-line:#a9bdd9;--dv-hop:#5fb2ff;--dv-soft:rgba(95,178,255,.12)}
+html[data-theme=light] #divisionPage{--dv-plate:#f4f8ff;--dv-edge:#9db4cf;--dv-next:#f08a3c;--dv-ink:#14243b;--dv-line:#36536f;--dv-hop:#1f6fd1;--dv-soft:rgba(31,111,209,.07)}
+.dv-section{margin-bottom:18px}.dv-section h2{margin:8px 0 4px}
+.dv-controls{display:flex;flex-wrap:wrap;gap:10px;align-items:end;margin:14px 0}
+.dv-controls label{display:grid;gap:5px;font-weight:750;font-size:13px}
+.dv-controls input{width:110px;border:1px solid #66849b;border-radius:10px;background:rgba(74,140,162,.10);color:inherit;font-size:20px;padding:8px}
+.dv-controls .btn:disabled{opacity:.45;cursor:default}
+.dv-jar{border:2px dashed var(--dv-edge);border-radius:18px;padding:10px 14px;margin:8px 0 14px;background:var(--dv-soft)}
+.dv-label{font-weight:800;font-size:14px;display:block;margin-bottom:6px}
+.dv-candies{display:flex;flex-wrap:wrap;gap:2px;font-size:26px;line-height:1.15;min-height:32px}
+.dv-empty{font-size:14px;opacity:.7;align-self:center}
+.dv-plates{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.dv-plate{background:var(--dv-plate);border:3px solid var(--dv-edge);border-radius:28px;padding:12px;min-height:130px;display:grid;grid-template-rows:auto 1fr auto;text-align:center;min-width:0}
+.dv-plate.next{border-color:var(--dv-next);box-shadow:0 0 0 4px rgba(240,138,60,.22)}
+.dv-plate .dv-candies{justify-content:center;font-size:24px}
+.dv-bag{border-radius:12px 12px 30px 30px}
+.dv-count{font-size:28px;font-weight:900}
+.dv-new{display:inline-block;animation:dvPop .35s ease}
+.dv-pop{animation:dvPop .35s ease}
+@keyframes dvPop{from{transform:scale(.2);opacity:0}to{transform:scale(1);opacity:1}}
+.dv-result{border-radius:14px;padding:14px 16px;margin-top:14px;font-size:17px;line-height:1.7;border:1px solid rgba(120,150,170,.35);background:var(--dv-soft)}
+.dv-result.ok{border-color:#139c77;background:rgba(12,161,118,.13)}
+.dv-big{font-size:clamp(30px,5vw,44px);font-weight:900;display:block}
+.dv-linewrap{overflow-x:auto;margin-top:12px}
+.dv-line{width:100%;min-width:460px;height:auto;display:block}
+.dv-line text{fill:var(--dv-ink);font-size:12px;text-anchor:middle}
+.dv-axis{stroke:var(--dv-line);stroke-width:2}
+.dv-hop{fill:none;stroke:var(--dv-hop);stroke-width:2.5}
+.dv-line .dv-hopl{fill:var(--dv-hop);font-weight:800;font-size:13px}
+.dv-chain{font-size:18px;font-weight:750;line-height:1.9;margin:10px 0 0}
+.dv-board{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:20px;align-items:center}
+@media(max-width:760px){.dv-board{grid-template-columns:1fr}}
+.dv-grid{display:grid;gap:4px;justify-content:start;font-size:clamp(20px,3.4vw,28px);overflow-x:auto}
+.dv-grid .row{display:flex;gap:4px;padding:2px 8px;border-radius:10px;align-items:center}
+.dv-grid .row:nth-child(odd){background:var(--dv-soft)}
+.dv-grid .row small{font-size:13px;font-weight:800;opacity:.75;margin-right:6px;min-width:52px}
+.dv-tri{width:100%;max-width:300px;display:block;margin:auto}
+.dv-tri .node circle{fill:var(--dv-plate);stroke:var(--dv-next);stroke-width:4;cursor:pointer}
+.dv-tri .node.covered circle{fill:var(--dv-next)}
+.dv-tri .node text{fill:var(--dv-ink);font-weight:900;font-size:30px;text-anchor:middle;dominant-baseline:central;pointer-events:none}
+.dv-tri .node.covered text{fill:#fff}
+.dv-tri .node:focus-visible circle{stroke:var(--dv-hop);stroke-width:6}
+.dv-tri line{stroke:var(--dv-line);stroke-width:3}
+.dv-tri .op{fill:var(--dv-ink);font-weight:900;font-size:22px;text-anchor:middle;dominant-baseline:central}
+.dv-facts p{font-size:24px;font-weight:850;margin:10px 0}
+.dv-facts small{display:block;font-size:14px;font-weight:600;opacity:.8}
+.dv-q{color:var(--dv-next)}
+.dv-quizbox .weight-choice{font-size:22px}
+.dv-story{font-size:20px;line-height:1.6;word-break:break-word}
+@media(prefers-reduced-motion:reduce){.dv-new,.dv-pop{animation:none}}
+</style><header><div class="brand">🚄 RAIL LAB <span class="tag">/ FUNCTION PLAYGROUND</span></div><button class="theme-toggle" id="themeToggle" type="button">☀️ Light Mode</button></header><nav class="page-nav" aria-label="Navigasi Rail Lab"><button class="active" type="button" id="navSim">🚄 Simulasi</button><button type="button" id="navConcept">📚 Konsep Fungsi</button><button type="button" id="navBusiness">📈 Eksplorasi x & y</button><button type="button" id="navQuiz">🧠 Latihan Soal</button><button type="button" id="navCanvas">✏️ Canvas Latihan</button><button type="button" id="navSlope">📐 Kemiringan</button><button type="button" id="navArea">🟦 Luas x × y</button><button type="button" id="navWorksheet">📝 Lembar Grafik</button><button type="button" id="navWeight">⚖️ Satuan Berat SD 3</button><button type="button" id="navFraction">🍕 Pecahan SD 3</button><button type="button" id="navDivision">➗ Pembagian SD 2</button></nav><main><div class="page" id="simulationPage"><section class="hero"><div class="tag">MATEMATIKA × FISIKA × SIMULASI</div><h1>Kalau dua kereta balapan,<br>kapan mereka ketemu?</h1><p class="muted">Geser speed, posisi awal, dan waktu berangkat. Lihat keretanya bergerak dan grafik fungsi berubah real-time.</p></section><div class="layout"><aside class="panel"><h2>🎛️ Control room</h2><div class="train-heading">🚆 Kereta A <span class="pill">TEAL</span></div><div class="control"><label>Kecepatan A <b id="vaOut">3 km/menit</b></label><input id="va" type="range" min="1" max="5" step="0.5" value="3"></div><div class="triple"><div class="control"><label>Start A (menit)</label><input type="number" id="ta" value="0" min="0" max="20" step="1"></div><div class="control"><label>Posisi A (km)</label><input type="number" id="sa" value="0" min="0" max="100" step="1"></div></div><div class="train-heading">🚄 Kereta B <span class="pill train-b">ORANGE</span></div><div class="control"><label>Kecepatan B <b id="vbOut">2 km/menit</b></label><input id="vb" type="range" min="1" max="5" step="0.5" value="2"></div><div class="triple"><div class="control"><label>Start B (menit)</label><input type="number" id="tb" value="4" min="0" max="20" step="1"></div><div class="control"><label>Posisi B (km)</label><input type="number" id="sb" value="20" min="0" max="100" step="1"></div></div><hr style="border:0;border-top:1px solid #2e3d57;margin:22px 0"><div class="control"><label>Waktu pengamatan maksimum</label><input type="number" id="duration" value="30" min="5" max="120" step="5" style="width:100%"></div><p class="note">Kecepatan 1–5 km/menit untuk learning demo. Keduanya bergerak ke arah kanan; sebelum berangkat, kereta diam di posisi awal.</p><button class="btn secondary" id="reset" style="width:100%">↺ Reset skenario</button></aside><section class="maincol"><article class="panel"><h2>🛤️ Live train simulation</h2><div class="track" id="track"><div class="rails"></div><div class="station" style="left:6%">KM 0</div><div class="station" style="left:94%">END</div><div class="train" id="trainA">🚆</div><div class="train b" id="trainB">🚄</div></div><div class="progress"><button class="btn" id="play">▶ Play</button><button class="btn secondary" id="restart">↺</button><input type="range" id="time" value="0" min="0" max="30" step=".05"><b id="clock">0.0 m</b></div><div class="status" id="status"></div></article><article class="panel"><h2>📈 Function graph</h2><div class="tabs"><button id="tabTime" class="active">s terhadap t</button><button id="tabSpeed">s terhadap v</button></div><canvas id="graph"></canvas><div class="formula" id="formula"></div><p class="note" id="explain"></p></article></section></div></div><section id="conceptPage" class="page" hidden><section class="hero"><div class="tag">LEARN THE WHY</div><h1>Fungsi itu mesin input → output</h1><p class="muted">Satu input menghasilkan tepat satu output. Eksperimen variabel, domain, range, gradien, dan titik potong dengan contoh nyata.</p></section><div class="lesson-grid"><article class="lesson"><h3>01 · Apa itu fungsi?</h3><p>Fungsi menghubungkan tiap nilai input (x) ke satu nilai output (y). Contoh <code>f(x) = 2x + 3</code>.</p><p class="note">Jika x = 4, f(4) = 11. Dua input berbeda boleh menghasilkan output sama, tetapi satu input tidak boleh punya dua output berbeda.</p></article><article class="lesson"><h3>02 · Domain & range</h3><p><b>Domain</b> adalah input yang diperbolehkan. <b>Range</b> adalah output yang dihasilkan.</p><p class="note">Contoh jumlah gelas x hanya bilangan bulat ≥ 0. Kalau harganya Rp6.000, range pendapatan = Rp0, Rp6.000, Rp12.000, ...</p></article><article class="lesson"><h3>03 · Gradien & konstanta</h3><p>Untuk fungsi linear <code>f(x) = ax + b</code>, <code>a</code> adalah perubahan output tiap input naik 1. <code>b</code> adalah output ketika x = 0.</p><p class="note">Di kereta: gradien = kecepatan. Dalam bisnis: gradien fungsi pendapatan = harga per unit.</p></article><article class="lesson"><h3>04 · Titik potong</h3><p>Dua grafik berpotongan saat nilai output keduanya sama untuk input yang sama: <code>f(x) = g(x)</code>.</p><p class="note">Dua kereta bertemu pada waktu dan posisi yang sama. Dua strategi harga punya revenue sama pada volume tertentu.</p></article></div><article class="panel" style="margin-top:18px"><h2>🔬 Mesin fungsi: f(x) = ax + b</h2><div class="lab-controls"><label>a (gradien) <input type="number" id="coefA" value="2" step="1"></label><label>b (konstanta) <input type="number" id="coefB" value="3" step="1"></label><label>x (input) <input type="number" id="funcX" value="4" step="1"></label></div><div class="function-example"><div id="funcEquation"></div><div class="function-output" id="funcResult"></div><p class="note" id="funcExplain"></p></div></article></section>
 <section id="businessPage" class="page" hidden><section class="hero"><div class="tag">MATEMATIKA SMP · FUNGSI LINEAR</div><h1>Mainkan x dan y 📈</h1><p class="muted">Coba fungsi y = ax + b. Geser x, a, atau b. Amati titik di grafik berpindah dan isi tabel berubah.</p></section><div class="layout"><aside class="panel"><h2>🎛️ Atur nilai</h2><div class="control"><label>Nilai a (angka pengali)</label><input id="xyA" type="range" min="-5" max="5" step="1" value="2"><b id="xyAOut">2</b></div><div class="control"><label>Nilai b (angka tambahan)</label><input id="xyB" type="range" min="-10" max="10" step="1" value="1"><b id="xyBOut">1</b></div><div class="control"><label>Nilai x (input)</label><input id="xyX" type="range" min="-10" max="10" step="1" value="3"><b id="xyXOut">3</b></div><div class="function-example"><div class="note" id="xyFormula"></div><div class="function-output" id="xyResult"></div><p class="note" id="xySteps"></p></div><button class="btn secondary" id="xyReset" type="button" style="width:100%;margin-top:15px">↺ Reset nilai</button></aside><section class="maincol"><article class="panel"><h2>📈 Grafik y terhadap x</h2><div class="graph-controls"><button type="button" id="xyZoomIn">＋ Zoom In</button><button type="button" id="xyZoomOut">－ Zoom Out</button><button type="button" id="xyZoomReset">Reset View</button><span id="xyZoomLabel">24 px/unit</span></div><canvas id="xyGraph" style="width:100%;height:300px"></canvas><p class="note">Garis memperlihatkan semua pasangan x dan y. Titik besar menunjukkan nilai x yang dipilih. Kalau a positif, garis naik. Kalau a negatif, garis turun.</p></article><article class="panel"><h2>🔢 Tabel pasangan (x, y)</h2><div id="xyTable" style="overflow-x:auto"></div><p class="note">Setiap x punya tepat satu y. Itulah ide utama fungsi. Coba ubah a dan b, lalu lihat tabelnya.</p></article></section></div></section>
 <section id="canvasPage" class="page" hidden>
 <section class="hero"><div class="tag">LATIHAN INTERAKTIF · BIDANG KOORDINAT</div><h1>Gambar sendiri 7 titik ✏️</h1><p class="muted">Pilih level, hitung nilai y dari 7 nilai x, lalu ketuk titik koordinat pada canvas. Periksa jawaban untuk melihat grafik yang benar.</p></section>
@@ -316,6 +367,59 @@ html[data-theme=light] #fractionPage{--fr-disc:#ffffff;--fr-line:#36536f;--fr-in
 <div class="lesson"><h3>Penyebut tidak ikut dijumlah</h3><p>1/3 + 1/6 bukan 2/9. Penyebut itu ukuran potongannya (nama mikanya), bukan banyaknya potongan. Setelah mikanya sama, yang dijumlah hanya pembilangnya.</p></div>
 </div></article>
 </section>
+<section id="divisionPage" class="page" hidden>
+<section class="hero"><div class="tag">MATEMATIKA SD · KELAS 2 · PEMBAGIAN</div><h1>➗ Pembagian: Bagi Rata!</h1><p class="muted">Alat peraga untuk guru. Mulai dari membagikan permen ke piring satu per satu, lalu mengisi kantong, lalu melihat bahwa pembagian adalah perkalian yang dibalik.</p></section>
+<div class="weight-facts">
+<article class="weight-fact"><span>🍽️</span><div><strong>Bagi rata</strong><p>12 : 3 → 12 permen dibagi rata ke 3 piring. Tiap piring dapat berapa?</p></div></article>
+<article class="weight-fact"><span>🛍️</span><div><strong>Kelompokkan</strong><p>12 : 3 → 12 permen, tiap kantong isi 3. Butuh berapa kantong?</p></div></article>
+<article class="weight-fact"><span>🔺</span><div><strong>Perkalian dibalik</strong><p>3 × 4 = 12, jadi 12 : 3 = 4 dan 12 : 4 = 3.</p></div></article>
+</div>
+
+<article class="panel dv-section">
+<span class="tag">LANGKAH 1 · BAGI RATA</span><h2>Bagikan permen ke piring, satu-satu bergiliran</h2>
+<p class="muted">Seperti membagi jajan supaya adil: piring 1, piring 2, piring 3, lalu ulang lagi sampai permennya habis.</p>
+<div class="dv-controls"><label for="dvShareTotal">Banyak permen<input id="dvShareTotal" type="number" min="0" max="50" value="12" inputmode="numeric"></label><label for="dvSharePlates">Banyak piring<input id="dvSharePlates" type="number" min="1" max="10" value="3" inputmode="numeric"></label></div>
+<div class="dv-controls"><button class="btn" id="dvShareOne" type="button">🍬 Bagikan 1 permen</button><button class="btn secondary" id="dvShareRound" type="button">🔁 Bagikan 1 putaran</button><button class="btn secondary" id="dvShareAll" type="button">▶ Bagikan sampai habis</button><button class="btn secondary" id="dvShareReset" type="button">↺ Ulang</button></div>
+<div class="dv-jar"><span class="dv-label" id="dvJarLabel">Toples</span><div class="dv-candies" id="dvJar"></div></div>
+<div class="dv-plates" id="dvPlates"></div>
+<div class="dv-result" id="dvShareResult" aria-live="polite"></div>
+</article>
+
+<article class="panel dv-section">
+<span class="tag">LANGKAH 2 · KELOMPOKKAN</span><h2>Isi kantong sama banyak. Butuh berapa kantong?</h2>
+<p class="muted">Soalnya tetap pembagian, tapi yang ditanya banyaknya kantong. Garis bilangan di bawah menunjukkan caranya: dikurangi terus sampai habis, seperti katak melompat mundur.</p>
+<div class="dv-controls"><label for="dvGroupTotal">Banyak permen<input id="dvGroupTotal" type="number" min="0" max="50" value="12" inputmode="numeric"></label><label for="dvGroupSize">Isi tiap kantong<input id="dvGroupSize" type="number" min="1" max="10" value="3" inputmode="numeric"></label></div>
+<div class="dv-controls"><button class="btn" id="dvGroupOne" type="button">🛍️ Isi 1 kantong</button><button class="btn secondary" id="dvGroupAll" type="button">▶ Isi sampai habis</button><button class="btn secondary" id="dvGroupReset" type="button">↺ Ulang</button></div>
+<div class="dv-jar"><span class="dv-label" id="dvGJarLabel">Toples</span><div class="dv-candies" id="dvGJar"></div></div>
+<div class="dv-plates" id="dvBags"></div>
+<div class="dv-linewrap"><svg id="dvLine" class="dv-line" viewBox="0 0 640 120" role="img" aria-label="Garis bilangan lompat mundur"></svg></div>
+<p class="dv-chain" id="dvChain"></p>
+<div class="dv-result" id="dvGroupResult" aria-live="polite"></div>
+</article>
+
+<article class="panel dv-section">
+<span class="tag">LANGKAH 3 · PERKALIAN DIBALIK</span><h2>Segitiga keluarga angka</h2>
+<p class="muted">Susun permen jadi baris. Dari satu susunan, keluar satu perkalian dan dua pembagian. Ketuk salah satu lingkaran di segitiga untuk menutup angkanya, lalu minta anak menebak.</p>
+<div class="dv-controls"><label for="dvRows">Banyak baris<input id="dvRows" type="number" min="1" max="10" value="3" inputmode="numeric"></label><label for="dvCols">Isi tiap baris<input id="dvCols" type="number" min="1" max="10" value="4" inputmode="numeric"></label><button class="btn" id="dvTriRandom" type="button">🎲 Tebak acak</button><button class="btn secondary" id="dvTriOpen" type="button">👀 Buka semua</button></div>
+<div class="dv-board"><div class="dv-grid" id="dvGrid" aria-label="Susunan permen"></div><div><svg id="dvTri" class="dv-tri" viewBox="0 0 300 260" role="group" aria-label="Segitiga keluarga angka"></svg></div></div>
+<div class="dv-facts" id="dvFacts"></div>
+<p class="note" id="dvTriHint"></p>
+</article>
+
+<article class="panel dv-section dv-quizbox" id="dvQuiz">
+<div class="weight-heading"><div><span class="tag">LATIHAN SOAL CERITA · 10 SOAL</span><h2 data-q="title">Soal 1</h2></div><div class="weight-score" data-q="score">⭐ 0 benar</div></div>
+<div data-q="body"><p class="weight-question" data-q="text"></p><div class="weight-choices" data-q="choices"></div><div class="weight-explanation" data-q="exp" hidden aria-live="polite"></div></div>
+<p class="fr-done" data-q="done" hidden></p>
+<div class="weight-actions"><button class="btn" data-q="next" type="button" hidden>Soal Selanjutnya →</button><button class="btn secondary" data-q="again" type="button">🎲 Soal Baru</button></div>
+</article>
+
+<article class="panel"><h2>🧠 Tips untuk guru</h2><div class="lesson-grid">
+<div class="lesson"><h3>Benda dulu, angka belakangan</h3><p>Pakai permen atau kelereng sungguhan dulu, lalu layar ini, baru tulis angkanya. Kalau anak salah, mundur satu tahap. Jangan langsung ditambah soal angka.</p></div>
+<div class="lesson"><h3>Dua arti pembagian</h3><p>12 : 3 bisa berarti "dibagi ke 3 piring, tiap piring dapat berapa" atau "tiap kantong isi 3, butuh berapa kantong". Hasilnya sama-sama 4. Soal cerita memakai keduanya.</p></div>
+<div class="lesson"><h3>Pegangan: perkalian</h3><p>Kalau anak sudah hafal 3 × 4 = 12, berarti dia sudah tahu 12 : 3 = 4 dan 12 : 4 = 3. Tidak perlu menghafal tabel pembagian sendiri.</p></div>
+<div class="lesson"><h3>Kesalahan yang sering muncul</h3><p>Membagi tidak rata, menukar urutan (12 : 3 bukan 3 : 12), dan bingung dengan 0 (0 : 3 = 0). Latihan pendek 5 soal tiap hari lebih nempel daripada 30 soal seminggu sekali.</p></div>
+</div></article>
+</section>
 
 <p class="footer">RAIL LAB · dibuat untuk memahami fungsi melalui eksperimen · Angka dan grafik di-update otomatis</p></main><script>
 (()=>{'use strict';const $=id=>document.getElementById(id);let theme='light';try{theme=localStorage.getItem('rail-lab-theme')||'light'}catch(e){}if(theme!=='dark')theme='light';function applyTheme(){document.documentElement.dataset.theme=theme;$('themeToggle').textContent=theme==='light'?'🌙 Dark Mode':'☀️ Light Mode'}$('themeToggle').addEventListener('click',()=>{theme=theme==='light'?'dark':'light';try{localStorage.setItem('rail-lab-theme',theme)}catch(e){}applyTheme();paint()});applyTheme();const ids=['va','vb','ta','tb','sa','sb','duration'];const defaults={va:3,vb:2,ta:0,tb:4,sa:0,sb:20,duration:30};let running=false,mode='time',now=0,last=0;function params(){const p={};ids.forEach(k=>p[k]=Number($(k).value));p.ta=Math.max(0,p.ta||0);p.tb=Math.max(0,p.tb||0);p.sa=Math.max(0,p.sa||0);p.sb=Math.max(0,p.sb||0);p.duration=Math.max(5,Math.min(120,p.duration||30));return p}function pos(s,v,start,t){return s+v*Math.max(0,t-start)}function meetings(p){let times=[];const cuts=[0,p.ta,p.tb,p.duration].filter(x=>x>=0&&x<=p.duration).sort((a,b)=>a-b);const unique=[...new Set(cuts)];function diff(t){return pos(p.sa,p.va,p.ta,t)-pos(p.sb,p.vb,p.tb,t)}for(let i=0;i<unique.length-1;i++){let l=unique[i],r=unique[i+1],dl=diff(l),dr=diff(r);if(Math.abs(dl)<1e-8)times.push(l);if(dl*dr<0){times.push(l+(r-l)*(-dl)/(dr-dl))}if(Math.abs(dr)<1e-8)times.push(r)}if(Math.abs(diff(0))<1e-8)times.push(0);return [...new Set(times.map(x=>Math.round(x*10000)/10000))].sort((a,b)=>a-b)}function fmt(n){return Number(n.toFixed(2)).toLocaleString('id-ID')}function paint(){let p=params();now=Math.max(0,Math.min(now,p.duration));$('time').max=p.duration;$('time').value=now;$('clock').textContent=fmt(now)+' m';$('vaOut').textContent=fmt(p.va)+' km/menit';$('vbOut').textContent=fmt(p.vb)+' km/menit';let a=pos(p.sa,p.va,p.ta,now),b=pos(p.sb,p.vb,p.tb,now),limit=Math.max(30,pos(p.sa,p.va,p.ta,p.duration),pos(p.sb,p.vb,p.tb,p.duration))*1.06;const toLeft=s=>(5+90*Math.min(s/limit,1))+'%';$('trainA').style.left=toLeft(a);$('trainB').style.left=toLeft(b);const hits=meetings(p);let txt='<strong>t = '+fmt(now)+' menit</strong><br>Kereta A: '+fmt(a)+' km · Kereta B: '+fmt(b)+' km.<br>';if(hits.length){txt+='🎯 Posisi sama pada t = '+hits.map(fmt).join(', ')+' menit (dalam jendela simulasi).';if(p.sa===p.sb&&p.ta===p.tb&&p.va===p.vb)txt+=' Sepanjang simulasi keduanya berimpit.'}else txt+='↗ Tidak ada pertemuan dalam '+fmt(p.duration)+' menit pengamatan.';$('status').innerHTML=txt;drawGraph(p)}function drawGraph(p){const c=$('graph'),r=c.getBoundingClientRect(),d=window.devicePixelRatio||1;c.width=Math.max(300,Math.floor(r.width*d));c.height=Math.floor(330*d);const ctx=c.getContext('2d');ctx.scale(d,d);let w=r.width,h=330,pad={l:52,r:18,t:20,b:42},gw=w-pad.l-pad.r,gh=h-pad.t-pad.b;ctx.clearRect(0,0,w,h);const valueAt=(s,v,start,t)=>pos(s,v,start,t);let xmax=mode==='time'?p.duration:5,ymax=mode==='time'?Math.max(10,valueAt(p.sa,p.va,p.ta,xmax),valueAt(p.sb,p.vb,p.tb,xmax))*1.12:Math.max(10,p.sa+5*Math.max(0,now-p.ta),p.sb+5*Math.max(0,now-p.tb))*1.12;const px=x=>pad.l+x/xmax*gw,py=y=>h-pad.b-y/ymax*gh;ctx.font='12px system-ui';ctx.fillStyle=theme==='light'?'#4b647c':'#9cacc6';ctx.strokeStyle=theme==='light'?'#dce6f2':'#293d56';ctx.lineWidth=1;for(let i=0;i<=5;i++){const x=px(i*xmax/5),y=py(i*ymax/5);ctx.beginPath();ctx.moveTo(x,pad.t);ctx.lineTo(x,h-pad.b);ctx.moveTo(pad.l,y);ctx.lineTo(w-pad.r,y);ctx.stroke();ctx.fillText(fmt(i*xmax/5),x-8,h-18);ctx.fillText(fmt(i*ymax/5),4,y+4)}ctx.fillText(mode==='time'?'Waktu (menit) →':'Kecepatan (km/menit) →',w-180,h-3);ctx.fillText('Posisi (km)',pad.l,12);const lines=[{color:theme==='light'?'#008f82':'#72e7d0',s:p.sa,v:p.va,start:p.ta},{color:theme==='light'?'#e07840':'#ffad8a',s:p.sb,v:p.vb,start:p.tb}];for(const line of lines){ctx.strokeStyle=line.color;ctx.lineWidth=3;ctx.beginPath();for(let j=0;j<=240;j++){let x=j*xmax/240,y=mode==='time'?valueAt(line.s,line.v,line.start,x):line.s+x*Math.max(0,now-line.start);if(j===0)ctx.moveTo(px(x),py(y));else ctx.lineTo(px(x),py(y))}ctx.stroke();let cx=mode==='time'?now:line.v,cy=mode==='time'?valueAt(line.s,line.v,line.start,now):line.s+line.v*Math.max(0,now-line.start);ctx.beginPath();ctx.arc(px(cx),py(cy),5,0,2*Math.PI);ctx.fillStyle=line.color;ctx.fill()}if(mode==='time'){$('formula').textContent='A: s(t) = '+fmt(p.sa)+' + '+fmt(p.va)+' × max(0, t − '+fmt(p.ta)+')   |   B: s(t) = '+fmt(p.sb)+' + '+fmt(p.vb)+' × max(0, t − '+fmt(p.tb)+')';$('explain').textContent='Sumbu X adalah waktu. Sumbu Y adalah posisi. Kemiringan garis setelah berangkat = kecepatan. Titik potong dua garis berarti posisi sama pada waktu yang sama.'}else{$('formula').textContent='Pada t = '+fmt(now)+': A: s(v) = '+fmt(p.sa)+' + v × '+fmt(Math.max(0,now-p.ta))+'   |   B: s(v) = '+fmt(p.sb)+' + v × '+fmt(Math.max(0,now-p.tb));$('explain').textContent='Sekarang waktu dikunci pada t yang dipilih. Sumbu X menjadi kecepatan hipotetis (1–5), sumbu Y menjadi posisi. Masing-masing garis menunjukkan pengaruh mengubah speed saat faktor lain tetap. Titik potong pada mode ini bukan otomatis pertemuan dua kereta dengan kecepatan aktualnya.'}}ids.forEach(id=>$(id).addEventListener('input',()=>{if(id==='duration')now=Math.min(now,params().duration);paint()}));$('time').addEventListener('input',e=>{running=false;$('play').textContent='▶ Play';now=Number(e.target.value);paint()});$('play').addEventListener('click',()=>{if(now>=params().duration)now=0;running=!running;$('play').textContent=running?'⏸ Pause':'▶ Play';last=performance.now()});$('restart').addEventListener('click',()=>{running=false;now=0;$('play').textContent='▶ Play';paint()});$('reset').addEventListener('click',()=>{ids.forEach(k=>$(k).value=defaults[k]);now=0;running=false;mode='time';$('play').textContent='▶ Play';tabs();paint()});function tabs(){$('tabTime').classList.toggle('active',mode==='time');$('tabSpeed').classList.toggle('active',mode==='speed')}$('tabTime').addEventListener('click',()=>{mode='time';tabs();paint()});$('tabSpeed').addEventListener('click',()=>{mode='speed';tabs();paint()});function tick(t){if(running){now+=(t-last)/1000*1.7;if(now>=params().duration){now=params().duration;running=false;$('play').textContent='▶ Play'}paint()}last=t;requestAnimationFrame(tick)}window.addEventListener('resize',paint);paint();requestAnimationFrame(tick)})();
@@ -399,8 +503,8 @@ card.append(k,title,body,opts,feedback);grid.append(card);
 });progress();
 }
 function progress(){el('quizProgress').textContent=answered+' / '+questions.length+' dijawab · '+correct+' benar'}
-function show(page){for(const key of ['Sim','Concept','Business','Quiz','Canvas','Slope','Area','Worksheet','Weight','Fraction']){el(({Sim:'simulation',Concept:'concept',Business:'business',Quiz:'quiz',Canvas:'canvas',Slope:'slope',Area:'area',Worksheet:'worksheet',Weight:'weight',Fraction:'fraction'})[key]+'Page').hidden=(key.toLowerCase()!==page);el('nav'+key).classList.toggle('active',key.toLowerCase()===page)}window.dispatchEvent(new Event('resize'))}
-for(const key of ['Sim','Concept','Business','Quiz','Canvas','Slope','Area','Worksheet','Weight','Fraction'])el('nav'+key).addEventListener('click',()=>show(key.toLowerCase()));el('resetQuiz').addEventListener('click',generate);generate();
+function show(page){for(const key of ['Sim','Concept','Business','Quiz','Canvas','Slope','Area','Worksheet','Weight','Fraction','Division']){el(({Sim:'simulation',Concept:'concept',Business:'business',Quiz:'quiz',Canvas:'canvas',Slope:'slope',Area:'area',Worksheet:'worksheet',Weight:'weight',Fraction:'fraction',Division:'division'})[key]+'Page').hidden=(key.toLowerCase()!==page);el('nav'+key).classList.toggle('active',key.toLowerCase()===page)}window.dispatchEvent(new Event('resize'))}
+for(const key of ['Sim','Concept','Business','Quiz','Canvas','Slope','Area','Worksheet','Weight','Fraction','Division'])el('nav'+key).addEventListener('click',()=>show(key.toLowerCase()));el('resetQuiz').addEventListener('click',generate);generate();
 })();
 </script><script>
 (()=>{'use strict';const $=id=>document.getElementById(id);
@@ -1136,5 +1240,152 @@ $('frMikaOff').addEventListener('click',()=>{mika=0;renderMika()});
 $('frMikaFind').addEventListener('click',()=>{if(!pieces.length)return;const L=pieces.reduce((m,p)=>lcm(m,p.b/gcd(p.a,p.b)),1);if(L>100){$('frPieceMsg').textContent='Mika terkecil yang pas adalah /'+L+', lebih dari 100.';return}applyMika(L)});
 
 setUnit(4);setPartA(5,1);setPartB(20,4);renderMika();
+})();
+</script><script>
+(()=>{'use strict';
+const $=id=>document.getElementById(id);
+const toInt=(v,lo,hi)=>{const n=Math.round(Number(v));return Number.isFinite(n)?Math.max(lo,Math.min(hi,n)):lo};
+const rnd=(a,b)=>a+Math.floor(Math.random()*(b-a+1));
+const pickOne=arr=>arr[Math.floor(Math.random()*arr.length)];
+const shuffle=arr=>{const a=arr.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const reduceMotion=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+const CANDY='🍬';
+const candies=(n,newIdx=-1)=>n?Array.from({length:n},(_,i)=>'<span'+(i===newIdx?' class="dv-new"':'')+'>'+CANDY+'</span>').join(''):'<span class="dv-empty">kosong</span>';
+
+/* ---------- Langkah 1: bagi rata ---------- */
+let sT=12,sP=3,given=0,sTimer=null;
+const sMax=()=>Math.floor(sT/sP)*sP;
+function stopShare(){clearInterval(sTimer);sTimer=null;$('dvShareAll').textContent='▶ Bagikan sampai habis'}
+function readShare(){stopShare();sT=toInt($('dvShareTotal').value,0,50);sP=toInt($('dvSharePlates').value,1,10);$('dvShareTotal').value=sT;$('dvSharePlates').value=sP;given=0;renderShare()}
+function renderShare(fresh=false){
+ const left=sT-given;$('dvJar').innerHTML=candies(left);$('dvJarLabel').textContent='Toples: '+left+' permen';
+ const per=Math.floor(given/sP),extra=given%sP,done=given>=sMax(),next=done?-1:given%sP,last=fresh?(given-1)%sP:-1;
+ const box=$('dvPlates');box.replaceChildren();
+ for(let i=0;i<sP;i++){const n=per+(i<extra?1:0),d=document.createElement('div');d.className='dv-plate'+(i===next?' next':'');
+  d.innerHTML='<span class="dv-label">🍽️ Piring '+(i+1)+'</span><div class="dv-candies">'+candies(n,i===last?n-1:-1)+'</div><span class="dv-count">'+n+'</span>';box.append(d)}
+ const r=$('dvShareResult'),q=Math.floor(sT/sP),rem=sT%sP;
+ if(sT===0){r.className='dv-result ok';r.innerHTML='<span class="dv-big">0 : '+sP+' = 0</span>Tidak ada permen yang dibagi, jadi tiap piring dapat 0.'}
+ else if(!done){r.className='dv-result';r.innerHTML='Sudah dibagikan <b>'+given+'</b> permen. Sekarang giliran <b>piring '+(next+1)+'</b>.'+(given>0&&extra===0?' Satu putaran selesai, tiap piring sudah dapat '+per+'.':'')}
+ else{r.className='dv-result ok';r.innerHTML='<span class="dv-big">'+sT+' : '+sP+' = '+q+(rem?' sisa '+rem:'')+'</span>✅ '+sT+' permen dibagi rata ke '+sP+' piring, <b>tiap piring dapat '+q+'</b>.'+(rem?' Ada '+rem+' permen tersisa di toples karena tidak cukup untuk semua piring.':' Cek: '+sP+' piring × '+q+' = '+sT+'.')}
+ ['dvShareOne','dvShareRound'].forEach(id=>$(id).disabled=done);$('dvShareAll').disabled=done&&!sTimer;
+}
+function giveOne(){if(given<sMax()){given++;renderShare(true)}}
+$('dvShareOne').addEventListener('click',()=>{stopShare();giveOne()});
+$('dvShareRound').addEventListener('click',()=>{stopShare();if(given<sMax()){given=Math.min(sMax(),(Math.floor(given/sP)+1)*sP);renderShare()}});
+$('dvShareAll').addEventListener('click',()=>{
+ if(sTimer){stopShare();renderShare();return}
+ if(reduceMotion){given=sMax();renderShare();return}
+ $('dvShareAll').textContent='⏸ Jeda';
+ sTimer=setInterval(()=>{if(given>=sMax()){stopShare();renderShare();return}giveOne()},380);
+});
+$('dvShareReset').addEventListener('click',()=>{stopShare();given=0;renderShare()});
+['dvShareTotal','dvSharePlates'].forEach(id=>$(id).addEventListener('change',readShare));
+
+/* ---------- Langkah 2: kelompokkan + lompat mundur ---------- */
+let gT=12,gS=3,bags=0,gTimer=null;
+const gMax=()=>Math.floor(gT/gS);
+function stopGroup(){clearInterval(gTimer);gTimer=null;$('dvGroupAll').textContent='▶ Isi sampai habis'}
+function readGroup(){stopGroup();gT=toInt($('dvGroupTotal').value,0,50);gS=toInt($('dvGroupSize').value,1,10);$('dvGroupTotal').value=gT;$('dvGroupSize').value=gS;bags=0;renderGroup()}
+function drawLine(){
+ const W=640,P=26,Y=92,max=Math.max(gT,1),x=v=>P+(W-2*P)*v/max;let s='<line class="dv-axis" x1="'+P+'" y1="'+Y+'" x2="'+(W-P)+'" y2="'+Y+'"/>';
+ const step=gT<=20?1:5;
+ for(let v=0;v<=gT;v++){const big=v%step===0||v===gT;s+='<line class="dv-axis" x1="'+x(v)+'" y1="'+(Y-(big?7:4))+'" x2="'+x(v)+'" y2="'+(Y+(big?7:4))+'"/>';if(big)s+='<text x="'+x(v)+'" y="'+(Y+22)+'">'+v+'</text>'}
+ for(let i=0;i<bags;i++){const v0=gT-i*gS,v1=v0-gS,x0=x(v0),x1=x(v1),h=Math.min(70,(x0-x1)*.9+12),mx=(x0+x1)/2;
+  s+='<path class="dv-hop" d="M '+x0+' '+Y+' Q '+mx+' '+(Y-h)+' '+x1+' '+Y+'"/><text class="dv-hopl" x="'+mx+'" y="'+(Y-h/2-8)+'">−'+gS+'</text>'}
+ s+='<text x="'+x(gT-bags*gS)+'" y="'+(Y-14)+'" style="font-size:22px">🐸</text>';
+ $('dvLine').innerHTML=s;
+}
+function renderGroup(fresh=false){
+ const left=gT-bags*gS,done=bags>=gMax(),q=gMax(),rem=gS?gT%gS:0;
+ $('dvGJar').innerHTML=candies(left);$('dvGJarLabel').textContent='Toples: '+left+' permen';
+ const box=$('dvBags');box.replaceChildren();
+ for(let i=0;i<bags;i++){const d=document.createElement('div');d.className='dv-plate dv-bag'+(fresh&&i===bags-1?' dv-pop':'');d.innerHTML='<span class="dv-label">🛍️ Kantong '+(i+1)+'</span><div class="dv-candies">'+candies(gS)+'</div><span class="dv-count">'+gS+'</span>';box.append(d)}
+ drawLine();
+ $('dvChain').innerHTML=bags?Array.from({length:bags},(_,i)=>(gT-i*gS)+' − '+gS+' = '+(gT-(i+1)*gS)).join(' &nbsp;→&nbsp; '):'';
+ const r=$('dvGroupResult');
+ if(gT===0){r.className='dv-result ok';r.innerHTML='<span class="dv-big">0 : '+gS+' = 0</span>Tidak ada permen, jadi tidak butuh kantong.'}
+ else if(!done){r.className='dv-result';r.innerHTML='Sudah terisi <b>'+bags+'</b> kantong. Di toples masih ada <b>'+left+'</b> permen.'}
+ else{r.className='dv-result ok';r.innerHTML='<span class="dv-big">'+gT+' : '+gS+' = '+q+(rem?' sisa '+rem:'')+'</span>✅ Butuh <b>'+q+' kantong</b>. Sama saja dengan mengurangi '+gS+' terus sebanyak '+q+' kali'+(rem?', lalu tersisa '+rem+' permen yang tidak cukup untuk satu kantong.':' sampai habis.')}
+ $('dvGroupOne').disabled=done;$('dvGroupAll').disabled=done&&!gTimer;
+}
+function fillOne(){if(bags<gMax()){bags++;renderGroup(true)}}
+$('dvGroupOne').addEventListener('click',()=>{stopGroup();fillOne()});
+$('dvGroupAll').addEventListener('click',()=>{
+ if(gTimer){stopGroup();renderGroup();return}
+ if(reduceMotion){bags=gMax();renderGroup();return}
+ $('dvGroupAll').textContent='⏸ Jeda';
+ gTimer=setInterval(()=>{if(bags>=gMax()){stopGroup();renderGroup();return}fillOne()},700);
+});
+$('dvGroupReset').addEventListener('click',()=>{stopGroup();bags=0;renderGroup()});
+['dvGroupTotal','dvGroupSize'].forEach(id=>$(id).addEventListener('change',readGroup));
+
+/* ---------- Langkah 3: susunan baris + segitiga ---------- */
+let aR=3,aC=4,covered=-1;
+function renderArr(){
+ const c=aR*aC,vals=[c,aR,aC];
+ $('dvGrid').innerHTML=Array.from({length:aR},(_,i)=>'<div class="row"><small>baris '+(i+1)+'</small>'+CANDY.repeat(aC)+'</div>').join('');
+ const pos=[[150,48],[52,205],[248,205]];
+ let s='<line x1="150" y1="48" x2="52" y2="205"/><line x1="150" y1="48" x2="248" y2="205"/><line x1="52" y1="205" x2="248" y2="205"/><text class="op" x="150" y="226">×</text><text class="op" x="86" y="118">:</text><text class="op" x="214" y="118">:</text>';
+ const names=['hasil','baris','isi tiap baris'];
+ pos.forEach(([x,y],i)=>{s+='<g class="node'+(covered===i?' covered':'')+'" data-i="'+i+'" tabindex="0" role="button" aria-label="'+(covered===i?'Buka':'Tutup')+' angka '+names[i]+'"><circle cx="'+x+'" cy="'+y+'" r="38"/><text x="'+x+'" y="'+y+'">'+(covered===i?'?':vals[i])+'</text></g>'});
+ $('dvTri').innerHTML=s;
+ const v=i=>covered===i?'<span class="dv-q">?</span>':vals[i];
+ $('dvFacts').innerHTML='<p>'+v(1)+' × '+v(2)+' = '+v(0)+'<small>'+aR+' baris, tiap baris isi '+aC+'</small></p><p>'+v(0)+' : '+v(1)+' = '+v(2)+'<small>'+c+' permen dibagi rata ke '+aR+' baris, tiap baris dapat '+aC+'</small></p><p>'+v(0)+' : '+v(2)+' = '+v(1)+'<small>'+c+' permen, tiap baris isi '+aC+', jadi ada '+aR+' baris</small></p>';
+ $('dvTriHint').textContent=covered>=0?'Angka berapa yang ditutup? Setelah anak menjawab, ketuk lingkaran oranye untuk membuka.':'Ketuk salah satu lingkaran untuk menutup angkanya.';
+}
+function toggleNode(e){const g=e.target.closest('.node');if(!g)return;const i=+g.dataset.i;covered=covered===i?-1:i;renderArr();const again=$('dvTri').querySelector('[data-i="'+i+'"]');if(again&&e.type==='keydown')again.focus()}
+$('dvTri').addEventListener('click',toggleNode);
+$('dvTri').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggleNode(e)}});
+function readArr(){aR=toInt($('dvRows').value,1,10);aC=toInt($('dvCols').value,1,10);$('dvRows').value=aR;$('dvCols').value=aC;covered=-1;renderArr()}
+['dvRows','dvCols'].forEach(id=>$(id).addEventListener('change',readArr));
+$('dvTriRandom').addEventListener('click',()=>{aR=rnd(2,5);aC=rnd(2,10);$('dvRows').value=aR;$('dvCols').value=aC;covered=rnd(0,2);renderArr()});
+$('dvTriOpen').addEventListener('click',()=>{covered=-1;renderArr()});
+
+/* ---------- Latihan soal cerita ---------- */
+const WHO=['Ibu','Bu Guru','Kakak','Ayah','Nenek'];
+const THINGS=[['kue','🧁'],['permen','🍬'],['kelereng','🔵'],['apel','🍎'],['pensil','✏️']];
+function numChoices(ans,extra){const set=[ans];for(const w of [...extra,ans+1,ans-1,ans+2,ans*2,ans+3])if(set.length<4&&w>=0&&!set.includes(w))set.push(w);const sh=shuffle(set.map(String));return{choices:sh,answer:sh.indexOf(String(ans))}}
+const pic=(groups,size,emoji)=>groups*size>40||groups*size===0?'':'<p class="dv-story">'+Array.from({length:groups},()=>emoji.repeat(size)).join(' &nbsp;|&nbsp; ')+'</p>';
+const ORDER=[0,1,2,0,1,3,4,5,0,1];
+function gen(i){
+ const t=ORDER[i%ORDER.length],a=rnd(2,5),b=rnd(2,10),c=a*b,[thing,emo]=pickOne(THINGS),who=pickOne(WHO);
+ if(t===0){const{choices,answer}=numChoices(b,[a,c-a]);return{text:who+' punya '+c+' '+thing+'. Semua '+thing+' dibagi rata ke '+a+' anak. Tiap anak dapat berapa '+thing+'?',choices,answer,
+  exp:'<p>'+c+' : '+a+' = <b>'+b+'</b>. Bagikan satu-satu ke '+a+' anak sampai habis, tiap anak dapat '+b+'.</p>'+pic(a,b,emo)+'<p>Cek: '+a+' × '+b+' = '+c+' ✅</p>'}}
+ if(t===1){const{choices,answer}=numChoices(a,[b,c-b]);return{text:'Ada '+c+' '+thing+'. Setiap kantong diisi '+b+' '+thing+'. Butuh berapa kantong?',choices,answer,
+  exp:'<p>'+c+' : '+b+' = <b>'+a+'</b> kantong.</p>'+pic(a,b,emo)+'<p>Kurangi '+b+' terus sampai habis: '+Array.from({length:a},(_,k)=>c-k*b).concat(0).join(' → ')+'. Ada '+a+' kali lompat.</p>'}}
+ if(t===2){const{choices,answer}=numChoices(b,[a,c]);return{text:a+' × '+b+' = '+c+'. Jadi '+c+' : '+a+' = ?',choices,answer,
+  exp:'<p>Pembagian adalah perkalian yang dibalik. Karena '+a+' × '+b+' = '+c+', maka '+c+' : '+a+' = <b>'+b+'</b>.</p>'}}
+ if(t===3){const{choices,answer}=numChoices(a,[b,c-b]);return{text:c+' : ? = '+b,choices,answer,
+  exp:'<p>Cari angka yang kalau dikali '+b+' hasilnya '+c+'. Itu <b>'+a+'</b>, karena '+a+' × '+b+' = '+c+'. Jadi '+c+' : '+a+' = '+b+'.</p>'}}
+ if(t===4){const k=rnd(0,2);
+  if(k===0){const{choices,answer}=numChoices(0,[a,1]);return{text:'0 : '+a+' = ?',choices,answer,exp:'<p>Tidak ada '+thing+' yang dibagi ke '+a+' anak, jadi tiap anak dapat <b>0</b>.</p>'}}
+  if(k===1){const{choices,answer}=numChoices(c,[1,0]);return{text:c+' : 1 = ?',choices,answer,exp:'<p>Dibagi ke 1 piring saja, jadi semua '+c+' '+thing+' masuk ke piring itu. Hasilnya <b>'+c+'</b>.</p>'}}
+  const{choices,answer}=numChoices(1,[c,0]);return{text:c+' : '+c+' = ?',choices,answer,exp:'<p>'+c+' '+thing+' dibagi ke '+c+' anak, tiap anak dapat <b>1</b>.</p>'}}
+ const right=c+' : '+a,list=shuffle([right,a+' : '+c,c+' × '+a,c+' − '+a]);
+ return{text:c+' '+thing+' dibagi rata ke '+a+' anak. Kalimat matematika yang benar adalah …',choices:list,answer:list.indexOf(right),
+  exp:'<p>Yang dibagi ('+c+' '+thing+') ditulis di depan, lalu banyak anaknya ('+a+'). Jadi '+c+' : '+a+' = '+b+'. Hati-hati, '+a+' : '+c+' itu berbeda.</p>'};
+}
+(function makeQuiz(root,total){
+ const q=s=>root.querySelector('[data-q="'+s+'"]');let i=0,score=0,cur=null;
+ function show(){
+  q('exp').hidden=true;q('next').hidden=true;
+  if(i>=total){q('body').hidden=true;q('done').hidden=false;q('title').textContent='Latihan selesai!';q('score').textContent='⭐ '+score+' benar';q('done').textContent='🏆 Benar '+score+' dari '+total+' soal.'+(score===total?' Hebat sekali!':' Tekan Soal Baru untuk mencoba lagi.');return}
+  q('body').hidden=false;q('done').hidden=true;cur=gen(i);
+  q('title').textContent='Soal '+(i+1)+' dari '+total;q('score').textContent='⭐ '+score+' benar';q('text').textContent=cur.text;
+  const box=q('choices');box.replaceChildren();
+  cur.choices.forEach((c,idx)=>{const b=document.createElement('button');b.type='button';b.className='weight-choice';b.textContent=c;b.addEventListener('click',()=>answer(idx));box.append(b)});
+ }
+ function answer(idx){
+  const btns=[...q('choices').children];btns.forEach(b=>b.disabled=true);const ok=idx===cur.answer;if(ok)score++;
+  btns[cur.answer].classList.add('correct');if(!ok)btns[idx].classList.add('wrong');
+  const e=q('exp');e.hidden=false;e.innerHTML='<strong>'+(ok?'✅ Benar!':'❌ Belum tepat. Jawabannya '+cur.choices[cur.answer]+'.')+'</strong>'+cur.exp;
+  q('score').textContent='⭐ '+score+' benar';q('next').hidden=false;q('next').textContent=i===total-1?'Lihat Hasil →':'Soal Selanjutnya →';
+ }
+ q('next').addEventListener('click',()=>{i++;show()});
+ q('again').addEventListener('click',()=>{i=0;score=0;show()});
+ show();
+})($('dvQuiz'),10);
+
+renderShare();renderGroup();renderArr();
 })();
 </script></html>
