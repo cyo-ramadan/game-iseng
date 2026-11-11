@@ -73,7 +73,58 @@ html[data-theme=light] .weight-journey-current{color:#087e70}
 .weight-journey-buttons .btn{font-size:13px;padding:10px 12px}
 @media(max-width:750px){.weight-journey-workspace{grid-template-columns:1fr}}
 @media(max-width:380px){.weight-journey-lesson{grid-template-columns:1fr}.weight-journey-inputs input{max-width:none}}
-</style><header><div class="brand">🚄 RAIL LAB <span class="tag">/ FUNCTION PLAYGROUND</span></div><button class="theme-toggle" id="themeToggle" type="button">☀️ Light Mode</button></header><nav class="page-nav" aria-label="Navigasi Rail Lab"><button class="active" type="button" id="navSim">🚄 Simulasi</button><button type="button" id="navConcept">📚 Konsep Fungsi</button><button type="button" id="navBusiness">📈 Eksplorasi x & y</button><button type="button" id="navQuiz">🧠 Latihan Soal</button><button type="button" id="navCanvas">✏️ Canvas Latihan</button><button type="button" id="navSlope">📐 Kemiringan</button><button type="button" id="navArea">🟦 Luas x × y</button><button type="button" id="navWorksheet">📝 Lembar Grafik</button><button type="button" id="navWeight">⚖️ Satuan Berat SD 3</button></nav><main><div class="page" id="simulationPage"><section class="hero"><div class="tag">MATEMATIKA × FISIKA × SIMULASI</div><h1>Kalau dua kereta balapan,<br>kapan mereka ketemu?</h1><p class="muted">Geser speed, posisi awal, dan waktu berangkat. Lihat keretanya bergerak dan grafik fungsi berubah real-time.</p></section><div class="layout"><aside class="panel"><h2>🎛️ Control room</h2><div class="train-heading">🚆 Kereta A <span class="pill">TEAL</span></div><div class="control"><label>Kecepatan A <b id="vaOut">3 km/menit</b></label><input id="va" type="range" min="1" max="5" step="0.5" value="3"></div><div class="triple"><div class="control"><label>Start A (menit)</label><input type="number" id="ta" value="0" min="0" max="20" step="1"></div><div class="control"><label>Posisi A (km)</label><input type="number" id="sa" value="0" min="0" max="100" step="1"></div></div><div class="train-heading">🚄 Kereta B <span class="pill train-b">ORANGE</span></div><div class="control"><label>Kecepatan B <b id="vbOut">2 km/menit</b></label><input id="vb" type="range" min="1" max="5" step="0.5" value="2"></div><div class="triple"><div class="control"><label>Start B (menit)</label><input type="number" id="tb" value="4" min="0" max="20" step="1"></div><div class="control"><label>Posisi B (km)</label><input type="number" id="sb" value="20" min="0" max="100" step="1"></div></div><hr style="border:0;border-top:1px solid #2e3d57;margin:22px 0"><div class="control"><label>Waktu pengamatan maksimum</label><input type="number" id="duration" value="30" min="5" max="120" step="5" style="width:100%"></div><p class="note">Kecepatan 1–5 km/menit untuk learning demo. Keduanya bergerak ke arah kanan; sebelum berangkat, kereta diam di posisi awal.</p><button class="btn secondary" id="reset" style="width:100%">↺ Reset skenario</button></aside><section class="maincol"><article class="panel"><h2>🛤️ Live train simulation</h2><div class="track" id="track"><div class="rails"></div><div class="station" style="left:6%">KM 0</div><div class="station" style="left:94%">END</div><div class="train" id="trainA">🚆</div><div class="train b" id="trainB">🚄</div></div><div class="progress"><button class="btn" id="play">▶ Play</button><button class="btn secondary" id="restart">↺</button><input type="range" id="time" value="0" min="0" max="30" step=".05"><b id="clock">0.0 m</b></div><div class="status" id="status"></div></article><article class="panel"><h2>📈 Function graph</h2><div class="tabs"><button id="tabTime" class="active">s terhadap t</button><button id="tabSpeed">s terhadap v</button></div><canvas id="graph"></canvas><div class="formula" id="formula"></div><p class="note" id="explain"></p></article></section></div></div><section id="conceptPage" class="page" hidden><section class="hero"><div class="tag">LEARN THE WHY</div><h1>Fungsi itu mesin input → output</h1><p class="muted">Satu input menghasilkan tepat satu output. Eksperimen variabel, domain, range, gradien, dan titik potong dengan contoh nyata.</p></section><div class="lesson-grid"><article class="lesson"><h3>01 · Apa itu fungsi?</h3><p>Fungsi menghubungkan tiap nilai input (x) ke satu nilai output (y). Contoh <code>f(x) = 2x + 3</code>.</p><p class="note">Jika x = 4, f(4) = 11. Dua input berbeda boleh menghasilkan output sama, tetapi satu input tidak boleh punya dua output berbeda.</p></article><article class="lesson"><h3>02 · Domain & range</h3><p><b>Domain</b> adalah input yang diperbolehkan. <b>Range</b> adalah output yang dihasilkan.</p><p class="note">Contoh jumlah gelas x hanya bilangan bulat ≥ 0. Kalau harganya Rp6.000, range pendapatan = Rp0, Rp6.000, Rp12.000, ...</p></article><article class="lesson"><h3>03 · Gradien & konstanta</h3><p>Untuk fungsi linear <code>f(x) = ax + b</code>, <code>a</code> adalah perubahan output tiap input naik 1. <code>b</code> adalah output ketika x = 0.</p><p class="note">Di kereta: gradien = kecepatan. Dalam bisnis: gradien fungsi pendapatan = harga per unit.</p></article><article class="lesson"><h3>04 · Titik potong</h3><p>Dua grafik berpotongan saat nilai output keduanya sama untuk input yang sama: <code>f(x) = g(x)</code>.</p><p class="note">Dua kereta bertemu pada waktu dan posisi yang sama. Dua strategi harga punya revenue sama pada volume tertentu.</p></article></div><article class="panel" style="margin-top:18px"><h2>🔬 Mesin fungsi: f(x) = ax + b</h2><div class="lab-controls"><label>a (gradien) <input type="number" id="coefA" value="2" step="1"></label><label>b (konstanta) <input type="number" id="coefB" value="3" step="1"></label><label>x (input) <input type="number" id="funcX" value="4" step="1"></label></div><div class="function-example"><div id="funcEquation"></div><div class="function-output" id="funcResult"></div><p class="note" id="funcExplain"></p></div></article></section>
+
+#fractionPage{--fr-disc:#16243d;--fr-line:#a9bdd9;--fr-ink:#edf3ff;--fr-slice:#f39a4c;--fr-mika:#5fb2ff;--fr-plastic:rgba(120,190,255,.10);--fr-chip:rgba(95,178,255,.12)}
+html[data-theme=light] #fractionPage{--fr-disc:#ffffff;--fr-line:#36536f;--fr-ink:#14243b;--fr-slice:#f08a3c;--fr-mika:#1f6fd1;--fr-plastic:rgba(31,111,209,.07);--fr-chip:rgba(31,111,209,.08)}
+.fr-section{margin-bottom:18px}.fr-section h2{margin:8px 0 4px}
+.fr-board{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px;align-items:center}
+@media(max-width:760px){.fr-board{grid-template-columns:1fr}}
+.fr-svg{width:100%;max-width:380px;display:block;margin:auto;overflow:visible}
+.fr-disc{fill:var(--fr-disc)}
+.fr-rim{fill:none;stroke:var(--fr-line);stroke-width:3}
+.fr-cut line{stroke:var(--fr-line)}
+.fr-slice{fill:var(--fr-slice)}
+.fr-new{animation:frPop .5s ease}
+@keyframes frPop{from{opacity:0}to{opacity:1}}
+.fr-inner{stroke:rgba(255,255,255,.75);stroke-width:1.4}
+.fr-edge{stroke:var(--fr-ink);stroke-width:3;stroke-linecap:round}
+.fr-plastic{fill:var(--fr-plastic);stroke:var(--fr-mika);stroke-width:2;stroke-dasharray:6 4}
+.fr-mika line{stroke:var(--fr-mika);stroke-dasharray:4 3}
+.fr-num{fill:#fff;font-weight:900;text-anchor:middle;dominant-baseline:central;paint-order:stroke;stroke:rgba(0,0,0,.45);stroke-width:3px}
+.fr-plabel{fill:#fff;font-weight:900;text-anchor:middle;dominant-baseline:central;paint-order:stroke;stroke:rgba(0,0,0,.4);stroke-width:3px;font-size:15px}
+.fr-frac{display:inline-grid;text-align:center;vertical-align:middle;line-height:1;font-weight:900;margin:0 .1em}
+.fr-frac>span{padding:0 .15em}.fr-frac>span:first-child{border-bottom:.08em solid currentColor;padding-bottom:.06em}.fr-frac>span:last-child{padding-top:.06em}
+.fr-big{font-size:clamp(46px,9vw,80px);font-weight:900;display:flex;align-items:center;gap:.2em;flex-wrap:wrap;color:var(--fr-slice)}
+.fr-say{font-size:clamp(17px,2.4vw,21px);line-height:1.7;margin:10px 0}
+.fr-controls{display:flex;flex-wrap:wrap;gap:10px;align-items:end;margin:14px 0}
+.fr-controls label{display:grid;gap:5px;font-weight:750;font-size:13px}
+.fr-controls input[type=number]{width:120px;border:1px solid #66849b;border-radius:10px;background:rgba(74,140,162,.10);color:inherit;font-size:20px;padding:8px}
+.fr-controls input[type=range]{width:min(340px,100%);margin-bottom:12px}
+.fr-quick{display:flex;flex-wrap:wrap;gap:6px}
+.fr-quick button{border:1px solid #577b92;background:var(--fr-chip);color:inherit;border-radius:9px;padding:7px 11px;font-weight:800;cursor:pointer;font-size:14px}
+.fr-quick button.on{background:var(--fr-mika);color:#fff;border-color:var(--fr-mika)}
+.fr-compare{display:grid;grid-template-columns:repeat(auto-fill,minmax(88px,1fr));gap:10px;margin-top:10px}
+.fr-compare button{border:1px solid #577b92;background:transparent;color:inherit;border-radius:14px;padding:8px;cursor:pointer;display:grid;justify-items:center;gap:4px;font-size:20px}
+.fr-compare button.on{border:2px solid var(--fr-slice)}
+.fr-compare svg{width:62px;height:62px}
+.fr-chips{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:24px;margin:10px 0}
+.fr-chip{display:inline-flex;align-items:center;gap:6px;border-radius:12px;padding:4px 10px;background:var(--fr-chip);border:1px solid rgba(120,150,170,.35)}
+.fr-chip button{border:0;background:none;color:inherit;font-size:15px;cursor:pointer;padding:2px 4px}
+.fr-swatch{width:14px;height:14px;border-radius:4px;display:inline-block}
+.fr-result{border-radius:14px;padding:14px 16px;margin-top:12px;font-size:17px;line-height:1.9;border:1px solid rgba(120,150,170,.35);background:var(--fr-chip)}
+.fr-result.ok{border-color:#139c77;background:rgba(12,161,118,.13)}
+.fr-result.half{border-color:#d99a2b;background:rgba(217,154,43,.13)}
+.fr-result.no{border-color:#e16e6e;background:rgba(214,81,81,.12)}
+.fr-tried{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;min-height:28px}
+.fr-tried span{border-radius:999px;padding:4px 10px;font-weight:800;font-size:13px;border:1px solid rgba(120,150,170,.4)}
+.fr-msg{color:#e16e6e;font-weight:700;font-size:14px;min-height:1.2em;margin:6px 0}
+.fr-qbody{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.fr-qpic{width:150px;height:150px;flex:none;overflow:visible}
+.fr-qbody .weight-question{flex:1;min-width:200px}
+.fr-quizbox .weight-choice{font-size:22px}
+.fr-done{font-size:22px;font-weight:850;padding:18px 4px}
+@media(prefers-reduced-motion:reduce){.fr-new{animation:none}}
+</style><header><div class="brand">🚄 RAIL LAB <span class="tag">/ FUNCTION PLAYGROUND</span></div><button class="theme-toggle" id="themeToggle" type="button">☀️ Light Mode</button></header><nav class="page-nav" aria-label="Navigasi Rail Lab"><button class="active" type="button" id="navSim">🚄 Simulasi</button><button type="button" id="navConcept">📚 Konsep Fungsi</button><button type="button" id="navBusiness">📈 Eksplorasi x & y</button><button type="button" id="navQuiz">🧠 Latihan Soal</button><button type="button" id="navCanvas">✏️ Canvas Latihan</button><button type="button" id="navSlope">📐 Kemiringan</button><button type="button" id="navArea">🟦 Luas x × y</button><button type="button" id="navWorksheet">📝 Lembar Grafik</button><button type="button" id="navWeight">⚖️ Satuan Berat SD 3</button><button type="button" id="navFraction">🍕 Pecahan SD 3</button></nav><main><div class="page" id="simulationPage"><section class="hero"><div class="tag">MATEMATIKA × FISIKA × SIMULASI</div><h1>Kalau dua kereta balapan,<br>kapan mereka ketemu?</h1><p class="muted">Geser speed, posisi awal, dan waktu berangkat. Lihat keretanya bergerak dan grafik fungsi berubah real-time.</p></section><div class="layout"><aside class="panel"><h2>🎛️ Control room</h2><div class="train-heading">🚆 Kereta A <span class="pill">TEAL</span></div><div class="control"><label>Kecepatan A <b id="vaOut">3 km/menit</b></label><input id="va" type="range" min="1" max="5" step="0.5" value="3"></div><div class="triple"><div class="control"><label>Start A (menit)</label><input type="number" id="ta" value="0" min="0" max="20" step="1"></div><div class="control"><label>Posisi A (km)</label><input type="number" id="sa" value="0" min="0" max="100" step="1"></div></div><div class="train-heading">🚄 Kereta B <span class="pill train-b">ORANGE</span></div><div class="control"><label>Kecepatan B <b id="vbOut">2 km/menit</b></label><input id="vb" type="range" min="1" max="5" step="0.5" value="2"></div><div class="triple"><div class="control"><label>Start B (menit)</label><input type="number" id="tb" value="4" min="0" max="20" step="1"></div><div class="control"><label>Posisi B (km)</label><input type="number" id="sb" value="20" min="0" max="100" step="1"></div></div><hr style="border:0;border-top:1px solid #2e3d57;margin:22px 0"><div class="control"><label>Waktu pengamatan maksimum</label><input type="number" id="duration" value="30" min="5" max="120" step="5" style="width:100%"></div><p class="note">Kecepatan 1–5 km/menit untuk learning demo. Keduanya bergerak ke arah kanan; sebelum berangkat, kereta diam di posisi awal.</p><button class="btn secondary" id="reset" style="width:100%">↺ Reset skenario</button></aside><section class="maincol"><article class="panel"><h2>🛤️ Live train simulation</h2><div class="track" id="track"><div class="rails"></div><div class="station" style="left:6%">KM 0</div><div class="station" style="left:94%">END</div><div class="train" id="trainA">🚆</div><div class="train b" id="trainB">🚄</div></div><div class="progress"><button class="btn" id="play">▶ Play</button><button class="btn secondary" id="restart">↺</button><input type="range" id="time" value="0" min="0" max="30" step=".05"><b id="clock">0.0 m</b></div><div class="status" id="status"></div></article><article class="panel"><h2>📈 Function graph</h2><div class="tabs"><button id="tabTime" class="active">s terhadap t</button><button id="tabSpeed">s terhadap v</button></div><canvas id="graph"></canvas><div class="formula" id="formula"></div><p class="note" id="explain"></p></article></section></div></div><section id="conceptPage" class="page" hidden><section class="hero"><div class="tag">LEARN THE WHY</div><h1>Fungsi itu mesin input → output</h1><p class="muted">Satu input menghasilkan tepat satu output. Eksperimen variabel, domain, range, gradien, dan titik potong dengan contoh nyata.</p></section><div class="lesson-grid"><article class="lesson"><h3>01 · Apa itu fungsi?</h3><p>Fungsi menghubungkan tiap nilai input (x) ke satu nilai output (y). Contoh <code>f(x) = 2x + 3</code>.</p><p class="note">Jika x = 4, f(4) = 11. Dua input berbeda boleh menghasilkan output sama, tetapi satu input tidak boleh punya dua output berbeda.</p></article><article class="lesson"><h3>02 · Domain & range</h3><p><b>Domain</b> adalah input yang diperbolehkan. <b>Range</b> adalah output yang dihasilkan.</p><p class="note">Contoh jumlah gelas x hanya bilangan bulat ≥ 0. Kalau harganya Rp6.000, range pendapatan = Rp0, Rp6.000, Rp12.000, ...</p></article><article class="lesson"><h3>03 · Gradien & konstanta</h3><p>Untuk fungsi linear <code>f(x) = ax + b</code>, <code>a</code> adalah perubahan output tiap input naik 1. <code>b</code> adalah output ketika x = 0.</p><p class="note">Di kereta: gradien = kecepatan. Dalam bisnis: gradien fungsi pendapatan = harga per unit.</p></article><article class="lesson"><h3>04 · Titik potong</h3><p>Dua grafik berpotongan saat nilai output keduanya sama untuk input yang sama: <code>f(x) = g(x)</code>.</p><p class="note">Dua kereta bertemu pada waktu dan posisi yang sama. Dua strategi harga punya revenue sama pada volume tertentu.</p></article></div><article class="panel" style="margin-top:18px"><h2>🔬 Mesin fungsi: f(x) = ax + b</h2><div class="lab-controls"><label>a (gradien) <input type="number" id="coefA" value="2" step="1"></label><label>b (konstanta) <input type="number" id="coefB" value="3" step="1"></label><label>x (input) <input type="number" id="funcX" value="4" step="1"></label></div><div class="function-example"><div id="funcEquation"></div><div class="function-output" id="funcResult"></div><p class="note" id="funcExplain"></p></div></article></section>
 <section id="businessPage" class="page" hidden><section class="hero"><div class="tag">MATEMATIKA SMP · FUNGSI LINEAR</div><h1>Mainkan x dan y 📈</h1><p class="muted">Coba fungsi y = ax + b. Geser x, a, atau b. Amati titik di grafik berpindah dan isi tabel berubah.</p></section><div class="layout"><aside class="panel"><h2>🎛️ Atur nilai</h2><div class="control"><label>Nilai a (angka pengali)</label><input id="xyA" type="range" min="-5" max="5" step="1" value="2"><b id="xyAOut">2</b></div><div class="control"><label>Nilai b (angka tambahan)</label><input id="xyB" type="range" min="-10" max="10" step="1" value="1"><b id="xyBOut">1</b></div><div class="control"><label>Nilai x (input)</label><input id="xyX" type="range" min="-10" max="10" step="1" value="3"><b id="xyXOut">3</b></div><div class="function-example"><div class="note" id="xyFormula"></div><div class="function-output" id="xyResult"></div><p class="note" id="xySteps"></p></div><button class="btn secondary" id="xyReset" type="button" style="width:100%;margin-top:15px">↺ Reset nilai</button></aside><section class="maincol"><article class="panel"><h2>📈 Grafik y terhadap x</h2><div class="graph-controls"><button type="button" id="xyZoomIn">＋ Zoom In</button><button type="button" id="xyZoomOut">－ Zoom Out</button><button type="button" id="xyZoomReset">Reset View</button><span id="xyZoomLabel">24 px/unit</span></div><canvas id="xyGraph" style="width:100%;height:300px"></canvas><p class="note">Garis memperlihatkan semua pasangan x dan y. Titik besar menunjukkan nilai x yang dipilih. Kalau a positif, garis naik. Kalau a negatif, garis turun.</p></article><article class="panel"><h2>🔢 Tabel pasangan (x, y)</h2><div id="xyTable" style="overflow-x:auto"></div><p class="note">Setiap x punya tepat satu y. Itulah ide utama fungsi. Coba ubah a dan b, lalu lihat tabelnya.</p></article></section></div></section>
 <section id="canvasPage" class="page" hidden>
 <section class="hero"><div class="tag">LATIHAN INTERAKTIF · BIDANG KOORDINAT</div><h1>Gambar sendiri 7 titik ✏️</h1><p class="muted">Pilih level, hitung nilai y dari 7 nilai x, lalu ketuk titik koordinat pada canvas. Periksa jawaban untuk melihat grafik yang benar.</p></section>
@@ -189,6 +240,62 @@ html[data-theme=light] .weight-journey-current{color:#087e70}
 </article>
 <article class="panel"><h2>🧠 Ingat dua aturan tangga!</h2><div class="lesson-grid"><div class="lesson"><h3>↘ Turun = ×10 per lantai</h3><p>Dari <b>kg ke gram</b> lewat 3 lantai: kg → hg/ons → dag → g. Jadi 1 kg = 1 × 10 × 10 × 10 = <b>1.000 g</b>.</p></div><div class="lesson"><h3>↖ Naik = ÷10 per lantai</h3><p>Dari <b>gram ke kg</b> naik 3 lantai: g → dag → hg/ons → kg. Jadi 1.000 g = 1.000 ÷ 10 ÷ 10 ÷ 10 = <b>1 kg</b>.</p></div></div><p class="note"><b>Untuk soal campuran:</b> jadikan semuanya gram dahulu. Contoh 1 kg 2 ons = 1.000 g + 200 g = <b>1.200 g</b>. Beratnya tidak berubah, hanya cara menyebut satuannya.</p></article>
 </section>
+<section id="fractionPage" class="page" hidden>
+<section class="hero"><div class="tag">MATEMATIKA SD · KELAS 3 · PECAHAN</div><h1>🍕 Pecahan dengan Mika Lingkaran</h1><p class="muted">Alat peraga untuk guru. Ketik mau dipotong jadi berapa, lingkaran langsung terbagi sama besar (2 sampai 100 bagian). Mulai dari mengenal satu bagian, lalu beberapa bagian, lalu menjumlah pecahan dengan menempelkan mika.</p></section>
+
+<article class="panel fr-section">
+<span class="tag">LANGKAH 1 · KENALAN SATU BAGIAN</span><h2>Sebesar apa sih <span class="fr-frac"><span>1</span><span>4</span></span> itu?</h2>
+<div class="fr-controls"><label for="frUnitN">Lingkaran dipotong jadi<input id="frUnitN" type="number" min="2" max="100" value="4" inputmode="numeric"></label><input id="frUnitRange" type="range" min="2" max="100" value="4" aria-label="Geser jumlah potongan"></div>
+<div class="fr-board"><svg id="frUnitSvg" class="fr-svg" viewBox="0 0 200 200" role="img" aria-label="Lingkaran yang dibagi sama besar"></svg><div><div class="fr-big" id="frUnitBig"></div><p class="fr-say" id="frUnitText"></p></div></div>
+<p class="note"><b>Bandingkan:</b> ketuk salah satu. Makin banyak potongannya, makin kecil tiap potong.</p>
+<div class="fr-compare" id="frCompare"></div>
+</article>
+
+<article class="panel fr-section">
+<span class="tag">LANGKAH 2 · BEBERAPA BAGIAN</span><h2>Kalau <span class="fr-frac"><span>1</span><span>6</span></span> sebesar itu, <span class="fr-frac"><span>3</span><span>6</span></span> sebesar apa?</h2>
+<div class="fr-controls"><label for="frPartK">Diambil (pembilang)<input id="frPartK" type="number" min="0" max="100" value="3" inputmode="numeric"></label><label for="frPartN">Dipotong jadi (penyebut)<input id="frPartN" type="number" min="2" max="100" value="6" inputmode="numeric"></label><button class="btn" id="frPartAdd" type="button">＋ Ambil 1 bagian lagi</button><button class="btn secondary" id="frPartSub" type="button">－ Kembalikan 1</button><button class="btn secondary" id="frPartClear" type="button">↺ Kosongkan</button></div>
+<div class="fr-board"><svg id="frPartSvg" class="fr-svg" viewBox="0 0 200 200" role="img" aria-label="Lingkaran dengan beberapa bagian diwarnai"></svg><div><div class="fr-big" id="frPartBig"></div><div class="fr-chips" id="frPartChips"></div><p class="fr-say" id="frPartText"></p></div></div>
+</article>
+
+<article class="panel fr-section fr-quizbox" id="frQuiz1">
+<div class="weight-heading"><div><span class="tag">LATIHAN · MENGENAL PECAHAN · 8 SOAL</span><h2 data-q="title">Soal 1</h2></div><div class="weight-score" data-q="score">⭐ 0 benar</div></div>
+<div data-q="body"><div class="fr-qbody"><svg data-q="pic" class="fr-qpic" viewBox="0 0 200 200" aria-hidden="true"></svg><p class="weight-question" data-q="text"></p></div>
+<div class="weight-choices" data-q="choices"></div><div class="weight-explanation" data-q="exp" hidden aria-live="polite"></div></div>
+<p class="fr-done" data-q="done" hidden></p>
+<div class="weight-actions"><button class="btn" data-q="next" type="button" hidden>Soal Selanjutnya →</button><button class="btn secondary" data-q="again" type="button">🎲 Soal Baru</button></div>
+</article>
+
+<article class="panel fr-section">
+<span class="tag">LANGKAH 3 · MENJUMLAH DENGAN MIKA</span><h2><span class="fr-frac"><span>1</span><span>3</span></span> + <span class="fr-frac"><span>1</span><span>6</span></span> itu sebesar apa? Kita sebut apa?</h2>
+<p class="muted">Ambil potongan dan taruh di lingkaran kosong. Lalu coba tempelkan mika satu per satu (/2, /3, /4, …). Mika yang garisnya pas dengan semua ujung potongan, itulah mika yang bisa menamai hasilnya.</p>
+<div class="fr-controls"><label for="frPieceA">Pembilang<input id="frPieceA" type="number" min="1" max="100" value="1" inputmode="numeric"></label><label for="frPieceB">Penyebut<input id="frPieceB" type="number" min="2" max="100" value="4" inputmode="numeric"></label><button class="btn" id="frPieceAdd" type="button">✋ Ambil potongan</button><button class="btn secondary" id="frPieceReset" type="button">↺ Kosongkan lingkaran</button></div>
+<div class="fr-quick" id="frPresets" aria-label="Contoh soal"></div>
+<p class="fr-msg" id="frPieceMsg" aria-live="polite"></p>
+<div class="fr-chips" id="frPieceChips"></div>
+<div class="fr-board"><svg id="frMikaSvg" class="fr-svg" viewBox="0 0 200 200" role="img" aria-label="Lingkaran berisi potongan pecahan dan mika"></svg><div>
+<div class="fr-controls"><label for="frMikaN">Mika pembagian<input id="frMikaN" type="number" min="2" max="100" placeholder="mis. 6" inputmode="numeric"></label><button class="btn" id="frMikaApply" type="button">🔍 Tempel mika</button><button class="btn secondary" id="frMikaOff" type="button">Lepas mika</button></div>
+<div class="fr-quick" id="frMikaQuick" aria-label="Pilih mika cepat"></div>
+<div class="fr-result" id="frMikaResult" aria-live="polite"></div>
+<p class="note" style="margin:12px 0 0"><b>Mika yang sudah dicoba:</b> ✅ pas semua · 🤔 hanya ujung akhirnya yang pas · ❌ belum pas</p><div class="fr-tried" id="frTried"></div>
+<button class="btn secondary" id="frMikaFind" type="button" style="margin-top:12px">💡 Tunjukkan mika terkecil yang pas</button>
+</div></div>
+</article>
+
+<article class="panel fr-section fr-quizbox" id="frQuiz2">
+<div class="weight-heading"><div><span class="tag">LATIHAN · MENJUMLAH PECAHAN · 6 SOAL</span><h2 data-q="title">Soal 1</h2></div><div class="weight-score" data-q="score">⭐ 0 benar</div></div>
+<div data-q="body"><div class="fr-qbody"><svg data-q="pic" class="fr-qpic" viewBox="0 0 200 200" aria-hidden="true"></svg><p class="weight-question" data-q="text"></p></div>
+<div class="weight-choices" data-q="choices"></div><div class="weight-explanation" data-q="exp" hidden aria-live="polite"></div></div>
+<p class="fr-done" data-q="done" hidden></p>
+<div class="weight-actions"><button class="btn" data-q="next" type="button" hidden>Soal Selanjutnya →</button><button class="btn secondary" data-q="again" type="button">🎲 Soal Baru</button></div>
+</article>
+
+<article class="panel"><h2>🧠 Kenapa penyebut harus disamakan?</h2><div class="lesson-grid">
+<div class="lesson"><h3>Potongannya beda ukuran</h3><p>1/3 dan 1/6 tidak sama besar. Kalau ditaruh bersebelahan, kita tidak bisa bilang "2 potong", karena potongannya beda ukuran. Jadi kita bingung menamainya.</p></div>
+<div class="lesson"><h3>Mika menyamakan ukuran</h3><p>Mika /6 memotong semuanya jadi potongan seukuran 1/6. Sekarang 1/3 = 2 potong dan 1/6 = 1 potong. Totalnya 3 potong, yaitu 3/6.</p></div>
+<div class="lesson"><h3>Penyebut tidak ikut dijumlah</h3><p>1/3 + 1/6 bukan 2/9. Penyebut itu ukuran potongannya (nama mikanya), bukan banyaknya potongan. Setelah mikanya sama, yang dijumlah hanya pembilangnya.</p></div>
+</div></article>
+</section>
+
 <p class="footer">RAIL LAB · dibuat untuk memahami fungsi melalui eksperimen · Angka dan grafik di-update otomatis</p></main><script>
 (()=>{'use strict';const $=id=>document.getElementById(id);let theme='light';try{theme=localStorage.getItem('rail-lab-theme')||'light'}catch(e){}if(theme!=='dark')theme='light';function applyTheme(){document.documentElement.dataset.theme=theme;$('themeToggle').textContent=theme==='light'?'🌙 Dark Mode':'☀️ Light Mode'}$('themeToggle').addEventListener('click',()=>{theme=theme==='light'?'dark':'light';try{localStorage.setItem('rail-lab-theme',theme)}catch(e){}applyTheme();paint()});applyTheme();const ids=['va','vb','ta','tb','sa','sb','duration'];const defaults={va:3,vb:2,ta:0,tb:4,sa:0,sb:20,duration:30};let running=false,mode='time',now=0,last=0;function params(){const p={};ids.forEach(k=>p[k]=Number($(k).value));p.ta=Math.max(0,p.ta||0);p.tb=Math.max(0,p.tb||0);p.sa=Math.max(0,p.sa||0);p.sb=Math.max(0,p.sb||0);p.duration=Math.max(5,Math.min(120,p.duration||30));return p}function pos(s,v,start,t){return s+v*Math.max(0,t-start)}function meetings(p){let times=[];const cuts=[0,p.ta,p.tb,p.duration].filter(x=>x>=0&&x<=p.duration).sort((a,b)=>a-b);const unique=[...new Set(cuts)];function diff(t){return pos(p.sa,p.va,p.ta,t)-pos(p.sb,p.vb,p.tb,t)}for(let i=0;i<unique.length-1;i++){let l=unique[i],r=unique[i+1],dl=diff(l),dr=diff(r);if(Math.abs(dl)<1e-8)times.push(l);if(dl*dr<0){times.push(l+(r-l)*(-dl)/(dr-dl))}if(Math.abs(dr)<1e-8)times.push(r)}if(Math.abs(diff(0))<1e-8)times.push(0);return [...new Set(times.map(x=>Math.round(x*10000)/10000))].sort((a,b)=>a-b)}function fmt(n){return Number(n.toFixed(2)).toLocaleString('id-ID')}function paint(){let p=params();now=Math.max(0,Math.min(now,p.duration));$('time').max=p.duration;$('time').value=now;$('clock').textContent=fmt(now)+' m';$('vaOut').textContent=fmt(p.va)+' km/menit';$('vbOut').textContent=fmt(p.vb)+' km/menit';let a=pos(p.sa,p.va,p.ta,now),b=pos(p.sb,p.vb,p.tb,now),limit=Math.max(30,pos(p.sa,p.va,p.ta,p.duration),pos(p.sb,p.vb,p.tb,p.duration))*1.06;const toLeft=s=>(5+90*Math.min(s/limit,1))+'%';$('trainA').style.left=toLeft(a);$('trainB').style.left=toLeft(b);const hits=meetings(p);let txt='<strong>t = '+fmt(now)+' menit</strong><br>Kereta A: '+fmt(a)+' km · Kereta B: '+fmt(b)+' km.<br>';if(hits.length){txt+='🎯 Posisi sama pada t = '+hits.map(fmt).join(', ')+' menit (dalam jendela simulasi).';if(p.sa===p.sb&&p.ta===p.tb&&p.va===p.vb)txt+=' Sepanjang simulasi keduanya berimpit.'}else txt+='↗ Tidak ada pertemuan dalam '+fmt(p.duration)+' menit pengamatan.';$('status').innerHTML=txt;drawGraph(p)}function drawGraph(p){const c=$('graph'),r=c.getBoundingClientRect(),d=window.devicePixelRatio||1;c.width=Math.max(300,Math.floor(r.width*d));c.height=Math.floor(330*d);const ctx=c.getContext('2d');ctx.scale(d,d);let w=r.width,h=330,pad={l:52,r:18,t:20,b:42},gw=w-pad.l-pad.r,gh=h-pad.t-pad.b;ctx.clearRect(0,0,w,h);const valueAt=(s,v,start,t)=>pos(s,v,start,t);let xmax=mode==='time'?p.duration:5,ymax=mode==='time'?Math.max(10,valueAt(p.sa,p.va,p.ta,xmax),valueAt(p.sb,p.vb,p.tb,xmax))*1.12:Math.max(10,p.sa+5*Math.max(0,now-p.ta),p.sb+5*Math.max(0,now-p.tb))*1.12;const px=x=>pad.l+x/xmax*gw,py=y=>h-pad.b-y/ymax*gh;ctx.font='12px system-ui';ctx.fillStyle=theme==='light'?'#4b647c':'#9cacc6';ctx.strokeStyle=theme==='light'?'#dce6f2':'#293d56';ctx.lineWidth=1;for(let i=0;i<=5;i++){const x=px(i*xmax/5),y=py(i*ymax/5);ctx.beginPath();ctx.moveTo(x,pad.t);ctx.lineTo(x,h-pad.b);ctx.moveTo(pad.l,y);ctx.lineTo(w-pad.r,y);ctx.stroke();ctx.fillText(fmt(i*xmax/5),x-8,h-18);ctx.fillText(fmt(i*ymax/5),4,y+4)}ctx.fillText(mode==='time'?'Waktu (menit) →':'Kecepatan (km/menit) →',w-180,h-3);ctx.fillText('Posisi (km)',pad.l,12);const lines=[{color:theme==='light'?'#008f82':'#72e7d0',s:p.sa,v:p.va,start:p.ta},{color:theme==='light'?'#e07840':'#ffad8a',s:p.sb,v:p.vb,start:p.tb}];for(const line of lines){ctx.strokeStyle=line.color;ctx.lineWidth=3;ctx.beginPath();for(let j=0;j<=240;j++){let x=j*xmax/240,y=mode==='time'?valueAt(line.s,line.v,line.start,x):line.s+x*Math.max(0,now-line.start);if(j===0)ctx.moveTo(px(x),py(y));else ctx.lineTo(px(x),py(y))}ctx.stroke();let cx=mode==='time'?now:line.v,cy=mode==='time'?valueAt(line.s,line.v,line.start,now):line.s+line.v*Math.max(0,now-line.start);ctx.beginPath();ctx.arc(px(cx),py(cy),5,0,2*Math.PI);ctx.fillStyle=line.color;ctx.fill()}if(mode==='time'){$('formula').textContent='A: s(t) = '+fmt(p.sa)+' + '+fmt(p.va)+' × max(0, t − '+fmt(p.ta)+')   |   B: s(t) = '+fmt(p.sb)+' + '+fmt(p.vb)+' × max(0, t − '+fmt(p.tb)+')';$('explain').textContent='Sumbu X adalah waktu. Sumbu Y adalah posisi. Kemiringan garis setelah berangkat = kecepatan. Titik potong dua garis berarti posisi sama pada waktu yang sama.'}else{$('formula').textContent='Pada t = '+fmt(now)+': A: s(v) = '+fmt(p.sa)+' + v × '+fmt(Math.max(0,now-p.ta))+'   |   B: s(v) = '+fmt(p.sb)+' + v × '+fmt(Math.max(0,now-p.tb));$('explain').textContent='Sekarang waktu dikunci pada t yang dipilih. Sumbu X menjadi kecepatan hipotetis (1–5), sumbu Y menjadi posisi. Masing-masing garis menunjukkan pengaruh mengubah speed saat faktor lain tetap. Titik potong pada mode ini bukan otomatis pertemuan dua kereta dengan kecepatan aktualnya.'}}ids.forEach(id=>$(id).addEventListener('input',()=>{if(id==='duration')now=Math.min(now,params().duration);paint()}));$('time').addEventListener('input',e=>{running=false;$('play').textContent='▶ Play';now=Number(e.target.value);paint()});$('play').addEventListener('click',()=>{if(now>=params().duration)now=0;running=!running;$('play').textContent=running?'⏸ Pause':'▶ Play';last=performance.now()});$('restart').addEventListener('click',()=>{running=false;now=0;$('play').textContent='▶ Play';paint()});$('reset').addEventListener('click',()=>{ids.forEach(k=>$(k).value=defaults[k]);now=0;running=false;mode='time';$('play').textContent='▶ Play';tabs();paint()});function tabs(){$('tabTime').classList.toggle('active',mode==='time');$('tabSpeed').classList.toggle('active',mode==='speed')}$('tabTime').addEventListener('click',()=>{mode='time';tabs();paint()});$('tabSpeed').addEventListener('click',()=>{mode='speed';tabs();paint()});function tick(t){if(running){now+=(t-last)/1000*1.7;if(now>=params().duration){now=params().duration;running=false;$('play').textContent='▶ Play'}paint()}last=t;requestAnimationFrame(tick)}window.addEventListener('resize',paint);paint();requestAnimationFrame(tick)})();
 </script><script>
@@ -271,8 +378,8 @@ card.append(k,title,body,opts,feedback);grid.append(card);
 });progress();
 }
 function progress(){el('quizProgress').textContent=answered+' / '+questions.length+' dijawab · '+correct+' benar'}
-function show(page){for(const key of ['Sim','Concept','Business','Quiz','Canvas','Slope','Area','Worksheet','Weight']){el(({Sim:'simulation',Concept:'concept',Business:'business',Quiz:'quiz',Canvas:'canvas',Slope:'slope',Area:'area',Worksheet:'worksheet',Weight:'weight'})[key]+'Page').hidden=(key.toLowerCase()!==page);el('nav'+key).classList.toggle('active',key.toLowerCase()===page)}window.dispatchEvent(new Event('resize'))}
-for(const key of ['Sim','Concept','Business','Quiz','Canvas','Slope','Area','Worksheet','Weight'])el('nav'+key).addEventListener('click',()=>show(key.toLowerCase()));el('resetQuiz').addEventListener('click',generate);generate();
+function show(page){for(const key of ['Sim','Concept','Business','Quiz','Canvas','Slope','Area','Worksheet','Weight','Fraction']){el(({Sim:'simulation',Concept:'concept',Business:'business',Quiz:'quiz',Canvas:'canvas',Slope:'slope',Area:'area',Worksheet:'worksheet',Weight:'weight',Fraction:'fraction'})[key]+'Page').hidden=(key.toLowerCase()!==page);el('nav'+key).classList.toggle('active',key.toLowerCase()===page)}window.dispatchEvent(new Event('resize'))}
+for(const key of ['Sim','Concept','Business','Quiz','Canvas','Slope','Area','Worksheet','Weight','Fraction'])el('nav'+key).addEventListener('click',()=>show(key.toLowerCase()));el('resetQuiz').addEventListener('click',generate);generate();
 })();
 </script><script>
 (()=>{'use strict';const $=id=>document.getElementById(id);
@@ -802,5 +909,191 @@ window.addEventListener('resize',placePerson);
 get('navWeight').addEventListener('click',()=>requestAnimationFrame(placePerson));
 new MutationObserver(placePerson).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
 restart();
+})();
+</script><script>
+(()=>{'use strict';
+const $=id=>document.getElementById(id);
+const NS='http://www.w3.org/2000/svg';
+const gcd=(a,b)=>{a=Math.abs(a);b=Math.abs(b);while(b){[a,b]=[b,a%b]}return a||1};
+const lcm=(a,b)=>a/gcd(a,b)*b;
+const toInt=(v,lo,hi)=>{const n=Math.round(Number(v));return Number.isFinite(n)?Math.max(lo,Math.min(hi,n)):lo};
+const F=(a,b)=>'<span class="fr-frac"><span>'+a+'</span><span>'+b+'</span></span>';
+const rnd=(a,b)=>a+Math.floor(Math.random()*(b-a+1));
+const pickOne=arr=>arr[Math.floor(Math.random()*arr.length)];
+const shuffle=arr=>{const a=arr.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const COLORS=['#16a38a','#f08a3c','#8a63d2','#e0577a','#3a8de0','#c9a227'];
+const C=100,R=90;
+const pt=(t,r=R)=>{const a=t*2*Math.PI-Math.PI/2;return[C+r*Math.cos(a),C+r*Math.sin(a)]};
+const f3=v=>v.toFixed(3);
+function arc(t0,t1,r=R){
+ if(t1-t0>=1-1e-9)return'M '+C+' '+(C-r)+' A '+r+' '+r+' 0 1 1 '+(C-0.001)+' '+(C-r)+' Z';
+ const[x0,y0]=pt(t0,r),[x1,y1]=pt(t1,r);
+ return'M '+C+' '+C+' L '+f3(x0)+' '+f3(y0)+' A '+r+' '+r+' 0 '+(t1-t0>0.5?1:0)+' 1 '+f3(x1)+' '+f3(y1)+' Z';
+}
+function mk(tag,attrs,parent){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e}
+const lineW=n=>n>60?.6:n>24?1:n>12?1.5:2.4;
+function base(svg){svg.replaceChildren();mk('circle',{cx:C,cy:C,r:R,class:'fr-disc'},svg)}
+function spokes(svg,n,cls){if(n<2)return;const g=mk('g',{class:cls,'stroke-width':lineW(n)},svg);for(let i=0;i<n;i++){const[x,y]=pt(i/n);mk('line',{x1:C,y1:C,x2:f3(x),y2:f3(y)},g)}}
+function rim(svg){mk('circle',{cx:C,cy:C,r:R,class:'fr-rim'},svg)}
+function drawParts(svg,n,k,fresh=-1){base(svg);for(let i=0;i<k;i++)mk('path',{d:arc(i/n,(i+1)/n),class:'fr-slice'+(i===fresh?' fr-new':'')},svg);spokes(svg,n,'fr-cut');rim(svg)}
+const sumOf=list=>{let n=0,d=1;for(const p of list){n=n*p.b+p.a*d;d*=p.b;const g=gcd(n,d);n/=g;d/=g}return[n,d]};
+/* Potongan ditaruh berurutan searah jarum jam mulai dari atas; mika = garis putus-putus di atasnya */
+function drawPieces(svg,pieces,mika,opt={}){
+ base(svg);let sn=0,sd=1;const edges=[];
+ pieces.forEach((p,idx)=>{
+  const t0=sn/sd;let en=sn*p.b+p.a*sd,ed=sd*p.b;const g=gcd(en,ed);en/=g;ed/=g;const t1=en/ed;
+  mk('path',{d:arc(t0,t1),fill:COLORS[idx%COLORS.length],class:'fr-piece'+(opt.fresh===idx?' fr-new':'')},svg);
+  for(let j=1;j<p.a;j++){const[x,y]=pt(t0+j/p.b);mk('line',{x1:C,y1:C,x2:f3(x),y2:f3(y),class:'fr-inner'},svg)}
+  if(!mika&&opt.pieceLabels!==false&&t1-t0>=0.06){const[lx,ly]=pt((t0+t1)/2,R*.6);mk('text',{x:f3(lx),y:f3(ly),class:'fr-plabel'},svg).textContent=p.a+'/'+p.b}
+  edges.push(t0);sn=en;sd=ed;
+ });
+ if(pieces.length){edges.push(sn/sd);const seen=new Set();for(const t of edges){const key=Math.round((t%1)*1e6);if(seen.has(key))continue;seen.add(key);const[x,y]=pt(t);mk('line',{x1:C,y1:C,x2:f3(x),y2:f3(y),class:'fr-edge'},svg)}}
+ if(mika>=2){
+  mk('circle',{cx:C,cy:C,r:R+5,class:'fr-plastic'},svg);spokes(svg,mika,'fr-mika');
+  const k=sn*mika/sd;
+  if(opt.labels&&mika<=36&&Number.isInteger(k)){const fs=mika<=8?18:mika<=16?13:9;for(let i=0;i<k;i++){const[lx,ly]=pt((i+.5)/mika,R*.78);mk('text',{x:f3(lx),y:f3(ly),class:'fr-num','font-size':fs},svg).textContent=String(i+1)}}
+ }
+ rim(svg);return[sn,sd];
+}
+
+/* ---------- Langkah 1: satu bagian ---------- */
+let unitN=4;
+function setUnit(v){
+ unitN=toInt(v,2,100);$('frUnitN').value=unitN;$('frUnitRange').value=unitN;
+ drawParts($('frUnitSvg'),unitN,1,0);
+ $('frUnitBig').innerHTML=F(1,unitN);
+ $('frUnitText').innerHTML='Lingkaran dipotong jadi <b>'+unitN+'</b> bagian yang sama besar. Ambil <b>1</b> bagian saja. <b>Sebesar inilah '+F(1,unitN)+'.</b>'+(unitN>=50?' Kecil sekali, ya!':'');
+ renderCompare();
+}
+function renderCompare(){
+ const list=[...new Set([2,3,4,6,10,100,unitN])].sort((a,b)=>a-b),box=$('frCompare');box.replaceChildren();
+ for(const n of list){const b=document.createElement('button');b.type='button';b.className=n===unitN?'on':'';b.setAttribute('aria-label','Tampilkan 1/'+n);
+  const s=mk('svg',{viewBox:'0 0 200 200'},b);drawParts(s,n,1);const l=document.createElement('span');l.innerHTML=F(1,n);b.append(l);b.addEventListener('click',()=>setUnit(n));box.append(b)}
+}
+$('frUnitN').addEventListener('change',e=>setUnit(e.target.value));
+$('frUnitRange').addEventListener('input',e=>setUnit(e.target.value));
+
+/* ---------- Langkah 2: beberapa bagian ---------- */
+let partN=6,partK=3;
+function setPart(n,k,fresh=-1){
+ partN=toInt(n,2,100);partK=toInt(k,0,partN);$('frPartN').value=partN;$('frPartK').value=partK;
+ drawParts($('frPartSvg'),partN,partK,fresh);
+ $('frPartBig').innerHTML=F(partK,partN);
+ const one=F(1,partN);
+ $('frPartChips').innerHTML=partK===0?'':partK<=8?Array(partK).fill('<span class="fr-chip">'+one+'</span>').join('<span>+</span>'):'<span class="fr-chip">'+one+'</span><span>+</span><span class="fr-chip">'+one+'</span><span>+ … sebanyak '+partK+' kali</span>';
+ let t;
+ if(partK===0)t='Belum ada bagian yang diambil. Tekan <b>Ambil 1 bagian lagi</b>.';
+ else if(partK===1)t='Ini '+F(1,partN)+', satu bagian. Ingat besarnya, ya!';
+ else t=F(partK,partN)+' artinya <b>'+partK+' kali</b> bagian '+F(1,partN)+'. Potongannya tetap seukuran '+F(1,partN)+', hanya jumlahnya yang '+partK+'.';
+ if(partK===partN)t+=' <b>'+F(partN,partN)+' = 1 lingkaran utuh!</b>';
+ $('frPartText').innerHTML=t;
+}
+$('frPartAdd').addEventListener('click',()=>{if(partK<partN)setPart(partN,partK+1,partK)});
+$('frPartSub').addEventListener('click',()=>setPart(partN,partK-1));
+$('frPartClear').addEventListener('click',()=>setPart(partN,0));
+$('frPartN').addEventListener('change',()=>setPart($('frPartN').value,$('frPartK').value));
+$('frPartK').addEventListener('change',()=>setPart($('frPartN').value,$('frPartK').value));
+
+/* ---------- Mesin kuis ---------- */
+// right/wrongs: {key, html}; ambil maksimal 3 pengecoh yang berbeda
+function build(right,wrongs){const seen=new Set([right.key]),list=[right];for(const w of wrongs){if(list.length>=4)break;if(!seen.has(w.key)){seen.add(w.key);list.push(w)}}const sh=shuffle(list);return{choices:sh,answer:sh.indexOf(right)}}
+const fr=(a,b)=>({key:a+'/'+b,html:F(a,b)});
+const tx=s=>({key:'t:'+s,html:s});
+function makeQuiz(root,total,gen){
+ const q=s=>root.querySelector('[data-q="'+s+'"]');let i=0,score=0,cur=null,round=0;
+ function show(){
+  q('exp').hidden=true;q('next').hidden=true;
+  if(i>=total){q('body').hidden=true;q('done').hidden=false;q('title').textContent='Latihan selesai!';q('score').textContent='⭐ '+score+' benar';q('done').textContent='🏆 Benar '+score+' dari '+total+' soal.'+(score===total?' Hebat sekali!':' Tekan Soal Baru untuk mencoba lagi.');return}
+  q('body').hidden=false;q('done').hidden=true;cur=gen(i,round);
+  q('title').textContent='Soal '+(i+1)+' dari '+total;q('score').textContent='⭐ '+score+' benar';q('text').innerHTML=cur.text;
+  const pic=q('pic');if(cur.draw){pic.style.display='';cur.draw(pic,false)}else pic.style.display='none';
+  const box=q('choices');box.replaceChildren();
+  cur.choices.forEach((c,idx)=>{const b=document.createElement('button');b.type='button';b.className='weight-choice';b.innerHTML=c.html;b.addEventListener('click',()=>answer(idx));box.append(b)});
+ }
+ function answer(idx){
+  const btns=[...q('choices').children];btns.forEach(b=>b.disabled=true);const ok=idx===cur.answer;if(ok)score++;
+  btns[cur.answer].classList.add('correct');if(!ok)btns[idx].classList.add('wrong');
+  if(cur.draw)cur.draw(q('pic'),true);
+  const e=q('exp');e.hidden=false;e.innerHTML='<strong>'+(ok?'✅ Benar!':'❌ Belum tepat.')+'</strong>'+cur.exp(cur.choices[idx].key);
+  q('score').textContent='⭐ '+score+' benar';q('next').hidden=false;q('next').textContent=i===total-1?'Lihat Hasil →':'Soal Selanjutnya →';
+ }
+ q('next').addEventListener('click',()=>{i++;show()});
+ q('again').addEventListener('click',()=>{i=0;score=0;round++;show()});
+ show();
+}
+
+/* Kuis 1: mengenal pecahan */
+const DEN=[3,4,5,6,8,10,12];
+makeQuiz($('frQuiz1'),8,i=>{
+ const t=i%4;
+ if(t===0){const n=pickOne(DEN),k=rnd(1,n-1),{choices,answer}=build(fr(k,n),[fr(n-k,n),fr(1,n),fr(k,n+2),fr(k+1,n)]);
+  return{text:'Lingkaran ini dipotong sama besar. Berapa bagian yang <b>berwarna</b>?',draw:s=>drawParts(s,n,k),choices,answer,
+   exp:()=>'<p>Lingkaran dipotong jadi <b>'+n+'</b> bagian sama besar (penyebut). Yang berwarna ada <b>'+k+'</b> bagian (pembilang). Jadi '+F(k,n)+'.</p>'}}
+ if(t===1){const n=pickOne([4,5,6,8,10,12]),k=rnd(2,n-1),{choices,answer}=build(tx(String(k)),[tx(String(n)),tx(String(n-k)),tx(String(k+1)),tx(String(k-1))]);
+  return{text:F(k,n)+' itu berapa kali bagian '+F(1,n)+'?',draw:s=>drawParts(s,n,k),choices,answer,
+   exp:()=>'<p>'+F(k,n)+' = '+(k<=6?Array(k).fill(F(1,n)).join(' + '):F(1,n)+' + '+F(1,n)+' + … ('+k+' kali)')+'. Jadi <b>'+k+' kali</b> bagian '+F(1,n)+'.</p>'}}
+ if(t===2){const n=pickOne([5,6,8,10,12]);let a=rnd(1,n-1),b=rnd(1,n-1);while(b===a)b=rnd(1,n-1);const big=Math.max(a,b),small=Math.min(a,b);
+  const list=[fr(a,n),fr(b,n),tx('Sama besar')];return{text:'Mana yang lebih besar: '+F(a,n)+' atau '+F(b,n)+'?',draw:(s,done)=>{if(done)drawParts(s,n,big);else drawParts(s,n,0)},choices:list,answer:list.findIndex(c=>c.key===big+'/'+n),
+   exp:()=>'<p>Penyebutnya sama, jadi ukuran potongannya sama ('+F(1,n)+'). '+F(big,n)+' punya '+big+' potong, lebih banyak dari '+small+' potong.</p>'}}
+ let a=pickOne([2,3,4,5,6,8,10,12]),b=pickOne([2,3,4,5,6,8,10,12]);while(b===a)b=pickOne([2,3,4,5,6,8,10,12]);const sm=Math.min(a,b),bg=Math.max(a,b);
+ const list=[fr(1,a),fr(1,b),tx('Sama besar')];
+ return{text:'Mana yang lebih besar: '+F(1,a)+' atau '+F(1,b)+'?',draw:(s,done)=>{if(done)drawParts(s,sm,1);else drawParts(s,1,0)},choices:list,answer:list.findIndex(c=>c.key==='1/'+sm),
+  exp:()=>'<p>Ingat Langkah 1: lingkaran yang dipotong jadi <b>lebih banyak</b> bagian, tiap potongnya <b>lebih kecil</b>. '+F(1,sm)+' (dipotong '+sm+') lebih besar dari '+F(1,bg)+' (dipotong '+bg+').</p>'}
+});
+
+/* Kuis 2: menjumlah pecahan */
+const PAIRS=[[1,2,1,4],[1,3,1,6],[1,4,1,8],[1,2,1,6],[1,3,1,4],[1,2,1,3],[1,5,1,10],[1,4,1,12],[1,2,1,8],[1,6,2,3],[1,4,1,6],[2,6,1,3]];
+let order=[],orderRound=-1;
+makeQuiz($('frQuiz2'),6,(i,round)=>{
+ if(orderRound!==round){order=shuffle(PAIRS);orderRound=round}
+ const[a,b,c,d]=order[i%order.length],L=lcm(b,d),x=a*L/b,y=c*L/d,s=x+y,g=gcd(s,L);
+ const wrongNaive=fr(a+c,b+d);const{choices,answer}=build(fr(s,L),[wrongNaive,fr(a+c,L),fr(s+1,L),fr(s,L+b)]);
+ return{text:F(a,b)+' + '+F(c,d)+' = ?',draw:(sv,done)=>drawPieces(sv,[{a,b},{a:c,b:d}],done?L:0,{labels:true}),choices,answer,
+  exp:key=>'<p>Tempelkan mika /'+L+': '+F(a,b)+' = '+F(x,L)+' dan '+F(c,d)+' = '+F(y,L)+'.</p><p>Jadi '+F(x,L)+' + '+F(y,L)+' = <b>'+F(s,L)+'</b>'+(g>1?' (sama besar dengan '+F(s/g,L/g)+')':'')+'.</p>'+(key===wrongNaive.key?'<p>⚠️ Penyebut tidak ikut dijumlah. Penyebut itu ukuran potongan, bukan banyaknya potongan.</p>':'')}
+});
+
+/* ---------- Langkah 3: papan mika ---------- */
+let pieces=[{a:1,b:3},{a:1,b:6}],mika=0,tried=[],fresh=-1;
+const PRESETS=[[1,3,1,6],[1,2,1,4],[1,3,1,4],[1,4,1,6],[1,2,1,3]];
+$('frPresets').innerHTML='<span class="note" style="align-self:center">Contoh cepat:</span>'+PRESETS.map((p,i)=>'<button type="button" data-preset="'+i+'">'+p[0]+'/'+p[1]+' + '+p[2]+'/'+p[3]+'</button>').join('');
+$('frPresets').addEventListener('click',e=>{const b=e.target.closest('[data-preset]');if(!b)return;const p=PRESETS[+b.dataset.preset];pieces=[{a:p[0],b:p[1]},{a:p[2],b:p[3]}];mika=0;tried=[];$('frPieceMsg').textContent='';renderMika()});
+const MQ=[2,3,4,5,6,7,8,9,10,12];
+function verdict(){
+ if(!pieces.length)return{cls:'',html:'Lingkaran masih kosong. Ambil potongan dulu, misalnya 1/3 lalu 1/6.'};
+ const[sn,sd]=sumOf(pieces),names=pieces.map(p=>F(p.a,p.b)).join(' + ');
+ if(!mika)return{cls:'',html:'Potongan '+names+' sudah ditaruh. Besarnya sebesar ini. <b>Kita sebut apa, ya?</b> Tempelkan mika untuk menghitungnya.'};
+ const fits=p=>(p.a*mika)%p.b===0,all=pieces.every(fits),end=(sn*mika)%sd===0,k=sn*mika/sd;
+ if(all){const parts=pieces.map(p=>F(p.a*mika/p.b,mika));
+  return{cls:'ok',st:'✅',html:'✅ <b>Mika /'+mika+' pas!</b> Semua garis potongan jatuh tepat di garis mika.<br>'+pieces.map((p,i)=>F(p.a,p.b)+' = '+parts[i]).join(' &nbsp; ')+'<br>Jadi '+names+' = '+parts.join(' + ')+' = <b>'+F(k,mika)+'</b>'+(sn===sd?' = 1 lingkaran utuh':gcd(k,mika)>1?' (sama besar dengan '+F(sn,sd)+')':'')}}
+ if(end){const bad=pieces.filter(p=>!fits(p)).map(p=>F(p.a,p.b)).join(', ');
+  return{cls:'half',st:'🤔',html:'🤔 <b>Ujung akhirnya pas</b>, besarnya '+F(k,mika)+'. Tapi garis potongan '+bad+' jatuh di tengah bagian mika. Totalnya ketemu, tapi tiap potongan belum bisa dihitung dengan mika ini. Coba mika lain.'}}
+ return{cls:'no',st:'❌',html:'❌ <b>Mika /'+mika+' belum pas.</b> Ujung potongan jatuh di tengah-tengah bagian mika, jadi susah dihitung ada berapa bagian. Coba mika lain.'};
+}
+function renderMika(){
+ drawPieces($('frMikaSvg'),pieces,mika,{labels:true,fresh});fresh=-1;
+ $('frPieceChips').innerHTML=pieces.length?pieces.map((p,i)=>'<span class="fr-chip"><i class="fr-swatch" style="background:'+COLORS[i%COLORS.length]+'"></i>'+F(p.a,p.b)+'<button type="button" data-rm="'+i+'" aria-label="Buang potongan '+p.a+'/'+p.b+'">✕</button></span>').join('<span>+</span>')+'<span>= ?</span>':'';
+ const v=verdict();$('frMikaResult').className='fr-result'+(v.cls?' '+v.cls:'');$('frMikaResult').innerHTML=v.html;
+ if(mika&&v.st){tried=tried.filter(t=>t.n!==mika);tried.push({n:mika,st:v.st})}
+ $('frTried').innerHTML=tried.length?tried.map(t=>'<span>/'+t.n+' '+t.st+'</span>').join(''):'<span class="note">belum ada</span>';
+ $('frMikaQuick').innerHTML=MQ.map(n=>'<button type="button" data-m="'+n+'" class="'+(n===mika?'on':'')+'">/'+n+'</button>').join('');
+ $('frMikaN').value=mika||'';
+}
+$('frPieceChips').addEventListener('click',e=>{const b=e.target.closest('[data-rm]');if(!b)return;pieces.splice(+b.dataset.rm,1);mika=0;tried=[];renderMika()});
+$('frPieceAdd').addEventListener('click',()=>{
+ const a=Math.round(Number($('frPieceA').value)),b=Math.round(Number($('frPieceB').value)),msg=$('frPieceMsg');
+ if(!(b>=2&&b<=100&&a>=1&&a<=b)){msg.textContent='Isi pembilang 1 sampai penyebut, dan penyebut 2 sampai 100.';return}
+ if(pieces.length>=6){msg.textContent='Maksimal 6 potongan. Kosongkan lingkaran dulu.';return}
+ const[sn,sd]=sumOf([...pieces,{a,b}]);if(sn>sd){msg.textContent='Lingkarannya tidak cukup: jumlahnya jadi lebih dari 1 lingkaran utuh.';return}
+ msg.textContent='';pieces.push({a,b});fresh=pieces.length-1;mika=0;tried=[];renderMika();
+});
+$('frPieceReset').addEventListener('click',()=>{pieces=[];mika=0;tried=[];$('frPieceMsg').textContent='';renderMika()});
+function applyMika(v){const n=Math.round(Number(v));if(!(n>=2&&n<=100)){$('frPieceMsg').textContent='Mika bisa dibuat dari pembagian 2 sampai 100.';return}$('frPieceMsg').textContent='';mika=n;renderMika()}
+$('frMikaApply').addEventListener('click',()=>applyMika($('frMikaN').value));
+$('frMikaN').addEventListener('keydown',e=>{if(e.key==='Enter')applyMika($('frMikaN').value)});
+$('frMikaQuick').addEventListener('click',e=>{const b=e.target.closest('[data-m]');if(b)applyMika(b.dataset.m)});
+$('frMikaOff').addEventListener('click',()=>{mika=0;renderMika()});
+$('frMikaFind').addEventListener('click',()=>{if(!pieces.length)return;const L=pieces.reduce((m,p)=>lcm(m,p.b/gcd(p.a,p.b)),1);if(L>100){$('frPieceMsg').textContent='Mika terkecil yang pas adalah /'+L+', lebih dari 100.';return}applyMika(L)});
+
+setUnit(4);setPart(6,3);renderMika();
 })();
 </script></html>
